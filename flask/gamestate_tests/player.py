@@ -34,8 +34,9 @@ class PlayerTestCase(unittest.TestCase):
 
     def test_spectator_cannot_set_hand(self):
         player = Player("John", True)
-        with self.assertRaises(IllegalOperationError):
+        with self.assertRaises(IllegalOperationError) as ex:
             player.set_hand(5)
+        self.assertEqual(str(ex.exception), 'Spectator cannot play')
 
     def test_state(self):
         name1 = "John"

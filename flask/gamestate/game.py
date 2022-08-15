@@ -27,7 +27,7 @@ class Game:
         return self.__state.get(uuid)
         
     def player_picks(self, uuid: str, card: int):
-        if card not in self.deck:
+        if card not in self.deck.value:
             raise IllegalOperationError(f'Card value {card} is not valid. Current deck is {self.deck.name}')
         player: Player = self.get_player(uuid)
         player.set_hand(card)

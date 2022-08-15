@@ -21,3 +21,19 @@ class Player:
 
     def has_picked_card(self) -> bool:
         return self.__hand is not None
+
+    def state(self) -> dict:
+        """Represents the player's state, with its hand hidden"""
+        return {
+            'name': self.name,
+            'spectator': self.spectator,
+            'hasPicked': self.has_picked_card()
+        }
+
+    def state_with_hand(self) -> dict:
+        """Represents the player's state, with its hand shown"""
+        return {
+            'name': self.name,
+            'spectator': self.spectator,
+            'hand': self.__hand
+        }

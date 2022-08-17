@@ -7,13 +7,20 @@ class Game:
     """Class representing the state of a game of Planning Poker"""
     def __init__(self, deck: Deck = Deck.FIBONACCI):
         self.__state = {}
-        self.deck = deck
+        self.__deck = deck
 
     def player_joins(self, uuid: str, player: Player):
         self.__state[uuid] = player
 
     def player_leaves(self, uuid: str):
         self.__state.pop(uuid)
+
+    def set_deck(self, deck: Deck):
+        self.__deck = deck
+        self.end_turn()
+
+    def get_deck(self) -> Deck:
+        return self.__deck
 
     def list_players(self) -> [tuple[str, Player]]:
         return list(self.__state.items())
@@ -27,8 +34,8 @@ class Game:
         return self.__state.get(uuid)
         
     def player_picks(self, uuid: str, card: int):
-        if card not in self.deck.value:
-            raise IllegalOperationError(f'Card value {card} is not valid. Current deck is {self.deck.name}')
+        if card not in self.__deck.value:
+            raise IllegalOperationError(f'Card value {card} is not valid. Current deck is {self.__deck.name}')
         player: Player = self.get_player(uuid)
         player.set_hand(card)
 

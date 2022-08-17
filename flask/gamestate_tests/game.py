@@ -4,16 +4,20 @@ from unittest.mock import Mock
 from gamestate.deck import Deck
 from gamestate.game import Game
 from gamestate.illegal_operation_error import IllegalOperationError
-from gamestate.player import Player
 
 
 class GameTestCase(unittest.TestCase):
     def test_empty_state(self):
         game = Game()
         self.assertEqual(game.list_players_uuid(), [])
-        self.assertEqual(game.deck, Deck.FIBONACCI)
+        self.assertEqual(game.get_deck(), Deck.FIBONACCI)
         game2 = Game(Deck.T_SHIRTS)
-        self.assertEqual(game2.deck, Deck.T_SHIRTS)
+        self.assertEqual(game2.get_deck(), Deck.T_SHIRTS)
+
+    def test_set_deck(self):
+        game = Game()
+        game.set_deck(Deck.POWERS)
+        self.assertEqual(game.get_deck(), Deck.POWERS)
 
     def test_add_player(self):
         uuid = '47b71b00-e060-47ba-8fae-029f5473794b'
@@ -89,6 +93,19 @@ class GameTestCase(unittest.TestCase):
         spectator_1 = Mock()
         game.player_joins('d', spectator_1)
         game.end_turn()
+        player_1.clear_hand.assert_called()
+        player_2.clear_hand.assert_called()
+        spectator_1.clear_hand.assert_called()
+
+    def test_setting_deck_should_clear_hands(self):
+        game = Game()
+        player_1 = Mock()
+        game.player_joins('j', player_1)
+        player_2 = Mock()
+        game.player_joins('p', player_2)
+        spectator_1 = Mock()
+        game.player_joins('d', spectator_1)
+        game.set_deck(Deck.POWERS)
         player_1.clear_hand.assert_called()
         player_2.clear_hand.assert_called()
         spectator_1.clear_hand.assert_called()

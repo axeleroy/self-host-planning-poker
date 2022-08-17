@@ -8,27 +8,34 @@ from gamestate.illegal_operation_error import IllegalOperationError
 
 class GameTestCase(unittest.TestCase):
     def test_empty_state(self):
-        game = Game()
+        game = Game('PBR Team Pizza')
         self.assertEqual(game.list_players_uuid(), [])
         self.assertEqual(game.get_deck(), Deck.FIBONACCI)
-        game2 = Game(Deck.T_SHIRTS)
+        self.assertEqual(game.name, 'PBR Team Pizza')
+        game2 = Game('PBR Team Pasta', Deck.T_SHIRTS)
         self.assertEqual(game2.get_deck(), Deck.T_SHIRTS)
+        self.assertEqual(game2.name, 'PBR Team Pasta')
+
+    def test_set_name(self):
+        game = Game('PBR Team Pizza')
+        game.name = 'PBR Team Pasta'
+        self.assertEqual(game.name, 'PBR Team Pasta')
 
     def test_set_deck(self):
-        game = Game()
+        game = Game('PBR Team Pizza')
         game.set_deck(Deck.POWERS)
         self.assertEqual(game.get_deck(), Deck.POWERS)
 
     def test_add_player(self):
         uuid = '47b71b00-e060-47ba-8fae-029f5473794b'
-        game = Game()
+        game = Game('PBR Team Pizza')
         player = Mock()
         game.player_joins(uuid, player)
         self.assertTrue(uuid in game.list_players_uuid())
 
     def test_remove_player(self):
         uuid = '47b71b00-e060-47ba-8fae-029f5473794b'
-        game = Game()
+        game = Game('PBR Team Pizza')
         player = Mock()
         game.player_joins(uuid, player)
         self.assertTrue(uuid in game.list_players_uuid())
@@ -36,7 +43,7 @@ class GameTestCase(unittest.TestCase):
         self.assertTrue(uuid not in game.list_players_uuid())
 
     def test_list_players(self):
-        game = Game()
+        game = Game('PBR Team Pizza')
         uuid1 = '2c6f0ffa-ad57-47b7-bb34-2275d05018cf'
         player1 = Mock()
         game.player_joins(uuid1, player1)
@@ -46,7 +53,7 @@ class GameTestCase(unittest.TestCase):
         self.assertEqual(game.list_players(), [(uuid1, player1), (uuid2, player2)])
 
     def test_list_players_uuid(self):
-        game = Game()
+        game = Game('PBR Team Pizza')
         uuid1 = '2c6f0ffa-ad57-47b7-bb34-2275d05018cf'
         player1 = Mock()
         game.player_joins(uuid1, player1)
@@ -56,7 +63,7 @@ class GameTestCase(unittest.TestCase):
         self.assertEqual(game.list_players_uuid(), [uuid1, uuid2])
 
     def test_get_player(self):
-        game = Game()
+        game = Game('PBR Team Pizza')
         uuid1 = '2c6f0ffa-ad57-47b7-bb34-2275d05018cf'
         player1 = Mock()
         game.player_joins(uuid1, player1)
@@ -68,7 +75,7 @@ class GameTestCase(unittest.TestCase):
         self.assertEqual(str(ex.exception), f'Player with UUID {uuid2} is not in this game')
 
     def test_player_picks(self):
-        game = Game(Deck.POWERS)
+        game = Game('PBR Team Pizza', Deck.POWERS)
         uuid1 = '2c6f0ffa-ad57-47b7-bb34-2275d05018cf'
         uuid2 = '0f6b59d5-6765-4be1-b196-760c654729a6'
         player_mock = Mock()
@@ -85,7 +92,7 @@ class GameTestCase(unittest.TestCase):
         self.assertEqual(str(ex2.exception), 'Card value 13 is not valid. Current deck is POWERS')
 
     def test_end_turn(self):
-        game = Game()
+        game = Game('PBR Team Pizza')
         player_1 = Mock()
         game.player_joins('j', player_1)
         player_2 = Mock()
@@ -98,7 +105,7 @@ class GameTestCase(unittest.TestCase):
         spectator_1.clear_hand.assert_called()
 
     def test_setting_deck_should_clear_hands(self):
-        game = Game()
+        game = Game('PBR Team Pizza')
         player_1 = Mock()
         game.player_joins('j', player_1)
         player_2 = Mock()
@@ -112,7 +119,7 @@ class GameTestCase(unittest.TestCase):
 
     def test_is_game_empty(self):
         uuid = '47b71b00-e060-47ba-8fae-029f5473794b'
-        game = Game()
+        game = Game('PBR Team Pizza')
         self.assertTrue(game.is_game_empty())
         player = Mock()
         game.player_joins(uuid, player)
@@ -121,7 +128,7 @@ class GameTestCase(unittest.TestCase):
         self.assertTrue(game.is_game_empty())
 
     def test_get_non_spectator_players(self):
-        game = Game()
+        game = Game('PBR Team Pizza')
         player_1 = Mock()
         player1_conf = {'spectator': False}
         player_1.configure_mock(**player1_conf)
@@ -137,7 +144,7 @@ class GameTestCase(unittest.TestCase):
         self.assertEqual(game.get_non_spectator_players(), [player_1, player_2])
 
     def test_all_players_have_picked_card(self):
-        game = Game()
+        game = Game('PBR Team Pizza')
         player_1 = Mock()
         player1_conf = {'spectator': False, 'has_picked_card.return_value': True}
         player_1.configure_mock(**player1_conf)
@@ -159,7 +166,7 @@ class GameTestCase(unittest.TestCase):
         self.assertTrue(game.has_all_players_picked_card())
 
     def test_state(self):
-        game = Game()
+        game = Game('PBR Team Pizza')
         player_1 = Mock()
         player1_state = {'name': 'John', 'spectator': False, 'hasPicked': True}
         player_1.configure_mock(**{'state.return_value': player1_state})
@@ -180,7 +187,7 @@ class GameTestCase(unittest.TestCase):
         ])
 
     def test_reveal_hand(self):
-        game = Game()
+        game = Game('PBR Team Pizza')
         player_1 = Mock()
         player1_state = {'spectator': False, 'get_hand.return_value': 8}
         player_1.configure_mock(**player1_state)

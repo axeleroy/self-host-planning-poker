@@ -32,6 +32,10 @@ class Game:
         player: Player = self.get_player(uuid)
         player.set_hand(card)
 
+    def end_turn(self):
+        for player in self.__state.values():
+            player.clear_hand()
+
     def is_game_empty(self) -> bool:
         return len(self.__state) == 0
 

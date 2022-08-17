@@ -77,6 +77,22 @@ class GameTestCase(unittest.TestCase):
             game.player_picks(uuid1, 13)
         self.assertEqual(str(ex2.exception), 'Card value 13 is not valid. Current deck is POWERS')
 
+    def test_end_turn(self):
+        game = Game()
+        player_1 = Player('John', False)
+        game.player_joins('j', player_1)
+        player_2 = Player('Peter', False)
+        game.player_joins('p', player_2)
+        spectator_1 = Player('Daisy', True)
+        game.player_joins('d', spectator_1)
+        player_1.set_hand(8)
+        player_2.set_hand(13)
+        self.assertTrue(game.has_all_players_picked_card())
+        game.end_turn()
+        self.assertFalse(game.has_all_players_picked_card())
+        self.assertEqual(player_1.get_hand(), None)
+        self.assertEqual(player_2.get_hand(), None)
+
     def test_is_game_empty(self):
         uuid = '47b71b00-e060-47ba-8fae-029f5473794b'
         game = Game()

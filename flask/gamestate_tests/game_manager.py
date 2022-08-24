@@ -44,6 +44,7 @@ class GameManagerTestCase(unittest.TestCase):
 
         state = gm.set_deck('uuid1', 'POWERS')
         game_mock.set_deck.assert_called_with(Deck.POWERS)
+        game_mock.state.assert_called()
         self.assertEqual(state, "{'foo': 'bar'}")
 
     def test_join_game(self):
@@ -51,21 +52,22 @@ class GameManagerTestCase(unittest.TestCase):
         game_mock = Mock(**{'state.return_value': "{'foo': 'bar'}"})
         gm.games = {'uuid1': game_mock}
 
-        player_uuid = 'p1'
         player_name = 'Peter'
+        player_id = 'p1'
         is_spectator = True
 
-        state = gm.join_game('uuid1', player_uuid, player_name, is_spectator)
+        state = gm.join_game('uuid1', player_id, player_name, is_spectator)
         game_mock.player_joins.assert_called()
         args = game_mock.player_joins.call_args.args
-        self.assertEqual(args[0], player_uuid)
+        self.assertEqual(args[0], player_id)
         player = args[1]
         self.assertEqual(player.name, player_name)
         self.assertEqual(player.spectator, is_spectator)
+        game_mock.state.assert_called()
         self.assertEqual(state, "{'foo': 'bar'}")
 
         with self.assertRaises(IllegalOperationError) as ex:
-            gm.join_game('uuid2', player_uuid, player_name, is_spectator)
+            gm.join_game('uuid2', 'p2', player_name, is_spectator)
         self.assertEqual(str(ex.exception), 'Game uuid2 is not ongoing')
 
     def test_leave_game(self):
@@ -76,11 +78,13 @@ class GameManagerTestCase(unittest.TestCase):
 
         state1 = gm.leave_game('uuid1', 'p1')
         game_mock1.player_leaves.assert_called_with('p1')
+        game_mock1.state.assert_called()
         self.assertEqual(state1, "{'foo': 'bar'}")
 
         state2 = gm.leave_game('uuid2', 'p2')
         game_mock2.player_leaves.assert_called_with('p2')
         self.assertFalse('uuid2' in gm.games.keys())
+        game_mock2.state.assert_called()
         self.assertEqual(state2, "{'bar': 'bang'}")
 
         with self.assertRaises(IllegalOperationError) as ex:
@@ -88,7 +92,79 @@ class GameManagerTestCase(unittest.TestCase):
         self.assertEqual(str(ex.exception), 'Game uuid3 is not ongoing')
 
     def test_set_player_name(self):
-        pass
+        gm = GameManager()
+        player_mock = Mock()
+        game_mock = Mock(**{'get_player.return_value': player_mock, 'state.return_value': "{'foo': 'bar'}"})
+        gm.games = {'uuid1': game_mock}
+        new_player_name = 'John'
+
+        state = gm.set_player_name('uuid1', 'puuid1', new_player_name)
+        game_mock.get_player.assert_called_with('puuid1')
+        self.assertEqual(player_mock.name, new_player_name)
+        game_mock.state.assert_called()
+        self.assertEqual(state, "{'foo': 'bar'}")
+
+        with self.assertRaises(IllegalOperationError) as ex:
+            gm.leave_game('uuid2', 'p3')
+        self.assertEqual(str(ex.exception), 'Game uuid2 is not ongoing')
+
+    def test_set_player_spectator(self):
+        gm = GameManager()
+        player_mock = Mock()
+        game_mock = Mock(**{'get_player.return_value': player_mock, 'state.return_value': "{'foo': 'bar'}"})
+        gm.games = {'uuid1': game_mock}
+
+        state = gm.set_player_spectator('uuid1', "puuid1", True)
+        game_mock.get_player.assert_called_with('puuid1')
+        self.assertEqual(player_mock.spectator, True)
+        player_mock.clear_hand.assert_called()
+        game_mock.state.assert_called()
+        self.assertEqual(state, "{'foo': 'bar'}")
+
+        with self.assertRaises(IllegalOperationError) as ex:
+            gm.set_player_spectator('uuid2', 'p3', True)
+        self.assertEqual(str(ex.exception), 'Game uuid2 is not ongoing')
+
+    def test_pick_card(self):
+        gm = GameManager()
+        player_mock = Mock()
+        game_mock = Mock(**{'get_player.return_value': player_mock, 'state.return_value': "{'foo': 'bar'}"})
+        gm.games = {'uuid1': game_mock}
+
+        state = gm.pick_card('uuid1', "puuid1", 3)
+        game_mock.get_player.assert_called_with('puuid1')
+        player_mock.set_hand.assert_called_with(3)
+        game_mock.state.assert_called()
+        self.assertEqual(state, "{'foo': 'bar'}")
+
+        with self.assertRaises(IllegalOperationError) as ex:
+            gm.pick_card('uuid2', 'p3', True)
+        self.assertEqual(str(ex.exception), 'Game uuid2 is not ongoing')
+
+    def test_reveal_cards(self):
+        gm = GameManager()
+        game_mock = Mock(**{'reveal_hands.return_value': "{'foo': 'bar'}"})
+        gm.games = {'uuid1': game_mock}
+
+        hands = gm.reveal_cards("uuid1")
+        game_mock.reveal_hands.assert_called()
+        self.assertEqual(hands, "{'foo': 'bar'}")
+        with self.assertRaises(IllegalOperationError) as ex:
+            gm.reveal_cards('uuid2')
+        self.assertEqual(str(ex.exception), 'Game uuid2 is not ongoing')
+
+    def test_end_turn(self):
+        gm = GameManager()
+        game_mock = Mock(**{'state.return_value': "{'foo': 'bar'}"})
+        gm.games = {'uuid1': game_mock}
+
+        state = gm.end_turn("uuid1")
+        game_mock.end_turn.assert_called()
+        game_mock.state.assert_called()
+        self.assertEqual(state, "{'foo': 'bar'}")
+        with self.assertRaises(IllegalOperationError) as ex:
+            gm.end_turn('uuid2')
+        self.assertEqual(str(ex.exception), 'Game uuid2 is not ongoing')
 
 
 if __name__ == '__main__':

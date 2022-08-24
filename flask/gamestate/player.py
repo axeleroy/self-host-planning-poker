@@ -1,3 +1,5 @@
+from typing import Optional
+
 from gamestate.illegal_operation_error import IllegalOperationError
 
 
@@ -13,7 +15,7 @@ class Player:
             raise IllegalOperationError('Spectator cannot play')
         self.__hand = hand
 
-    def get_hand(self) -> int:
+    def get_hand(self) -> Optional[int]:
         return self.__hand
 
     def clear_hand(self):

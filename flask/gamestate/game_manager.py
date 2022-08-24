@@ -1,4 +1,5 @@
 import uuid
+from typing import Optional
 
 from gamestate.deck import Deck
 from gamestate.game import Game
@@ -38,10 +39,10 @@ class GameManager:
         game.set_deck(deck)  # TODO: save deck to DB
         return game.state()
 
-    def join_game(self, game_uuid: str, player_uuid: str, player_name: str, is_spectator: bool):
+    def join_game(self, game_uuid: str, player_id: str, player_name: str, is_spectator: bool):
         game = self.__get_game_or_raise(game_uuid)
         player = Player(player_name, is_spectator)
-        game.player_joins(player_uuid, player)
+        game.player_joins(player_id, player)
         return game.state()
 
     def leave_game(self, game_uuid: str, player_uuid: str):
@@ -58,14 +59,24 @@ class GameManager:
         return game.state()
 
     def set_player_spectator(self, game_uuid: str, player_uuid: str, is_spectator: bool):
-        pass
+        game = self.__get_game_or_raise(game_uuid)
+        player = game.get_player(player_uuid)
+        player.spectator = is_spectator
+        player.clear_hand()
+        return game.state()
 
-    def pick_card(self, game_uuid: str, player_uuid: str, pick: int):
-        pass
+    def pick_card(self, game_uuid: str, player_uuid: str, pick: Optional[int]):
+        game = self.__get_game_or_raise(game_uuid)
+        player = game.get_player(player_uuid)
+        player.set_hand(pick)
+        return game.state()
 
     def reveal_cards(self, game_uuid: str):
-        pass
+        game = self.__get_game_or_raise(game_uuid)
+        return game.reveal_hands()
 
     def end_turn(self, game_uuid: str):
-        pass
+        game = self.__get_game_or_raise(game_uuid)
+        game.end_turn()
+        return game.state()
     

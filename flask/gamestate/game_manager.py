@@ -1,9 +1,12 @@
 import uuid
 from typing import Optional
 
+from peewee import DoesNotExist
+
 from gamestate.deck import Deck
 from gamestate.game import Game
 from gamestate.illegal_operation_error import IllegalOperationError
+from gamestate.models import StoredGame
 from gamestate.player import Player
 
 
@@ -14,15 +17,19 @@ class GameManager:
 
     def create(self, name: str) -> str:
         game_uuid = str(uuid.uuid4())
-        # TODO: Save game info to DB
+        StoredGame.create(uuid=game_uuid, name=name, deck='FIBONACCI')
         self.games[game_uuid] = Game(name)
         return game_uuid
 
     def get(self, game_uuid: str) -> Game:
         game = self.games.get(game_uuid)
         if game is None:
-            game = Game('random')  # TODO: load game info from DB and create new instance
-            self.games[game_uuid] = game
+            try:
+                stored_game = StoredGame.get(StoredGame.uuid == game_uuid)
+                game = Game(stored_game.name, Deck[stored_game.deck])
+                self.games[game_uuid] = game
+            except DoesNotExist:
+                raise IllegalOperationError(f'Game {game_uuid} does not exist')
         return game
 
     def __get_game_or_raise(self, game_uuid: str) -> Game:

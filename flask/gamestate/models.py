@@ -1,20 +1,13 @@
-from peewee import Model, UUIDField, CharField, SqliteDatabase
+from peewee import Model, UUIDField, CharField, Proxy
 
-from app import app
-
-database = SqliteDatabase(None)
+database_proxy = Proxy()
 
 
-class Game(Model):
+class StoredGame(Model):
     uuid = UUIDField(primary_key=True)
     name = CharField()
+    deck = CharField()
 
     class Meta:
-        database = database
-
-
-if app.config['DEBUG'] or app.config['TESTING']:
-    database.init(':memory:')
-else:
-    database.init('/app/database.db')
+        database = database_proxy
 

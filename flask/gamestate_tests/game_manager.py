@@ -2,12 +2,23 @@ import unittest
 import uuid
 from unittest.mock import Mock
 
+from peewee import SqliteDatabase
+
 from gamestate.deck import Deck
 from gamestate.game_manager import GameManager
 from gamestate.illegal_operation_error import IllegalOperationError
+from gamestate.models import StoredGame, database_proxy
 
 
 class GameManagerTestCase(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        test_db = SqliteDatabase(':memory:')
+        database_proxy.initialize(test_db)
+        if database_proxy.is_closed():
+            database_proxy.connect()
+        StoredGame.create_table()
+
     def test_create(self):
         gm = GameManager()
         name = 'PBR Team Pizza'
@@ -18,17 +29,34 @@ class GameManagerTestCase(unittest.TestCase):
         self.assertTrue(game_id in gm.games.keys())
         game = gm.games.get(game_id)
         self.assertEqual(game.name, name)
+        # should have an entry in db
+        stored_game = StoredGame.get(StoredGame.uuid == game_id)
+        self.assertEqual(stored_game.uuid, uuid.UUID(game_id))
+        self.assertEqual(stored_game.name, name)
+        self.assertEqual(stored_game.deck, 'FIBONACCI')
 
-    def test_get(self):
+    def test_get_from_memory(self):
         gm = GameManager()
         game_mock1 = Mock()
         game_mock2 = Mock()
         gm.games = {'uuid1': game_mock1, 'uuid2': game_mock2}
         self.assertEqual(gm.get('uuid1'), game_mock1)
         self.assertEqual(gm.get('uuid2'), game_mock2)
-        new_game = gm.get('uuid3')
-        self.assertTrue('uuid3' in gm.games.keys())
-        self.assertEqual(new_game.name, 'random')
+
+    def test_get_from_db(self):
+        game_id = '8b70cb3d-00ba-4fcc-aaac-60f699d4170f'
+        name = 'PBR Pizza'
+        deck = 'POWERS'
+        StoredGame.create(uuid=game_id, name=name, deck=deck)
+        gm = GameManager()
+        game = gm.get(game_id)
+        self.assertEqual(game.name, name)
+        self.assertEqual(game.get_deck(), Deck[deck])
+
+        game_id2 = 'd8b85f28-72fc-49fb-85ab-d669cfd57a5c'
+        with self.assertRaises(IllegalOperationError) as ex:
+            gm.get(game_id2)
+        self.assertEqual(str(ex.exception), f'Game {game_id2} does not exist')
 
     def test_set_deck(self):
         gm = GameManager()

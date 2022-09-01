@@ -84,14 +84,14 @@ class GameManagerTestCase(unittest.TestCase):
 
     def test_join_game(self):
         gm = GameManager()
-        game_mock = Mock(**{'state.return_value': "{'foo': 'bar'}"})
+        game_mock = Mock(**{'state.return_value': "{'foo': 'bar'}", 'info.return_value': "{'fizz': 'buzz'}"})
         gm.games = {'uuid1': game_mock}
 
         player_name = 'Peter'
         player_id = 'p1'
         is_spectator = True
 
-        state = gm.join_game('uuid1', player_id, player_name, is_spectator)
+        info, state = gm.join_game('uuid1', player_id, player_name, is_spectator)
         game_mock.player_joins.assert_called()
         args = game_mock.player_joins.call_args.args
         self.assertEqual(args[0], player_id)
@@ -99,7 +99,9 @@ class GameManagerTestCase(unittest.TestCase):
         self.assertEqual(player.name, player_name)
         self.assertEqual(player.spectator, is_spectator)
         game_mock.state.assert_called()
+        game_mock.info.assert_called()
         self.assertEqual(state, "{'foo': 'bar'}")
+        self.assertEqual(info, "{'fizz': 'buzz'}")
 
         with self.assertRaises(IllegalOperationError) as ex:
             gm.join_game('uuid2', 'p2', player_name, is_spectator)

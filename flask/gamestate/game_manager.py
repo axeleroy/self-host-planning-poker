@@ -51,7 +51,7 @@ class GameManager:
         game = self.__get_game_or_raise(game_uuid)
         player = Player(player_name, is_spectator)
         game.player_joins(player_id, player)
-        return game.state()
+        return game.info(), game.state()
 
     def leave_game(self, game_uuid: str, player_uuid: str):
         game = self.__get_game_or_raise(game_uuid)

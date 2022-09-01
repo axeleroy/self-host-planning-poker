@@ -69,7 +69,7 @@ class GameManagerTestCase(unittest.TestCase):
         self.assertEqual(gm.get('uuid2'), game_mock2)
 
     def test_get_from_db(self):
-        game_id = '8b70cb3d-00ba-4fcc-aaac-60f699d4170f'
+        game_id = str(uuid.uuid4())
         name = 'PBR Pizza'
         deck = 'POWERS'
         StoredGame.create(uuid=game_id, name=name, deck=deck)
@@ -78,13 +78,13 @@ class GameManagerTestCase(unittest.TestCase):
         self.assertEqual(game.name, name)
         self.assertEqual(game.get_deck(), Deck[deck])
 
-        game_id2 = 'd8b85f28-72fc-49fb-85ab-d669cfd57a5c'
+        game_id2 = str(uuid.uuid4())
         with self.assertRaises(IllegalOperationError) as ex:
             gm.get(game_id2)
         self.assertEqual(str(ex.exception), f'Game {game_id2} does not exist')
 
     def test_set_deck(self):
-        game_id = '8b70cb3d-00ba-4fcc-aaac-60f699d4170f'
+        game_id = str(uuid.uuid4())
         name = 'PBR Pizza'
         deck = 'FIBONACCI'
         StoredGame.create(uuid=game_id, name=name, deck=deck)
@@ -132,7 +132,7 @@ class GameManagerTestCase(unittest.TestCase):
 
         with self.assertRaises(IllegalOperationError) as ex:
             gm.join_game('uuid2', 'p2', player_name, is_spectator)
-        self.assertEqual(str(ex.exception), 'Game uuid2 is not ongoing')
+        self.assertEqual(str(ex.exception), 'Game uuid2 does not exist')
 
     def test_leave_game(self):
         gm = GameManager()
@@ -156,7 +156,7 @@ class GameManagerTestCase(unittest.TestCase):
         self.assertEqual(str(ex.exception), 'Game uuid3 is not ongoing')
 
     def test_rename_game(self):
-        game_id = '8b70cb3d-00ba-4fcc-aaac-60f699d4170f'
+        game_id = str(uuid.uuid4())
         name = 'PBR Pizza'
         deck = 'FIBONACCI'
         StoredGame.create(uuid=game_id, name=name, deck=deck)

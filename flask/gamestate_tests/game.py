@@ -207,6 +207,16 @@ class GameTestCase(unittest.TestCase):
         ])
         spectator_1.get_hand.assert_not_called()
 
+    def test_game_info(self):
+        game_name1 = 'Fizz'
+        game1 = Game(game_name1)
+        self.assertEqual(game1.info(), {'name': game_name1, 'deck': 'FIBONACCI'})
+
+        game_name2 = 'Buzz'
+        game2 = Game(game_name2, Deck.POWERS)
+        self.assertEqual(game2.info(), {'name': game_name2, 'deck': 'POWERS'})
+
+
 
 if __name__ == '__main__':
     unittest.main()

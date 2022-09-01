@@ -68,3 +68,9 @@ class Game:
             lambda i: (i[0], i[1].get_hand()),
             filter(lambda p: p[1].spectator is False, self.list_players())
         ))
+
+    def info(self) -> dict:
+        return {
+            'name': self.name,
+            'deck': self.__deck.name
+        }

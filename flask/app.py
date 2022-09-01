@@ -2,8 +2,6 @@ from flask import Flask, request, session
 from flask_socketio import SocketIO, join_room, leave_room, emit
 from peewee import SqliteDatabase
 
-from gamestate.deck import Deck
-from gamestate.game import Game
 from gamestate.game_manager import GameManager
 from gamestate.models import database_proxy, StoredGame
 
@@ -11,8 +9,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app, logger=True, engineio_logger=True)
 
-if app.config['DEBUG'] or app.config['TESTING']:
-    real_db = SqliteDatabase(':memory:')
+if app.config['DEBUG']:
+    real_db = SqliteDatabase('database.db')
 else:
     real_db = SqliteDatabase('/app/database.db')
 database_proxy.initialize(real_db)
@@ -22,8 +20,12 @@ StoredGame.create_table()
 
 gm = GameManager()
 
-# For testing purposes only
-gm.games['8b70cb3d-00ba-4fcc-aaac-60f699d4170f'] = Game('PBR Pizza', Deck.POWERS)
+
+@app.route('/create', methods=['POST'])
+def create():
+    game_name = request.form['name']
+    game_deck = request.form['deck']
+    return gm.create(game_name, game_deck)
 
 
 @socketio.event
@@ -48,6 +50,25 @@ def disconnect():
 
     state = gm.leave_game(game_id, player_id)
     leave_room(game_id)
+    emit('state', state, to=game_id, json=True)
+
+
+@socketio.event
+def rename_game(data):
+    game_id = session['game_id']
+    game_name = data['name']
+
+    info = gm.rename_game(game_id, game_name)
+    emit('info', info, to=game_id, json=True)
+
+
+@socketio.event
+def set_deck(data):
+    game_id = session['game_id']
+    deck_name = data['deck']
+
+    info, state = gm.set_deck(game_id, deck_name)
+    emit('info', info, to=game_id, json=True)
     emit('state', state, to=game_id, json=True)
 
 

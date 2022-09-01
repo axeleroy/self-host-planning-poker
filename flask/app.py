@@ -118,5 +118,10 @@ def end_turn(data):
     emit('state', state, to=game_id, json=True)
 
 
+@socketio.on_error()
+def on_error_handler(e):
+    return {'error': True, 'message': str(e)}
+
+
 if __name__ == '__main__':
     socketio.run(app)

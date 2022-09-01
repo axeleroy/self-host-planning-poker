@@ -126,6 +126,26 @@ class GameManagerTestCase(unittest.TestCase):
             gm.leave_game('uuid3', 'p3')
         self.assertEqual(str(ex.exception), 'Game uuid3 is not ongoing')
 
+    def test_rename_game(self):
+        game_id = '8b70cb3d-00ba-4fcc-aaac-60f699d4170f'
+        name = 'PBR Pizza'
+        deck = 'FIBONACCI'
+        StoredGame.create(uuid=game_id, name=name, deck=deck)
+
+        new_name = 'PBR Spaghetti'
+        gm = GameManager()
+        expected_info = {'name': new_name, 'deck': deck}
+        game_mock = Mock(**{'info.return_value': expected_info})
+        gm.games = {game_id: game_mock}
+
+        game_info = gm.rename_game(game_id, new_name)
+        game_mock.info.assert_called()
+        self.assertEqual(game_info, expected_info)
+
+        stored_game = StoredGame.get(StoredGame.uuid == uuid.UUID(game_id))
+        self.assertEqual(stored_game.name, new_name)
+
+
     def test_set_player_name(self):
         gm = GameManager()
         player_mock = Mock()

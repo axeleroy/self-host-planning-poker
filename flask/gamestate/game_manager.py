@@ -60,6 +60,12 @@ class GameManager:
             self.games.pop(game_uuid)
         return game.state()
 
+    def rename_game(self, game_uuid: str, game_name: str):
+        game = self.__get_game_or_raise(game_uuid)
+        game.name = game_name
+        StoredGame.update(name=game_name).where(StoredGame.uuid == uuid.UUID(game_uuid)).execute()
+        return game.info()
+
     def set_player_name(self, game_uuid: str, player_uuid: str, player_name: str):
         game = self.__get_game_or_raise(game_uuid)
         player = game.get_player(player_uuid)

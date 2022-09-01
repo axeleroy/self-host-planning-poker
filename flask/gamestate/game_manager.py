@@ -15,10 +15,11 @@ class GameManager:
     def __init__(self):
         self.games = {}
 
-    def create(self, name: str) -> str:
+    def create(self, name: str, deck_name='FIBONACCI') -> str:
         game_uuid = str(uuid.uuid4())
-        StoredGame.create(uuid=game_uuid, name=name, deck='FIBONACCI')
-        self.games[game_uuid] = Game(name)
+        deck = self.__get_deck(deck_name)
+        StoredGame.create(uuid=game_uuid, name=name, deck=deck_name)
+        self.games[game_uuid] = Game(name, deck)
         return game_uuid
 
     def get(self, game_uuid: str) -> Game:
@@ -39,13 +40,11 @@ class GameManager:
         return game
     
     def set_deck(self, game_uuid: str, deck_name: str):
-        if deck_name not in Deck.__members__.keys():
-            raise IllegalOperationError(f'Deck {deck_name} does not exist')
+        deck = self.__get_deck(deck_name)
         game = self.__get_game_or_raise(game_uuid)
-        deck = Deck[deck_name]
         game.set_deck(deck)
         StoredGame.update(deck=deck_name).where(StoredGame.uuid == uuid.UUID(game_uuid)).execute()
-        return game.info()
+        return game.info(), game.state()
 
     def join_game(self, game_uuid: str, player_id: str, player_name: str, is_spectator: bool):
         game = self.__get_game_or_raise(game_uuid)
@@ -93,4 +92,11 @@ class GameManager:
         game = self.__get_game_or_raise(game_uuid)
         game.end_turn()
         return game.state()
+
+    @staticmethod
+    def __get_deck(deck_name):
+        if deck_name not in Deck.__members__.keys():
+            raise IllegalOperationError(f'Deck {deck_name} does not exist')
+        deck = Deck[deck_name]
+        return deck
     

@@ -35,6 +35,31 @@ class GameManagerTestCase(unittest.TestCase):
         self.assertEqual(stored_game.name, name)
         self.assertEqual(stored_game.deck, 'FIBONACCI')
 
+    def test_create_other_deck(self):
+        gm = GameManager()
+        name = 'PBR Team Pizza'
+        deck_name = 'POWERS'
+        game_id = gm.create(name, deck_name)
+        self.assertIsNotNone(game_id)
+        # should not raise an exception because the UUID is invalid
+        self.assertIsNotNone(uuid.UUID(game_id))
+        self.assertTrue(game_id in gm.games.keys())
+        game = gm.games.get(game_id)
+        self.assertEqual(game.name, name)
+        # should have an entry in db
+        stored_game = StoredGame.get(StoredGame.uuid == game_id)
+        self.assertEqual(stored_game.uuid, uuid.UUID(game_id))
+        self.assertEqual(stored_game.name, name)
+        self.assertEqual(stored_game.deck, deck_name)
+
+    def test_create_invalid_deck(self):
+        gm = GameManager()
+        name = 'PBR Team Pizza'
+        deck_name = 'PIZZA'
+        with self.assertRaises(IllegalOperationError) as ex:
+            gm.create(name, deck_name)
+        self.assertEqual(str(ex.exception), f'Deck {deck_name} does not exist')
+
     def test_get_from_memory(self):
         gm = GameManager()
         game_mock1 = Mock()
@@ -65,7 +90,7 @@ class GameManagerTestCase(unittest.TestCase):
         StoredGame.create(uuid=game_id, name=name, deck=deck)
 
         gm = GameManager()
-        game_mock = Mock(**{'info.return_value': {'name': name, 'deck': deck}})
+        game_mock = Mock(**{'info.return_value': {'name': name, 'deck': deck}, 'state.return_value': {'foo': 'bar'}})
         gm.games = {game_id: game_mock}
 
         with self.assertRaises(IllegalOperationError) as ex1:
@@ -75,10 +100,12 @@ class GameManagerTestCase(unittest.TestCase):
             gm.set_deck('uuid2', 'POWERS')
         self.assertEqual(str(ex2.exception), 'Game uuid2 is not ongoing')
 
-        game_info = gm.set_deck(game_id, 'POWERS')
+        game_info, game_state = gm.set_deck(game_id, 'POWERS')
         game_mock.set_deck.assert_called_with(Deck.POWERS)
         game_mock.info.assert_called()
+        game_mock.state.assert_called()
         self.assertEqual(game_info, {'name': name, 'deck': deck})
+        self.assertEqual(game_state, {'foo': 'bar'})
         stored_game = StoredGame.get(StoredGame.uuid == uuid.UUID(game_id))
         self.assertEqual(stored_game.deck, 'POWERS')
 

@@ -59,21 +59,28 @@ class GameManagerTestCase(unittest.TestCase):
         self.assertEqual(str(ex.exception), f'Game {game_id2} does not exist')
 
     def test_set_deck(self):
+        game_id = '8b70cb3d-00ba-4fcc-aaac-60f699d4170f'
+        name = 'PBR Pizza'
+        deck = 'FIBONACCI'
+        StoredGame.create(uuid=game_id, name=name, deck=deck)
+
         gm = GameManager()
-        game_mock = Mock(**{'state.return_value': "{'foo': 'bar'}"})
-        gm.games = {'uuid1': game_mock}
+        game_mock = Mock(**{'info.return_value': {'name': name, 'deck': deck}})
+        gm.games = {game_id: game_mock}
 
         with self.assertRaises(IllegalOperationError) as ex1:
-            gm.set_deck('uuid1', 'holdem')
+            gm.set_deck(game_id, 'holdem')
         self.assertEqual(str(ex1.exception), 'Deck holdem does not exist')
         with self.assertRaises(IllegalOperationError) as ex2:
             gm.set_deck('uuid2', 'POWERS')
         self.assertEqual(str(ex2.exception), 'Game uuid2 is not ongoing')
 
-        state = gm.set_deck('uuid1', 'POWERS')
+        game_info = gm.set_deck(game_id, 'POWERS')
         game_mock.set_deck.assert_called_with(Deck.POWERS)
-        game_mock.state.assert_called()
-        self.assertEqual(state, "{'foo': 'bar'}")
+        game_mock.info.assert_called()
+        self.assertEqual(game_info, {'name': name, 'deck': deck})
+        stored_game = StoredGame.get(StoredGame.uuid == uuid.UUID(game_id))
+        self.assertEqual(stored_game.deck, 'POWERS')
 
     def test_join_game(self):
         gm = GameManager()

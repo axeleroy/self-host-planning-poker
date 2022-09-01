@@ -43,8 +43,9 @@ class GameManager:
             raise IllegalOperationError(f'Deck {deck_name} does not exist')
         game = self.__get_game_or_raise(game_uuid)
         deck = Deck[deck_name]
-        game.set_deck(deck)  # TODO: save deck to DB
-        return game.state()
+        game.set_deck(deck)
+        StoredGame.update(deck=deck_name).where(StoredGame.uuid == uuid.UUID(game_uuid)).execute()
+        return game.info()
 
     def join_game(self, game_uuid: str, player_id: str, player_name: str, is_spectator: bool):
         game = self.__get_game_or_raise(game_uuid)

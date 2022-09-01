@@ -180,11 +180,11 @@ class GameTestCase(unittest.TestCase):
         spectator_1.configure_mock(**{'state.return_value': spectator1_state})
         game.player_joins('d', spectator_1)
 
-        self.assertEqual(game.state(), [
-            ('j', player1_state),
-            ('p', player2_state),
-            ('d', spectator1_state),
-        ])
+        self.assertEqual(game.state(), {
+            'j': player1_state,
+            'p': player2_state,
+            'd': spectator1_state,
+        })
 
     def test_reveal_hand(self):
         game = Game('PBR Team Pizza')
@@ -201,10 +201,10 @@ class GameTestCase(unittest.TestCase):
         spectator_1.configure_mock(**spectator1_state)
         game.player_joins('d', spectator_1)
 
-        self.assertEqual(game.reveal_hands(), [
-            ('j', 8),
-            ('p', None),
-        ])
+        self.assertEqual(game.reveal_hands(), {
+            'j': 8,
+            'p': None,
+        })
         spectator_1.get_hand.assert_not_called()
 
     def test_game_info(self):

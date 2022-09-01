@@ -55,19 +55,19 @@ class Game:
     def get_non_spectator_players(self) -> [Player]:
         return list(filter(lambda p: p.spectator is False, self.__state.values()))
 
-    def state(self) -> [tuple[str, dict]]:
+    def state(self) -> dict:
         """Returns the game's state with the players' hands hidden"""
-        return list(map(
+        return dict(list(map(
             lambda i: (i[0], i[1].state()),
             self.list_players()
-        ))
+        )))
 
-    def reveal_hands(self) -> [tuple[str, int]]:
+    def reveal_hands(self) -> dict:
         """Return the players' with their hands"""
-        return list(map(
+        return dict(list(map(
             lambda i: (i[0], i[1].get_hand()),
             filter(lambda p: p[1].spectator is False, self.list_players())
-        ))
+        )))
 
     def info(self) -> dict:
         return {

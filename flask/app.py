@@ -1,3 +1,5 @@
+import uuid
+
 from flask import Flask, request, session
 from flask_socketio import SocketIO, join_room, leave_room, emit
 from peewee import SqliteDatabase
@@ -30,7 +32,8 @@ def create():
 
 @socketio.event
 def join(data):
-    player_id = request.sid
+    player_id = str(uuid.uuid4())
+    session['player_id'] = player_id
     player_name = data['name']
     spectator = data['spectator']
     game_id = data['game']
@@ -40,17 +43,22 @@ def join(data):
 
     info, state = gm.join_game(game_id, player_id, player_name, spectator)
     emit('state', state, to=game_id, json=True)
+
+    info['user_id'] = player_id
     return info
 
 
 @socketio.event
 def disconnect():
-    player_id = request.sid
+    player_id = session['player_id']
     game_id = session['game_id']
 
     state = gm.leave_game(game_id, player_id)
     leave_room(game_id)
     emit('state', state, to=game_id, json=True)
+
+    session['player_id'] = None
+    session['game_id'] = None
 
 
 @socketio.event
@@ -74,7 +82,7 @@ def set_deck(data):
 
 @socketio.event
 def set_player_name(data):
-    player_id = request.sid
+    player_id = session['player_id']
     game_id = session['game_id']
     player_name = data['name']
 
@@ -84,7 +92,7 @@ def set_player_name(data):
 
 @socketio.event
 def set_spectator(data):
-    player_id = request.sid
+    player_id = session['player_id']
     game_id = session['game_id']
     is_specatator = data['spectator']
 
@@ -94,7 +102,7 @@ def set_spectator(data):
 
 @socketio.event
 def pick_card(data):
-    player_id = request.sid
+    player_id = session['player_id']
     game_id = session['game_id']
     card = data['card']
 

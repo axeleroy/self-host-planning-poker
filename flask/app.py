@@ -94,9 +94,9 @@ def set_player_name(data):
 def set_spectator(data):
     player_id = session['player_id']
     game_id = session['game_id']
-    is_specatator = data['spectator']
+    is_spectator = data['spectator']
 
-    state = gm.set_player_spectator(game_id, player_id, is_specatator)
+    state = gm.set_player_spectator(game_id, player_id, is_spectator)
     emit('state', state, to=game_id, json=True)
 
 

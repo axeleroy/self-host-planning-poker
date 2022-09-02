@@ -1,6 +1,7 @@
 import uuid
 
-from flask import Flask, request, session
+from flask import Flask, request, session, make_response
+from flask_cors import CORS
 from flask_socketio import SocketIO, join_room, leave_room, emit
 from peewee import SqliteDatabase
 
@@ -13,6 +14,7 @@ socketio = SocketIO(app, logger=True, engineio_logger=True)
 
 if app.config['DEBUG']:
     real_db = SqliteDatabase('database.db')
+    CORS(app)
 else:
     real_db = SqliteDatabase('/app/database.db')
 database_proxy.initialize(real_db)
@@ -25,8 +27,9 @@ gm = GameManager()
 
 @app.route('/create', methods=['POST'])
 def create():
-    game_name = request.form['name']
-    game_deck = request.form['deck']
+    body = request.json
+    game_name = body['name']
+    game_deck = body['deck']
     return gm.create(game_name, game_deck)
 
 

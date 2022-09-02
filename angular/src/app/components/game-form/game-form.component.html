@@ -1,0 +1,9 @@
+<form [formGroup]="formGroup">
+  <input type="text" formControlName="name">
+  <select formControlName="deck">
+    <option *ngFor="let deck of decks" [ngValue]="deck">{{ deck.name }} ({{ displayDeckValues(deck) }})</option>
+  </select>
+  <button [disabled]="formGroup?.invalid" (click)="validate()">
+    Create
+  </button>
+</form>

@@ -1,0 +1,3 @@
+<p>{{ userInformation.getName() }}</p>
+<input [formControl]="formControl"> <button [disabled]="formControl.invalid" (click)="changeName()">Validate</button>
+<p>Spectator: {{ userInformation.isSpectator() }} <button (click)="toggleSpectator()">Toggle</button></p>

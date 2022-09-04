@@ -1,6 +1,6 @@
 from typing import Optional
 
-from gamestate.illegal_operation_error import IllegalOperationError
+from gamestate.exceptions.illegal_operation_error import IllegalOperationError
 
 
 class Player:

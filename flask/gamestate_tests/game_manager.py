@@ -5,8 +5,9 @@ from unittest.mock import Mock
 from peewee import SqliteDatabase
 
 from gamestate.deck import Deck
+from gamestate.exceptions.game_does_not_exist_error import GameDoesNotExistError
 from gamestate.game_manager import GameManager
-from gamestate.illegal_operation_error import IllegalOperationError
+from gamestate.exceptions.illegal_operation_error import IllegalOperationError
 from gamestate.models import StoredGame, database_proxy
 
 
@@ -79,7 +80,7 @@ class GameManagerTestCase(unittest.TestCase):
         self.assertEqual(game.get_deck(), Deck[deck])
 
         game_id2 = str(uuid.uuid4())
-        with self.assertRaises(IllegalOperationError) as ex:
+        with self.assertRaises(GameDoesNotExistError) as ex:
             gm.get(game_id2)
         self.assertEqual(str(ex.exception), f'Game {game_id2} does not exist')
 
@@ -130,7 +131,7 @@ class GameManagerTestCase(unittest.TestCase):
         self.assertEqual(state, "{'foo': 'bar'}")
         self.assertEqual(info, "{'fizz': 'buzz'}")
 
-        with self.assertRaises(IllegalOperationError) as ex:
+        with self.assertRaises(GameDoesNotExistError) as ex:
             gm.join_game('uuid2', 'p2', player_name, is_spectator)
         self.assertEqual(str(ex.exception), 'Game uuid2 does not exist')
 

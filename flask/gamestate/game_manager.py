@@ -4,8 +4,9 @@ from typing import Optional
 from peewee import DoesNotExist
 
 from gamestate.deck import Deck
+from gamestate.exceptions.game_does_not_exist_error import GameDoesNotExistError
+from gamestate.exceptions.illegal_operation_error import IllegalOperationError
 from gamestate.game import Game
-from gamestate.illegal_operation_error import IllegalOperationError
 from gamestate.models import StoredGame
 from gamestate.player import Player
 
@@ -30,7 +31,7 @@ class GameManager:
                 game = Game(stored_game.name, Deck[stored_game.deck])
                 self.games[game_uuid] = game
             except DoesNotExist:
-                raise IllegalOperationError(f'Game {game_uuid} does not exist')
+                raise GameDoesNotExistError(f'Game {game_uuid} does not exist')
         return game
 
     def __get_ongoing_game(self, game_uuid: str) -> Game:

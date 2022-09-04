@@ -3,7 +3,7 @@ from unittest.mock import Mock
 
 from gamestate.deck import Deck
 from gamestate.game import Game
-from gamestate.illegal_operation_error import IllegalOperationError
+from gamestate.exceptions.illegal_operation_error import IllegalOperationError
 
 
 class GameTestCase(unittest.TestCase):

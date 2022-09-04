@@ -1,5 +1,5 @@
 from gamestate.deck import Deck
-from gamestate.illegal_operation_error import IllegalOperationError
+from gamestate.exceptions.illegal_operation_error import IllegalOperationError
 from gamestate.player import Player
 
 

@@ -5,6 +5,7 @@ from flask_cors import CORS
 from flask_socketio import SocketIO, join_room, leave_room, emit
 from peewee import SqliteDatabase
 
+from gamestate.exceptions.planning_poker_exception import PlanningPokerException
 from gamestate.game_manager import GameManager
 from gamestate.models import database_proxy, StoredGame
 
@@ -131,7 +132,10 @@ def end_turn(data):
 
 @socketio.on_error()
 def on_error_handler(e):
-    return {'error': True, 'message': str(e)}
+    body = {'error': True, 'message': str(e), 'code': 0}
+    if isinstance(e, PlanningPokerException):
+        body['code'] = e.code
+    return body
 
 
 if __name__ == '__main__':

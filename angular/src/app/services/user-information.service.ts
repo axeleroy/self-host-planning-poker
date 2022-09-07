@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class UserInformationService {
   private nameSubject = new BehaviorSubject<string>('');
+  private playerIdSubject = new BehaviorSubject<string|undefined>(undefined);
   private isSpectatorSubject = new BehaviorSubject<boolean>(false);
 
   constructor() {
@@ -27,6 +28,10 @@ export class UserInformationService {
     this.saveToLocalStorage('isSpectator', isSpectator);
   }
 
+  setPlayerIdSubject(playerId: string | undefined) {
+    this.playerIdSubject.next(playerId);
+  }
+
   nameObservable(): Observable<string> {
     return this.nameSubject.asObservable();
   }
@@ -41,6 +46,10 @@ export class UserInformationService {
 
   isSpectator(): boolean {
     return this.isSpectatorSubject.getValue();
+  }
+
+  getPlayerId(): string | undefined {
+    return this.playerIdSubject.getValue();
   }
 
   private loadFromLocalStorage(key: string): any {

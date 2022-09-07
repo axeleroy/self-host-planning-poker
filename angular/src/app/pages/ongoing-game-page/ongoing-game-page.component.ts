@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CurrentGameService } from '../../services/current-game.service';
 
 @Component({
   selector: 'spp-ongoing-game-page',
@@ -8,10 +9,9 @@ import { ActivatedRoute } from '@angular/router';
   ]
 })
 export class OngoingGamePageComponent implements OnInit {
-  gameId: string;
 
-  constructor(private route: ActivatedRoute) {
-    this.gameId = this.route.snapshot.params['gameId'];
+  constructor(private currentGameService: CurrentGameService) {
+    this.currentGameService.state$.subscribe((state) => console.log(JSON.stringify(state)));
   }
 
   ngOnInit(): void {

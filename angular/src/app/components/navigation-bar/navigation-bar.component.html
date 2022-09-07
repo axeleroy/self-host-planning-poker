@@ -1,3 +1,7 @@
+<div *ngIf="currentGameInfo">
+  <p>Game Name: {{ currentGameInfo.name }}</p>
+  <p>Game Deck: {{ currentGameInfo.deck }}</p>
+</div>
 <p>{{ userInformation.getName() }}</p>
 <input [formControl]="formControl"> <button [disabled]="formControl.invalid" (click)="changeName()">Validate</button>
 <p>Spectator: {{ userInformation.isSpectator() }} <button (click)="toggleSpectator()">Toggle</button></p>

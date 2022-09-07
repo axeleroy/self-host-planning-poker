@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NewGamePageComponent } from './pages/new-game-page/new-game-page.component';
 import { OngoingGamePageComponent } from './pages/ongoing-game-page/ongoing-game-page.component';
+import { CurrentGameService } from './services/current-game.service';
 
 const routes: Routes = [
   {
@@ -10,7 +11,8 @@ const routes: Routes = [
   },
   {
     path: 'game/:gameId',
-    component: OngoingGamePageComponent
+    component: OngoingGamePageComponent,
+    canActivate: [ CurrentGameService ]
   }
 ];
 

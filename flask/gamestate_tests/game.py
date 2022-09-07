@@ -2,8 +2,8 @@ import unittest
 from unittest.mock import Mock
 
 from gamestate.deck import Deck
+from gamestate.exceptions import PlayerNotInGameError, InvalidCardValueError
 from gamestate.game import Game
-from gamestate.exceptions.illegal_operation_error import IllegalOperationError
 
 
 class GameTestCase(unittest.TestCase):
@@ -70,7 +70,7 @@ class GameTestCase(unittest.TestCase):
         self.assertEqual(game.get_player(uuid1), player1)
 
         uuid2 = '0f6b59d5-6765-4be1-b196-760c654729a6'
-        with self.assertRaises(IllegalOperationError) as ex:
+        with self.assertRaises(PlayerNotInGameError) as ex:
             game.get_player(uuid2)
         self.assertEqual(str(ex.exception), f'Player with UUID {uuid2} is not in this game')
 
@@ -83,11 +83,11 @@ class GameTestCase(unittest.TestCase):
         game.player_picks(uuid1, 8)
         player_mock.set_hand.assert_called_with(8)
 
-        with self.assertRaises(IllegalOperationError) as ex1:
+        with self.assertRaises(PlayerNotInGameError) as ex1:
             game.player_picks(uuid2, 8)
         self.assertEqual(str(ex1.exception), f'Player with UUID {uuid2} is not in this game')
 
-        with self.assertRaises(IllegalOperationError) as ex2:
+        with self.assertRaises(InvalidCardValueError) as ex2:
             game.player_picks(uuid1, 13)
         self.assertEqual(str(ex2.exception), 'Card value 13 is not valid. Current deck is POWERS')
 

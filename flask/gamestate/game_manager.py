@@ -4,8 +4,7 @@ from typing import Optional
 from peewee import DoesNotExist
 
 from gamestate.deck import Deck
-from gamestate.exceptions.game_does_not_exist_error import GameDoesNotExistError
-from gamestate.exceptions.illegal_operation_error import IllegalOperationError
+from gamestate.exceptions import GameDoesNotExistError, DeckDoesNotExistError, GameNotOngoingError
 from gamestate.game import Game
 from gamestate.models import StoredGame
 from gamestate.player import Player
@@ -37,7 +36,7 @@ class GameManager:
     def __get_ongoing_game(self, game_uuid: str) -> Game:
         game = self.games.get(game_uuid)
         if game is None:
-            raise IllegalOperationError(f'Game {game_uuid} is not ongoing')
+            raise GameNotOngoingError(f'Game {game_uuid} is not ongoing')
         return game
     
     def set_deck(self, game_uuid: str, deck_name: str):
@@ -97,7 +96,7 @@ class GameManager:
     @staticmethod
     def __get_deck(deck_name):
         if deck_name not in Deck.__members__.keys():
-            raise IllegalOperationError(f'Deck {deck_name} does not exist')
+            raise DeckDoesNotExistError(f'Deck {deck_name} does not exist')
         deck = Deck[deck_name]
         return deck
     

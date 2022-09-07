@@ -1,6 +1,6 @@
 import unittest
 
-from gamestate.exceptions.illegal_operation_error import IllegalOperationError
+from gamestate.exceptions import SpectatorCannotPlayError
 from gamestate.player import Player
 
 
@@ -34,7 +34,7 @@ class PlayerTestCase(unittest.TestCase):
 
     def test_spectator_cannot_set_hand(self):
         player = Player("John", True)
-        with self.assertRaises(IllegalOperationError) as ex:
+        with self.assertRaises(SpectatorCannotPlayError) as ex:
             player.set_hand(5)
         self.assertEqual(str(ex.exception), 'Spectator cannot play')
 

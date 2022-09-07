@@ -1,11 +1,11 @@
 import uuid
 
-from flask import Flask, request, session, make_response
+from flask import Flask, request, session
 from flask_cors import CORS
 from flask_socketio import SocketIO, join_room, leave_room, emit
 from peewee import SqliteDatabase
 
-from gamestate.exceptions.planning_poker_exception import PlanningPokerException
+from gamestate.exceptions import PlanningPokerException
 from gamestate.game_manager import GameManager
 from gamestate.models import database_proxy, StoredGame
 
@@ -48,7 +48,7 @@ def join(data):
     info, state = gm.join_game(game_id, player_id, player_name, spectator)
     emit('state', state, to=game_id, json=True)
 
-    info['user_id'] = player_id
+    info['playerId'] = player_id
     return info
 
 

@@ -1,6 +1,6 @@
 from typing import Optional
 
-from gamestate.exceptions.illegal_operation_error import IllegalOperationError
+from gamestate.exceptions import SpectatorCannotPlayError
 
 
 class Player:
@@ -12,7 +12,7 @@ class Player:
 
     def set_hand(self, hand: int):
         if self.spectator is True:
-            raise IllegalOperationError('Spectator cannot play')
+            raise SpectatorCannotPlayError('Spectator cannot play')
         self.__hand = hand
 
     def get_hand(self) -> Optional[int]:

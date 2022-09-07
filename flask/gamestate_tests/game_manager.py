@@ -5,9 +5,9 @@ from unittest.mock import Mock
 from peewee import SqliteDatabase
 
 from gamestate.deck import Deck
-from gamestate.exceptions.game_does_not_exist_error import GameDoesNotExistError
+from gamestate.exceptions import GameDoesNotExistError, DeckDoesNotExistError, \
+    GameNotOngoingError
 from gamestate.game_manager import GameManager
-from gamestate.exceptions.illegal_operation_error import IllegalOperationError
 from gamestate.models import StoredGame, database_proxy
 
 
@@ -57,7 +57,7 @@ class GameManagerTestCase(unittest.TestCase):
         gm = GameManager()
         name = 'PBR Team Pizza'
         deck_name = 'PIZZA'
-        with self.assertRaises(IllegalOperationError) as ex:
+        with self.assertRaises(DeckDoesNotExistError) as ex:
             gm.create(name, deck_name)
         self.assertEqual(str(ex.exception), f'Deck {deck_name} does not exist')
 
@@ -94,10 +94,10 @@ class GameManagerTestCase(unittest.TestCase):
         game_mock = Mock(**{'info.return_value': {'name': name, 'deck': deck}, 'state.return_value': {'foo': 'bar'}})
         gm.games = {game_id: game_mock}
 
-        with self.assertRaises(IllegalOperationError) as ex1:
+        with self.assertRaises(DeckDoesNotExistError) as ex1:
             gm.set_deck(game_id, 'holdem')
         self.assertEqual(str(ex1.exception), 'Deck holdem does not exist')
-        with self.assertRaises(IllegalOperationError) as ex2:
+        with self.assertRaises(GameNotOngoingError) as ex2:
             gm.set_deck('uuid2', 'POWERS')
         self.assertEqual(str(ex2.exception), 'Game uuid2 is not ongoing')
 
@@ -152,7 +152,7 @@ class GameManagerTestCase(unittest.TestCase):
         game_mock2.state.assert_called()
         self.assertEqual(state2, "{'bar': 'bang'}")
 
-        with self.assertRaises(IllegalOperationError) as ex:
+        with self.assertRaises(GameNotOngoingError) as ex:
             gm.leave_game('uuid3', 'p3')
         self.assertEqual(str(ex.exception), 'Game uuid3 is not ongoing')
 
@@ -189,7 +189,7 @@ class GameManagerTestCase(unittest.TestCase):
         game_mock.state.assert_called()
         self.assertEqual(state, "{'foo': 'bar'}")
 
-        with self.assertRaises(IllegalOperationError) as ex:
+        with self.assertRaises(GameNotOngoingError) as ex:
             gm.leave_game('uuid2', 'p3')
         self.assertEqual(str(ex.exception), 'Game uuid2 is not ongoing')
 
@@ -206,7 +206,7 @@ class GameManagerTestCase(unittest.TestCase):
         game_mock.state.assert_called()
         self.assertEqual(state, "{'foo': 'bar'}")
 
-        with self.assertRaises(IllegalOperationError) as ex:
+        with self.assertRaises(GameNotOngoingError) as ex:
             gm.set_player_spectator('uuid2', 'p3', True)
         self.assertEqual(str(ex.exception), 'Game uuid2 is not ongoing')
 
@@ -222,7 +222,7 @@ class GameManagerTestCase(unittest.TestCase):
         game_mock.state.assert_called()
         self.assertEqual(state, "{'foo': 'bar'}")
 
-        with self.assertRaises(IllegalOperationError) as ex:
+        with self.assertRaises(GameNotOngoingError) as ex:
             gm.pick_card('uuid2', 'p3', True)
         self.assertEqual(str(ex.exception), 'Game uuid2 is not ongoing')
 
@@ -234,7 +234,7 @@ class GameManagerTestCase(unittest.TestCase):
         hands = gm.reveal_cards("uuid1")
         game_mock.reveal_hands.assert_called()
         self.assertEqual(hands, "{'foo': 'bar'}")
-        with self.assertRaises(IllegalOperationError) as ex:
+        with self.assertRaises(GameNotOngoingError) as ex:
             gm.reveal_cards('uuid2')
         self.assertEqual(str(ex.exception), 'Game uuid2 is not ongoing')
 
@@ -247,7 +247,7 @@ class GameManagerTestCase(unittest.TestCase):
         game_mock.end_turn.assert_called()
         game_mock.state.assert_called()
         self.assertEqual(state, "{'foo': 'bar'}")
-        with self.assertRaises(IllegalOperationError) as ex:
+        with self.assertRaises(GameNotOngoingError) as ex:
             gm.end_turn('uuid2')
         self.assertEqual(str(ex.exception), 'Game uuid2 is not ongoing')
 

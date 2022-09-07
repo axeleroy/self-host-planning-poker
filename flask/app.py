@@ -11,7 +11,7 @@ from gamestate.models import database_proxy, StoredGame
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app, logger=True, engineio_logger=True)
+socketio = SocketIO(app, cors_allowed_origins=['http://localhost:4200'])
 
 if app.config['DEBUG']:
     real_db = SqliteDatabase('database.db')

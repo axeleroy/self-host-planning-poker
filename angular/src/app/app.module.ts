@@ -9,6 +9,10 @@ import { NewGamePageComponent } from './pages/new-game-page/new-game-page.compon
 import { HttpClientModule } from '@angular/common/http';
 import { OngoingGamePageComponent } from './pages/ongoing-game-page/ongoing-game-page.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GameNameComponent } from './components/navigation-bar/game-name/game-name.component';
+import { PlayerInfoComponent } from './components/navigation-bar/player-info/player-info.component';
+import { GameInfoComponent } from './components/navigation-bar/game-info/game-info.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +20,17 @@ import { NavigationBarComponent } from './components/navigation-bar/navigation-b
     GameFormComponent,
     NewGamePageComponent,
     OngoingGamePageComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    GameNameComponent,
+    PlayerInfoComponent,
+    GameInfoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

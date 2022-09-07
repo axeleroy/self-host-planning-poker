@@ -1,7 +1,12 @@
-<div *ngIf="currentGameInfo">
-  <p>Game Name: {{ currentGameInfo.name }}</p>
-  <p>Game Deck: {{ currentGameInfo.deck }}</p>
-</div>
-<p>{{ userInformation.getName() }}</p>
-<input [formControl]="formControl"> <button [disabled]="formControl.invalid" (click)="changeName()">Validate</button>
-<p>Spectator: {{ userInformation.isSpectator() }} <button (click)="toggleSpectator()">Toggle</button></p>
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <spp-game-name></spp-game-name>
+    <button class="navbar-toggler" type="button" (click)="toggleCollapse()" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+      <spp-game-info class="flex-grow-1"></spp-game-info>
+      <spp-player-info></spp-player-info>
+    </div>
+  </div>
+</nav>

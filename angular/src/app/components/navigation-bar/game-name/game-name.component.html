@@ -1,0 +1,8 @@
+<ng-template #brandingContent>
+  <span class="navbar-brand">Self-host Planning Pocker</span>
+</ng-template>
+<ng-container *ngIf="currentGameInfo; else brandingContent">
+  <span class="navbar-brand">{{ currentGameInfo?.name }}</span>
+
+</ng-container>
+

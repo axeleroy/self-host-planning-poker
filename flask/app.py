@@ -128,6 +128,7 @@ def end_turn(data):
 
     state = gm.end_turn(game_id)
     emit('state', state, to=game_id, json=True)
+    emit('new_game', to=game_id)
 
 
 @socketio.on_error()

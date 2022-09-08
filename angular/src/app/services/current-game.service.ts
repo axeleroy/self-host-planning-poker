@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { environment } from '../../environments/environment';
 import { UserInformationService } from './user-information.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { ErrorMessage, GameHands, GameInfo, GameState } from '../model/events';
 import { Deck } from '../model/deck';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
@@ -17,6 +17,7 @@ export class CurrentGameService implements CanActivate {
   private stateSubject = new BehaviorSubject<GameState | null>(null);
   private handsSubject = new BehaviorSubject<GameHands | null>(null);
   private infoSubject = new BehaviorSubject<GameInfo | null>(null);
+  private newGameSubject = new Subject<void>();
   private errorSubject = new BehaviorSubject<ErrorMessage | null>(null);
 
   constructor(private router: Router,
@@ -26,6 +27,7 @@ export class CurrentGameService implements CanActivate {
     this.socket.on('state', (state: GameState) => this.stateSubject.next(state));
     this.socket.on('info', (info: GameInfo) => this.infoSubject.next(info));
     this.socket.on('hands', (hands: GameHands) => this.handsSubject.next(hands));
+    this.socket.on('new_game', () => this.newGameSubject.next());
 
     this.socket.on('disconnect', () => {
       this.stateSubject.next(null);
@@ -55,6 +57,10 @@ export class CurrentGameService implements CanActivate {
 
   public get gameInfo$(): Observable<GameInfo | null> {
     return this.infoSubject.asObservable();
+  }
+
+  public get newGame$(): Observable<void>{
+    return this.newGameSubject.asObservable();
   }
 
   public get errors$(): Observable<ErrorMessage | null> {

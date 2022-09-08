@@ -117,6 +117,19 @@ class GameTestCase(unittest.TestCase):
         player_2.clear_hand.assert_called()
         spectator_1.clear_hand.assert_called()
 
+    def test_setting_deck_should_not_clear_hands_when_deck_is_the_same(self):
+        game = Game('PBR Team Pizza', Deck.POWERS)
+        player_1 = Mock()
+        game.player_joins('j', player_1)
+        player_2 = Mock()
+        game.player_joins('p', player_2)
+        spectator_1 = Mock()
+        game.player_joins('d', spectator_1)
+        game.set_deck(Deck.POWERS)
+        player_1.clear_hand.assert_not_called()
+        player_2.clear_hand.assert_not_called()
+        spectator_1.clear_hand.assert_not_called()
+
     def test_is_game_empty(self):
         uuid = '47b71b00-e060-47ba-8fae-029f5473794b'
         game = Game('PBR Team Pizza')

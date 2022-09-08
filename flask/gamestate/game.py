@@ -17,8 +17,10 @@ class Game:
         self.__state.pop(uuid)
 
     def set_deck(self, deck: Deck):
+        existing_deck = self.__deck
         self.__deck = deck
-        self.end_turn()
+        if existing_deck is not deck:
+            self.end_turn()
 
     def get_deck(self) -> Deck:
         return self.__deck

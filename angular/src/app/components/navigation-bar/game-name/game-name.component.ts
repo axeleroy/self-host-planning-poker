@@ -3,7 +3,7 @@ import { CurrentGameService } from '../../../services/current-game.service';
 import { GameInfo } from '../../../model/events';
 
 @Component({
-  selector: 'spp-game-name',
+  selector: 'shpp-game-name',
   templateUrl: './game-name.component.html',
   styles: [
   ]

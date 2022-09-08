@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CurrentGameService } from '../../services/current-game.service';
 
 @Component({
-  selector: 'spp-ongoing-game-page',
+  selector: 'shpp-ongoing-game-page',
   templateUrl: './ongoing-game-page.component.html',
   styles: [
   ]

@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'spp-new-game-page',
+  selector: 'shpp-new-game-page',
   templateUrl: './new-game-page.component.html',
   styles: [
   ]

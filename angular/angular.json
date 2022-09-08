@@ -13,7 +13,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "spp",
+      "prefix": "shpp",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

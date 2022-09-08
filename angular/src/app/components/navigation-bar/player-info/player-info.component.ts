@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { UserInformationService } from '../../../services/user-information.service';
 
 @Component({
-  selector: 'spp-player-info',
+  selector: 'shpp-player-info',
   templateUrl: './player-info.component.html',
   styles: [
   ]

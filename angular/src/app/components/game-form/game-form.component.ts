@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Deck, decks, decksDict, displayDeckValues } from '../../model/deck';
 
 @Component({
-  selector: 'spp-game-form',
+  selector: 'shpp-game-form',
   templateUrl: './game-form.component.html',
   styles: [
   ]

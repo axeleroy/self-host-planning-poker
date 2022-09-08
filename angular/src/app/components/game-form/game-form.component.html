@@ -1,9 +1,13 @@
-<form [formGroup]="formGroup">
-  <input type="text" formControlName="name">
-  <select formControlName="deck">
-    <option *ngFor="let deck of decks" [ngValue]="deck">{{ deck.name }} ({{ displayDeckValues(deck) }})</option>
-  </select>
-  <button [disabled]="formGroup?.invalid" (click)="validate()">
-    Create
-  </button>
-</form>
+<ng-container *transloco="let t; read 'gameForm'">
+  <form [formGroup]="formGroup">
+    <input type="text" formControlName="name">
+    <select formControlName="deck">
+      <ng-container *transloco="let n; read 'deckNames'">
+        <option *ngFor="let deck of decks" [ngValue]="deck">{{ n(deck.name) }} ({{ displayDeckValues(deck) }})</option>
+      </ng-container>
+    </select>
+    <button [disabled]="formGroup?.invalid" (click)="validate()">
+      {{ t('createButton-label') }}
+    </button>
+  </form>
+</ng-container>

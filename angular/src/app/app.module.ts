@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GameNameComponent } from './components/navigation-bar/game-name/game-name.component';
 import { PlayerInfoComponent } from './components/navigation-bar/player-info/player-info.component';
 import { GameInfoComponent } from './components/navigation-bar/game-info/game-info.component';
+import { TranslocoRootModule } from './transloco-root.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { GameInfoComponent } from './components/navigation-bar/game-info/game-in
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    TranslocoRootModule
   ],
   providers: [],
   bootstrap: [AppComponent]

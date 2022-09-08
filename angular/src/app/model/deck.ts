@@ -5,14 +5,12 @@ export interface CardValue {
 
 export interface Deck {
   name: string;
-  enumName: string;
   values: CardValue[];
 }
 
 export const decks: Deck[] = [
   {
-    name: 'Fibonacci',
-    enumName: 'FIBONACCI',
+    name: 'FIBONACCI',
     values: [
       { value: 0, display: 0 },
       { value: 1, display: 1 },
@@ -28,8 +26,7 @@ export const decks: Deck[] = [
     ]
   },
   {
-    name: 'Modified Fibonacci',
-    enumName: 'MODIFIED_FIBONACCI',
+    name: 'MODIFIED_FIBONACCI',
     values: [
       { value: 0, display: 0 },
       { value: 0.5, display: 0.5 },
@@ -46,8 +43,7 @@ export const decks: Deck[] = [
     ]
   },
   {
-    name: 'Powers',
-    enumName: 'POWERS',
+    name: 'POWERS',
     values: [
       { value: 0, display: 0 },
       { value: 1, display: 1 },
@@ -60,8 +56,7 @@ export const decks: Deck[] = [
     ]
   },
   {
-    name: 'Trust Vote',
-    enumName: 'TRUST_VOTE',
+    name: 'TRUST_VOTE',
     values: [
       { value: 0, display: 0 },
       { value: 1, display: 1 },
@@ -77,8 +72,7 @@ export const decks: Deck[] = [
     ]
   },
   {
-    name: 'T-Shirts',
-    enumName: 'T_SHIRTS',
+    name: 'T_SHIRTS',
     values: [
       { value: 1, display: 'XXS' },
       { value: 2, display: 'XS' },
@@ -92,7 +86,7 @@ export const decks: Deck[] = [
 ]
 
 export const decksDict: { [key: string]: Deck } = decks.reduce((result: { [key: string]: Deck }, deck: Deck) => {
-  result[deck.enumName] = deck;
+  result[deck.name] = deck;
   return result;
 }, {});
 

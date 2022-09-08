@@ -1,6 +1,8 @@
 <ng-container *ngIf="currentGameInfo">
-  <span class="navbar-text">{{ currentGameInfo?.deck }}</span>
-  <button class="btn btn-light btn-sm mx-2" aria-label="Edit">
+  <ng-container *ngIf="currentGameInfo">
+    <span class="navbar-text" *transloco="let n; read 'deckNames'">{{ n(currentGameInfo.deck) }}</span>
+  </ng-container>
+  <button class="btn btn-light btn-sm mx-2" *transloco="let t; read 'buttons'"  [attr.aria-label]="t('edit')">
     <svg class="bi bi-pencil-fill" width="1em" height="1em" fill="currentColor" aria-hidden="true">
       <use xlink:href="assets/bootstrap-icons.svg#pencil-fill"/>
     </svg>

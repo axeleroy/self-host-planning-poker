@@ -1,0 +1,23 @@
+{
+  "navbar": {
+    "appTitle": "Self-Host Planning Poker"
+  },
+  "gameForm": {
+    "createButton-label": "Créer une nouvelle partie"
+  },
+  "deckNames": {
+    "FIBONACCI": "Fibonacci",
+    "MODIFIED_FIBONACCI": "Fibonacci modifié",
+    "POWERS": "Puissances de 2",
+    "TRUST_VOTE": "Vote de confiance",
+    "T_SHIRTS": "Tailles de t-shirt"
+  },
+  "buttons": {
+    "edit": "Modifier",
+    "toggleSpectator": "Basculer"
+  },
+  "playerState": {
+    "spectator": "Spectateur",
+    "player": "Joueur"
+  }
+}

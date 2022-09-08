@@ -93,7 +93,7 @@ export class CurrentGameService implements CanActivate {
   }
 
   public setDeck(deck: Deck): void {
-    this.socket.emit('set_deck', {deck: deck.enumName});
+    this.socket.emit('set_deck', {deck: deck.name});
   }
 
   public pickCard(cardValue: number | null): void {

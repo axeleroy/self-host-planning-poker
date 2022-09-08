@@ -21,7 +21,7 @@ export class NewGamePageComponent implements OnInit {
   onNewGame(newGame: {name: string, deck: Deck}): void {
     const body = {
       name: newGame.name,
-      deck: newGame.deck.enumName
+      deck: newGame.deck.name
     }
     this.http.post(environment.urlRoot + 'create', body, { responseType: 'text' })
       .subscribe((gameId) => this.router.navigate(['game', gameId]));

@@ -1,16 +1,16 @@
 <span class="navbar-text">
   {{ userInformation.getName() }}
-  <div class="btn-group mx-2">
-    <button class="btn btn-light btn-sm" aria-label="Edit">
+  <div class="btn-group mx-2" *transloco="let t">
+    <button class="btn btn-light btn-sm" [attr.aria-label]="t('buttons.edit')">
       <svg class="bi bi-pencil-fill" width="1em" height="1em" fill="currentColor" aria-hidden="true">
         <use xlink:href="assets/bootstrap-icons.svg#pencil-fill"/>
       </svg>
     </button>
-    <button class="btn btn-light btn-sm" aria-label="Toggle spectator" (click)="toggleSpectator()">
-      <svg *ngIf="userInformation.isSpectator()" class="bi bi-eye-fill" width="1em" height="1em" fill="currentColor" aria-label="spectator">
+    <button class="btn btn-light btn-sm" [attr.aria-labbel]="t('buttons.toggleSpectator')" (click)="toggleSpectator()">
+      <svg *ngIf="userInformation.isSpectator()" [attr.aria-labbel]="t('state.spectator')" class="bi bi-eye-fill" width="1em" height="1em" fill="currentColor">
         <use xlink:href="assets/bootstrap-icons.svg#eye-fill"/>
       </svg>
-      <svg *ngIf="!userInformation.isSpectator()" class="bi bi-eye" width="1em" height="1em" fill="currentColor" aria-label="player">
+      <svg *ngIf="!userInformation.isSpectator()" [attr.aria-labbel]="t('state.player')" class="bi bi-eye" width="1em" height="1em" fill="currentColor">
         <use xlink:href="assets/bootstrap-icons.svg#eye"/>
       </svg>
     </button>

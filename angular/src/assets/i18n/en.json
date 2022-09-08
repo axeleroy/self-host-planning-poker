@@ -1,6 +1,16 @@
 {
   "navbar": {
-    "appTitle": "Self-Host Planning Poker"
+    "appTitle": "Self-Host Planning Poker",
+    "playerInfo": {
+      "actions": {
+        "setSpectator": "Set spectator",
+        "setPlayer": "Set Player",
+        "editPlayerName": "Edit player name"
+      },
+      "form": {
+        "playerName": "Player name"
+      }
+    }
   },
   "gameForm": {
     "createButton-label": "Create new game"
@@ -14,7 +24,7 @@
   },
   "buttons": {
     "edit": "Edit",
-    "toggleSpectator": "Toggle spectator"
+    "save": "Save"
   },
   "playerState": {
     "spectator": "Spectator",

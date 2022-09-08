@@ -1,20 +1,48 @@
-<span class="navbar-text">
-  {{ userInformation.getName() }}
-  <div class="btn-group mx-2" *transloco="let t">
-    <button class="btn btn-light btn-sm" [attr.aria-label]="t('buttons.edit')">
-      <svg class="bi bi-pencil-fill" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-        <use xlink:href="assets/bootstrap-icons.svg#pencil-fill"/>
-      </svg>
-    </button>
-    <button class="btn btn-light btn-sm" [attr.aria-labbel]="t('buttons.toggleSpectator')" (click)="toggleSpectator()">
-      <svg *ngIf="userInformation.isSpectator()" [attr.aria-labbel]="t('state.spectator')" class="bi bi-eye-fill" width="1em" height="1em" fill="currentColor">
-        <use xlink:href="assets/bootstrap-icons.svg#eye-fill"/>
-      </svg>
-      <svg *ngIf="!userInformation.isSpectator()" [attr.aria-labbel]="t('state.player')" class="bi bi-eye" width="1em" height="1em" fill="currentColor">
-        <use xlink:href="assets/bootstrap-icons.svg#eye"/>
+<ng-template #editTemplate>
+  <div class="input-group" *transloco="let t">
+    <input type="text" class="form-control form-control-sm"
+           [formControl]="formControl"
+           [attr.aria-label]="t('navbar.playerInfo.form.playerName')">
+    <button class="btn btn-primary" type="button"
+            [attr.aria-label]="t('buttons.save')"
+            [disabled]="formControl.invalid"
+            (click)="validateNameChange()">
+      <svg class="bi bi-check" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+        <use xlink:href="assets/bootstrap-icons.svg#check"/>
       </svg>
     </button>
   </div>
-</span>
-<!-- <input [formControl]="formControl"> <button [disabled]="formControl.invalid" (click)="changeName()">Validate</button>
-<p>Spectator: {{ userInformation.isSpectator() }} <button (click)="toggleSpectator()">Toggle</button></p> -->
+</ng-template>
+
+<ng-container *ngIf="!editMode; else editTemplate">
+  <span class="navbar-text" >
+    {{ userInformation.getName() }}
+    <div class="btn-group mx-2" *transloco="let t">
+      <button class="btn btn-light btn-sm"
+              [attr.aria-label]="t('buttons.edit')"
+              [ngbTooltip]="t('navbar.playerInfo.actions.editPlayerName')"
+              placement="bottom"
+              (click)="editMode = true">
+        <svg class="bi bi-pencil-fill" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+          <use xlink:href="assets/bootstrap-icons.svg#pencil-fill"/>
+        </svg>
+      </button>
+      <button class="btn btn-light btn-sm"
+              [attr.aria-labbel]="t(getActionKey())"
+              (click)="toggleSpectator()"
+              [ngbTooltip]="t(getActionKey())"
+              placement="bottom">
+        <svg *ngIf="userInformation.isSpectator()"
+             [attr.aria-labbel]="t('playerState.spectator')"
+             class="bi bi-eye-fill" width="1em" height="1em" fill="currentColor">
+          <use xlink:href="assets/bootstrap-icons.svg#eye-fill"/>
+        </svg>
+        <svg *ngIf="!userInformation.isSpectator()"
+             [attr.aria-labbel]="t('playerState.player')"
+             class="bi bi-eye" width="1em" height="1em" fill="currentColor">
+          <use xlink:href="assets/bootstrap-icons.svg#eye"/>
+        </svg>
+      </button>
+    </div>
+  </span>
+</ng-container>

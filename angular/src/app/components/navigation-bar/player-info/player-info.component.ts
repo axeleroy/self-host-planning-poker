@@ -11,6 +11,7 @@ import { UserInformationService } from '../../../services/user-information.servi
 export class PlayerInfoComponent {
 
   formControl: FormControl;
+  editMode = false;
 
   constructor(private fb: FormBuilder,
               public userInformation: UserInformationService) {
@@ -22,9 +23,16 @@ export class PlayerInfoComponent {
     this.userInformation.setSpectator(!this.userInformation.isSpectator());
   }
 
-  changeName(): void {
+  getActionKey(): string {
+    return this.userInformation.isSpectator()
+      ? 'navbar.playerInfo.actions.setPlayer'
+      : 'navbar.playerInfo.actions.setSpectator';
+  }
+
+  validateNameChange(): void {
     const newName = this.formControl.value;
     this.userInformation.setName(newName);
+    this.editMode = false;
   }
 
 }

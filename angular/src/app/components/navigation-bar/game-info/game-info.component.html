@@ -2,9 +2,28 @@
   <ng-container *ngIf="currentGameInfo">
     <span class="navbar-text" *transloco="let n; read 'deckNames'">{{ n(currentGameInfo.deck) }}</span>
   </ng-container>
-  <button class="btn btn-light btn-sm mx-2" *transloco="let t; read 'buttons'"  [attr.aria-label]="t('edit')">
+  <button class="btn btn-light btn-sm mx-2"
+          [attr.aria-label]="t('edit')"
+          [ngbTooltip]="t('edit')"
+          placement="bottom"
+          (click)="openEdit(gameEdit)"
+          *transloco="let t; read 'buttons'">
     <svg class="bi bi-pencil-fill" width="1em" height="1em" fill="currentColor" aria-hidden="true">
       <use xlink:href="assets/bootstrap-icons.svg#pencil-fill"/>
     </svg>
   </button>
 </ng-container>
+
+<ng-template #gameEdit let-offcanvas>
+  <div class="offcanvas-header" *transloco="let t; read 'navbar.gameInfo'">
+    <h4 class="offcanvas-title" id="offcanvas-basic-title">{{ t('editTitle') }}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('cancel')"></button>
+  </div>
+  <div class="offcanvas-body">
+    <shpp-game-form
+      [name]="currentGameInfo?.name"
+      [deck]="currentGameInfo?.deck"
+      (result)="offcanvas.close($event)">
+    </shpp-game-form>
+  </div>
+</ng-template>

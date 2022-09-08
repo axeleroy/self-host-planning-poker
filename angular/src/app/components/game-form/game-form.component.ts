@@ -17,8 +17,8 @@ export class GameFormComponent implements OnInit{
   @Input()
   name?: string;
   @Input()
-  deck?: Deck;
-  @Output() newDeck = new EventEmitter<{name: string, deck: Deck}>()
+  deck?: string;
+  @Output() result = new EventEmitter<{name: string, deck: Deck}>()
 
   constructor(private fb: FormBuilder) {
     this.formGroup = this.fb.group({
@@ -32,12 +32,12 @@ export class GameFormComponent implements OnInit{
       this.formGroup.get('name')?.patchValue(this.name);
     }
     if (this.deck) {
-      this.formGroup.get('deck')?.patchValue(this.deck);
+      this.formGroup.get('deck')?.patchValue(decksDict[this.deck]);
     }
   }
 
   validate(): void {
-    this.newDeck.emit(this.formGroup?.getRawValue());
+    this.result.emit(this.formGroup?.getRawValue());
   }
 
   isNewGame(): boolean {

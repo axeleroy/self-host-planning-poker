@@ -10,6 +10,9 @@
       "form": {
         "playerName": "Player name"
       }
+    },
+    "gameInfo": {
+      "editTitle": "Edit game"
     }
   },
   "gameForm": {

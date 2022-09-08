@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { GameInfo } from '../../../model/events';
 import { CurrentGameService } from '../../../services/current-game.service';
+import { Deck } from '../../../model/deck';
+import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'shpp-game-info',
@@ -8,15 +10,22 @@ import { CurrentGameService } from '../../../services/current-game.service';
   styles: [
   ]
 })
-export class GameInfoComponent implements OnInit {
+export class GameInfoComponent {
 
   currentGameInfo?: GameInfo | null;
 
-  constructor(private currentGameService: CurrentGameService) {
+  constructor(private currentGameService: CurrentGameService,
+              private offcanvaseService: NgbOffcanvas) {
     this.currentGameService.gameInfo$.subscribe((gameInfo) => this.currentGameInfo = gameInfo);
   }
 
-  ngOnInit(): void {
+  openEdit(content: any): void {
+    this.offcanvaseService.open(content, {ariaLabelledBy: 'offcanvas-basic-title'})
+      .result
+      .then((result: {name: string, deck: Deck}) => {
+        this.currentGameService.setDeck(result.deck);
+        this.currentGameService.renameGame(result.name);
+      })
   }
 
 }

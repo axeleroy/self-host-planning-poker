@@ -10,8 +10,7 @@ import { CurrentGameService } from '../../services/current-game.service';
 })
 export class OngoingGamePageComponent implements OnInit {
 
-  constructor(private currentGameService: CurrentGameService) {
-    this.currentGameService.state$.subscribe((state) => console.log(JSON.stringify(state)));
+  constructor(public currentGameService: CurrentGameService) {
   }
 
   ngOnInit(): void {

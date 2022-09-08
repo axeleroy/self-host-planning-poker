@@ -40,4 +40,8 @@ export class GameFormComponent implements OnInit{
     this.newDeck.emit(this.formGroup?.getRawValue());
   }
 
+  isNewGame(): boolean {
+    return !this.name && !this.deck;
+  }
+
 }

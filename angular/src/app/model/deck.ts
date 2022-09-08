@@ -91,5 +91,5 @@ export const decksDict: { [key: string]: Deck } = decks.reduce((result: { [key: 
 }, {});
 
 export function displayDeckValues(deck: Deck): string {
-  return deck.values.map(v => v.display).join(',');
+  return deck.values.map(v => v.display).join(', ');
 }

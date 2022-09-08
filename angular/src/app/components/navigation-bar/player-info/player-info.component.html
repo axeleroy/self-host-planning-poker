@@ -1,9 +1,9 @@
 <ng-template #editTemplate>
-  <div class="input-group" *transloco="let t">
+  <form class="input-group" *transloco="let t">
     <input type="text" class="form-control form-control-sm"
            [formControl]="formControl"
            [attr.aria-label]="t('navbar.playerInfo.form.playerName')">
-    <button class="btn btn-primary" type="button"
+    <button class="btn btn-primary" type="submit"
             [attr.aria-label]="t('buttons.save')"
             [disabled]="formControl.invalid"
             (click)="validateNameChange()">
@@ -11,7 +11,7 @@
         <use xlink:href="assets/bootstrap-icons.svg#check"/>
       </svg>
     </button>
-  </div>
+  </form>
 </ng-template>
 
 <ng-container *ngIf="!editMode; else editTemplate">

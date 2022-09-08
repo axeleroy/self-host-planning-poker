@@ -13,7 +13,10 @@
     }
   },
   "gameForm": {
-    "createButton-label": "Create new game"
+    "name-label": "Game's name",
+    "deck-label": "Game's deck",
+    "createButton-label": "Create new game",
+    "updateButton-label": "Update"
   },
   "deckNames": {
     "FIBONACCI": "Fibonacci",

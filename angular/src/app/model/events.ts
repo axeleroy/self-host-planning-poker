@@ -17,8 +17,8 @@ export interface PlayerHand extends Player{
   hand?: number;
 }
 
-export type GameState = { [key: string]: PlayerState };
-export type GameHands = { [key: string]: PlayerHand };
+export type GameState = Record<string, PlayerState>;
+export type GameHands = Record<string, number>;
 
 export interface ErrorMessage {
   error: true;

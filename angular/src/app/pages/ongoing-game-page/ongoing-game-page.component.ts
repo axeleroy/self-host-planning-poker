@@ -12,19 +12,11 @@ import { Subscription } from 'rxjs';
 export class OngoingGamePageComponent implements OnDestroy {
   private subscription?: Subscription;
 
-  constructor(public currentGameService: CurrentGameService,
+  constructor(private currentGameService: CurrentGameService,
               private titleService: Title,
               private transloco: TranslocoService) {
     this.currentGameService.gameInfo$.subscribe((gameInfo) =>
       this.titleService.setTitle(this.transloco.translate('ongoingGame.page-title', { gameName: gameInfo?.name })))
-  }
-
-  revealCards(): void {
-    this.currentGameService.revealCards();
-  }
-
-  endTurn(): void {
-    this.currentGameService.endTurn();
   }
 
   ngOnDestroy(): void {

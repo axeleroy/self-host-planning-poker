@@ -11,13 +11,17 @@ from gamestate.models import database_proxy, StoredGame
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app, cors_allowed_origins=['http://localhost:4200'])
 
 if app.config['DEBUG']:
     real_db = SqliteDatabase('database.db')
+    socketio = SocketIO(app, cors_allowed_origins=[
+        'http://localhost:4200', 'http://localhost:5000',
+        'http://127.0.0.1:4200', 'http://127.0.0.1:5000'
+    ])
     CORS(app)
 else:
     real_db = SqliteDatabase('/app/database.db')
+    socketio = SocketIO(app)
 database_proxy.initialize(real_db)
 if database_proxy.is_closed():
     database_proxy.connect()
@@ -32,6 +36,22 @@ def create():
     game_name = body['name']
     game_deck = body['deck']
     return gm.create(game_name, game_deck)
+
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    return app.send_static_file('index.html')
+
+
+@app.route('/favicon.ico')
+def serve_icon():
+    return app.send_static_file('favicon.ico')
+
+
+@app.route('/assets/<path:path>')
+def serve_assets(path):
+    return app.send_static_file(path)
 
 
 @socketio.event

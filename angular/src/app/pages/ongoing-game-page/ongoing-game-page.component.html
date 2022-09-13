@@ -1,2 +1,7 @@
-<p>State: {{ currentGameService.state$ | async | json }}</p>
-<p>Hands: {{ currentGameService.hands$ | async | json }}</p>
+<div class="vertical-container">
+  <div>
+    <p>State: {{ currentGameService.state$ | async | json }}</p>
+    <p>Hands: {{ currentGameService.hands$ | async | json }}</p>
+  </div>
+  <shpp-card-picker></shpp-card-picker>
+</div>

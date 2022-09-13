@@ -14,6 +14,8 @@ import { GameNameComponent } from './components/navigation-bar/game-name/game-na
 import { PlayerInfoComponent } from './components/navigation-bar/player-info/player-info.component';
 import { GameInfoComponent } from './components/navigation-bar/game-info/game-info.component';
 import { TranslocoRootModule } from './transloco-root.module';
+import { CardPickerComponent } from './pages/ongoing-game-page/card-picker/card-picker.component';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { TranslocoRootModule } from './transloco-root.module';
     NavigationBarComponent,
     GameNameComponent,
     PlayerInfoComponent,
-    GameInfoComponent
+    GameInfoComponent,
+    CardPickerComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

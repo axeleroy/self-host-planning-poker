@@ -1,0 +1,23 @@
+.card-border  {
+  height: 89px;
+  width: 64px;
+  border: 2px cornflowerblue solid;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 200ms ease-in-out;
+}
+
+.card-value {
+  font-size: x-large;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.selected {
+  transform: translateY(-50%);
+}

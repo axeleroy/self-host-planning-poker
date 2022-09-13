@@ -7,8 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'shpp-new-game-page',
   templateUrl: './new-game-page.component.html',
-  styles: [
-  ]
+  styleUrls: [ './new-game-page.component.scss' ]
 })
 export class NewGamePageComponent implements OnInit {
 

@@ -1,7 +1,19 @@
 <div class="row">
   <div class="col"></div>
-  <div class="col col-6">
-    <shpp-game-form (result)="onNewGame($event)"></shpp-game-form>
+  <div class="col col-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+    <div class="vertical-container">
+      <shpp-game-form (result)="onNewGame($event)"></shpp-game-form>
+      <div class="footer" *transloco="let t; read 'footer'">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/axeleroy/self-host-planning-poker">{{ t('github') }}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/axeleroy/self-host-planning-poker/blob/main/LICENSE">{{ t('license') }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
   <div class="col"></div>
 </div>

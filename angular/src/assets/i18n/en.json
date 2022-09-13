@@ -35,5 +35,9 @@
   "playerState": {
     "spectator": "Spectator",
     "player": "Player"
+  },
+  "footer": {
+    "github": "GitHub",
+    "license": "License"
   }
 }

@@ -6,12 +6,17 @@ import { CurrentGameService } from '../../services/current-game.service';
   templateUrl: './ongoing-game-page.component.html',
   styleUrls: [ './ongoing-game-page.component.scss' ]
 })
-export class OngoingGamePageComponent implements OnInit {
+export class OngoingGamePageComponent {
 
   constructor(public currentGameService: CurrentGameService) {
   }
 
-  ngOnInit(): void {
+  revealCards(): void {
+    this.currentGameService.revealCards();
+  }
+
+  endTurn(): void {
+    this.currentGameService.endTurn();
   }
 
 }

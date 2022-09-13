@@ -7,7 +7,8 @@ import { CurrentGameService } from './services/current-game.service';
 const routes: Routes = [
   {
     path: '',
-    component: NewGamePageComponent
+    component: NewGamePageComponent,
+    title: 'Self-Host Planning Poker'
   },
   {
     path: 'game/:gameId',

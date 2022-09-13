@@ -28,6 +28,9 @@
     "TRUST_VOTE": "Trust Vote",
     "T_SHIRTS": "T-Shirt Sizes"
   },
+  "ongoingGame": {
+    "page-title": "Planning Poker {{gameName}}"
+  },
   "buttons": {
     "edit": "Edit",
     "save": "Save"

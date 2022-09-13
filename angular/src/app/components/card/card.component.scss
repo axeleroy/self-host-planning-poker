@@ -18,6 +18,13 @@
   cursor: pointer;
 }
 
+.disabled {
+  cursor: default !important;
+  background: lightgrey;
+  border-color: grey;
+  color: grey;
+}
+
 .selected {
   transform: translateY(-50%);
 }

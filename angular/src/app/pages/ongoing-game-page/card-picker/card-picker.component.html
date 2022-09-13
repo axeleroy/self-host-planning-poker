@@ -3,6 +3,7 @@
   <shpp-card *ngFor="let card of deck.values"
              [cardValue]="card"
              [clickable]="true"
+             [disabled]="isSpectator"
              [selected]="selectedCard === card"
              (click)="selectCard(card)">
   </shpp-card>

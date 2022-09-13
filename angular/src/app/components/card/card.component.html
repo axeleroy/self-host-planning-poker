@@ -1,4 +1,7 @@
-<div class="card-border m-2" [class.clickable]="clickable" [class.selected]="selected">
+<div class="card-border m-2"
+     [class.clickable]="clickable"
+     [class.disabled]="disabled"
+     [class.selected]="selected">
   <div class="card-value">
     {{ cardValue?.display }}
   </div>

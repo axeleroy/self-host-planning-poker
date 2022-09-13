@@ -10,5 +10,6 @@ export class CardComponent {
   @Input() cardValue?: CardValue;
   @Input() clickable = false;
   @Input() selected = false;
+  @Input() disabled = false;
 
 }

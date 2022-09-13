@@ -106,8 +106,8 @@ export class CurrentGameService implements CanActivate {
     this.socket.emit('pick_card', { card: cardValue });
   }
 
-  public revealCard(): void {
-    this.socket.emit('reveal_card');
+  public revealCards(): void {
+    this.socket.emit('reveal_cards');
   }
 
   public endTurn(): void {

@@ -20,7 +20,7 @@ if app.config['DEBUG']:
     ])
     CORS(app)
 else:
-    real_db = SqliteDatabase('/app/database.db')
+    real_db = SqliteDatabase('/data/database.db')
     socketio = SocketIO(app)
 database_proxy.initialize(real_db)
 if database_proxy.is_closed():

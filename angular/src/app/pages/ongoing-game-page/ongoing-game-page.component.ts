@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { CurrentGameService } from '../../services/current-game.service';
 import { Title } from '@angular/platform-browser';
 import { TranslocoService } from '@ngneat/transloco';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   styleUrls: [ './ongoing-game-page.component.scss' ]
 })
 export class OngoingGamePageComponent implements OnDestroy {
-  subscription?: Subscription;
+  private subscription?: Subscription;
 
   constructor(public currentGameService: CurrentGameService,
               private titleService: Title,

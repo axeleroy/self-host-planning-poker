@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { CurrentGameService } from '../../../services/current-game.service';
 import { GameInfo } from '../../../model/events';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'shpp-game-name',
@@ -8,15 +9,18 @@ import { GameInfo } from '../../../model/events';
   styles: [
   ]
 })
-export class GameNameComponent implements OnInit {
+export class GameNameComponent implements OnDestroy {
 
   currentGameInfo?: GameInfo | null;
+  private gameInfoSubscription?: Subscription;
 
   constructor(private currentGameService: CurrentGameService) {
-    this.currentGameService.gameInfo$.subscribe((gameInfo) => this.currentGameInfo = gameInfo);
+    this.gameInfoSubscription = this.currentGameService.gameInfo$
+    .subscribe((gameInfo) => this.currentGameInfo = gameInfo);
   }
 
-  ngOnInit(): void {
+  ngOnDestroy(): void {
+    this.gameInfoSubscription?.unsubscribe();
   }
 
 }

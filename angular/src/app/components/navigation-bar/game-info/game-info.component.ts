@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { GameInfo } from '../../../model/events';
 import { CurrentGameService } from '../../../services/current-game.service';
 import { Deck } from '../../../model/deck';
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'shpp-game-info',
@@ -10,13 +11,15 @@ import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
   styles: [
   ]
 })
-export class GameInfoComponent {
+export class GameInfoComponent implements OnDestroy {
 
   currentGameInfo?: GameInfo | null;
+  private subscription?: Subscription;
 
   constructor(private currentGameService: CurrentGameService,
               private offcanvaseService: NgbOffcanvas) {
-    this.currentGameService.gameInfo$.subscribe((gameInfo) => this.currentGameInfo = gameInfo);
+    this.subscription = this.currentGameService.gameInfo$
+    .subscribe((gameInfo) => this.currentGameInfo = gameInfo);
   }
 
   openEdit(content: any): void {
@@ -26,6 +29,10 @@ export class GameInfoComponent {
         this.currentGameService.setDeck(result.deck);
         this.currentGameService.renameGame(result.name);
       })
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
 }

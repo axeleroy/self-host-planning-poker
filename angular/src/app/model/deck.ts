@@ -88,3 +88,7 @@ export const decksDict: { [key: string]: Deck } = decks.reduce((result: { [key: 
 export function displayDeckValues(deck: Deck): string {
   return deck.values.map(v => v.display).join(', ');
 }
+
+export function displayCardValue(deck: Deck, cardValue: number): string | number | undefined {
+  return deck.values.find(c => c.value = cardValue)?.display;
+}

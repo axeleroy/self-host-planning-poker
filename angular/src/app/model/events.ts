@@ -6,14 +6,14 @@ export interface GameInfo {
 
 export interface Player {
   name: string;
-  specatator: boolean;
+  spectator: boolean;
 }
 
 export interface PlayerState extends Player {
   hasPicked: boolean;
 }
 
-export interface PlayerHand extends Player{
+export interface PlayerHand extends PlayerState {
   hand?: number;
 }
 

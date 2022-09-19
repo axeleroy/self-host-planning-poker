@@ -15,16 +15,14 @@ export class CardPickerComponent implements OnDestroy {
   selectedCard?: CardValue;
   isSpectator = false;
 
-  private gameInfoSubscription?: Subscription;
+  private deckSubscription?: Subscription;
   private newGameSubscription?: Subscription;
   private spectatorSubscription?: Subscription;
 
   constructor(private currentGame: CurrentGameService,
               private userInfoService: UserInformationService) {
-    this.gameInfoSubscription = this.currentGame.gameInfo$
-    .pipe(
-      filter((gameInfo: GameInfo | null):  gameInfo is GameInfo => gameInfo !== null))
-    .subscribe((gameInfo) => this.deck = decksDict[gameInfo.deck]);
+    this.deckSubscription = currentGame.deck$
+    .subscribe((deck) => this.deck = deck);;
 
     this.newGameSubscription = this.currentGame.newGame$
     .subscribe(() => this.selectedCard = undefined);
@@ -52,7 +50,7 @@ export class CardPickerComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.gameInfoSubscription?.unsubscribe();
+    this.deckSubscription?.unsubscribe();
     this.newGameSubscription?.unsubscribe();
     this.spectatorSubscription?.unsubscribe();
   }

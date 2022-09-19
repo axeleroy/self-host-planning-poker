@@ -1,24 +1,26 @@
 import { Component, OnDestroy } from '@angular/core';
 import { CurrentGameService } from '../../../services/current-game.service';
-import { PlayerHand, PlayerState } from '../../../model/events';
+import { PlayerHand } from '../../../model/events';
 import { Subscription } from 'rxjs';
+import { Deck } from '../../../model/deck';
 
 @Component({
   selector: 'shpp-card-table',
   templateUrl: './card-table.component.html',
-  styles: [
-  ]
+  styleUrls: [ './card-table.component.scss' ]
 })
 export class CardTableComponent implements OnDestroy {
   state: TableState = {}
+  deck?: Deck;
 
   private stateSubscription?: Subscription;
   private handsSubscription?: Subscription;
   private endTurnSubscription?: Subscription;
+  private deckSubscription?: Subscription;
 
   constructor(private currentGameService: CurrentGameService) {
     this.stateSubscription = this.currentGameService.state$
-      .subscribe((state) => this.state = state);
+    .subscribe((state) => this.state = state);
     this.handsSubscription = this.currentGameService.hands$.subscribe((hands) => {
       for (let key in this.state) {
         if (!hands) {
@@ -27,7 +29,9 @@ export class CardTableComponent implements OnDestroy {
           this.state[key].hand = hands[key];
         }
       }
-    })
+    });
+    this.deckSubscription = currentGameService.deck$
+    .subscribe((deck) => this.deck = deck);
   }
 
   revealCards(): void {
@@ -46,4 +50,4 @@ export class CardTableComponent implements OnDestroy {
 
 }
 
-type TableState = Record<string, PlayerState & PlayerHand>;
+type TableState = Record<string, PlayerHand>;

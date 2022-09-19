@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { environment } from '../../environments/environment';
 import { UserInformationService } from './user-information.service';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, filter, map, Observable, Subject } from 'rxjs';
 import { ErrorMessage, GameHands, GameInfo, GameState } from '../model/events';
-import { Deck } from '../model/deck';
+import { Deck, decksDict } from '../model/deck';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 
 @Injectable({
@@ -67,6 +67,14 @@ export class CurrentGameService implements CanActivate {
     return this.errorSubject.asObservable();
   }
 
+  public get deck$(): Observable<Deck> {
+    return this.infoSubject.asObservable()
+    .pipe(
+      filter((gameInfo: GameInfo | null): gameInfo is GameInfo => gameInfo !== null),
+      map((gameInfo: GameInfo) => decksDict[gameInfo?.deck])
+    );
+  }
+
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
     const gameId = route.params['gameId'];
     this.socket.connect();
@@ -87,7 +95,6 @@ export class CurrentGameService implements CanActivate {
         }
       });
     });
-
   }
 
   public leave(): void {

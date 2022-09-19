@@ -1,3 +1,10 @@
-<p>{{ state | json }}</p>
-<button class="btn btn-primary m-2 ms-0" (click)="revealCards()">Reveal cards</button>
-<button class="btn btn-primary m-2" (click)="endTurn()">End turn</button>
+<div class="card-table">
+  <shpp-player-hand *ngFor="let player of state | keyvalue"
+                    [playerHand]="player.value"
+                    [deck]="deck">
+  </shpp-player-hand>
+</div>
+<div class="buttons">
+  <button class="btn btn-primary m-2 ms-0" (click)="revealCards()">Reveal cards</button>
+  <button class="btn btn-primary m-2" (click)="endTurn()">End turn</button>
+</div>

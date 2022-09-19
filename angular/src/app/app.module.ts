@@ -17,6 +17,7 @@ import { TranslocoRootModule } from './transloco-root.module';
 import { CardPickerComponent } from './pages/ongoing-game-page/card-picker/card-picker.component';
 import { PickableCardComponent } from './pages/ongoing-game-page/card-picker/card/pickable-card.component';
 import { CardTableComponent } from './pages/ongoing-game-page/card-table/card-table.component';
+import { PlayerHandComponent } from './pages/ongoing-game-page/card-table/player-hand/player-hand.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CardTableComponent } from './pages/ongoing-game-page/card-table/card-ta
     GameInfoComponent,
     CardPickerComponent,
     PickableCardComponent,
-    CardTableComponent
+    CardTableComponent,
+    PlayerHandComponent
   ],
   imports: [
     BrowserModule,

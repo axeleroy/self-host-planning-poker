@@ -1,0 +1,13 @@
+.player-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.picked {
+  background-color: cornflowerblue;
+}
+
+.dashed {
+  border-style: dashed;
+}

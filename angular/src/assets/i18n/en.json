@@ -33,7 +33,9 @@
   },
   "buttons": {
     "edit": "Edit",
-    "save": "Save"
+    "save": "Save",
+    "reveal": "Reveal cards",
+    "newTurn": "New turn"
   },
   "playerState": {
     "spectator": "Spectator",

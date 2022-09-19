@@ -4,7 +4,7 @@
                     [deck]="deck">
   </shpp-player-hand>
 </div>
-<div class="buttons">
-  <button class="btn btn-primary m-2 ms-0" (click)="revealCards()">Reveal cards</button>
-  <button class="btn btn-primary m-2" (click)="endTurn()">End turn</button>
+<div class="buttons" *transloco="let t; read 'buttons'">
+  <button class="btn btn-primary m-2 ms-0" (click)="revealCards()">{{ t('reveal') }}</button>
+  <button class="btn btn-primary m-2" (click)="endTurn()">{{ t('newTurn') }}</button>
 </div>

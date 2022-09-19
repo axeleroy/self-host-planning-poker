@@ -1,11 +1,10 @@
 <ng-container *ngIf="deck">
   <div class="flex-grow-1"></div>
-  <shpp-card *ngFor="let card of deck.values"
+  <shpp-pickable-card *ngFor="let card of deck.values"
              [cardValue]="card"
-             [clickable]="true"
              [disabled]="isSpectator"
              [selected]="selectedCard === card"
              (click)="selectCard(card)">
-  </shpp-card>
+  </shpp-pickable-card>
   <div class="flex-grow-1"></div>
 </ng-container>

@@ -1,0 +1,11 @@
+.clickable {
+  cursor: pointer;
+}
+
+.card-disabled {
+  cursor: default !important;
+}
+
+.selected {
+  transform: translateY(-50%);
+}

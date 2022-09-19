@@ -1,6 +1,6 @@
 <div class="card-border m-2"
-     [class.clickable]="clickable"
-     [class.disabled]="disabled"
+     [class.clickable]="!disabled"
+     [class.card-disabled]="disabled"
      [class.selected]="selected">
   <div class="card-value">
     {{ cardValue?.display }}

@@ -6,7 +6,8 @@
 .card-border  {
   height: 89px;
   width: 64px;
-  border: 2px cornflowerblue solid;
+  outline: 2px cornflowerblue solid;
+  outline-offset: -2px;
   border-radius: 10px;
   display: flex;
   align-items: center;

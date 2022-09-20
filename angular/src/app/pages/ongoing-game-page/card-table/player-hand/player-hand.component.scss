@@ -6,8 +6,10 @@
 
 .picked {
   background-color: cornflowerblue;
+  outline-offset: -4px;
+  outline-color: white;
 }
 
 .dashed {
-  border-style: dashed;
+  outline-style: dashed;
 }

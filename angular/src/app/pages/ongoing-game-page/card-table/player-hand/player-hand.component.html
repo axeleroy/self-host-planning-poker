@@ -3,7 +3,7 @@
     <div class="card-border"
          [class.card-disabled]="playerHand.spectator"
          [class.picked]="playerHand.hasPicked && !playerHand.hand"
-         [class.dashed]="playerHand.spectator || !playerHand.hand">
+         [class.dashed]="playerHand.spectator || (!playerHand.hand && !playerHand.hasPicked)">
       <div class="card-value" *ngIf="playerHand.hand && deck">
         {{ displayCardValue(deck, playerHand.hand) }}
       </div>

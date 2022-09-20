@@ -90,5 +90,5 @@ export function displayDeckValues(deck: Deck): string {
 }
 
 export function displayCardValue(deck: Deck, cardValue: number): string | number | undefined {
-  return deck.values.find(c => c.value = cardValue)?.display;
+  return deck.values.find(c => c.value === cardValue)?.display;
 }

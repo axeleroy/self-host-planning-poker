@@ -1,6 +1,6 @@
 # Self-host Planning Poker
 
-A hassle-free Planning Poker application to host on your NAS.
+A hassle-free Planning Poker application to deploy on your NAS.
 
 ## What is it?
 
@@ -44,3 +44,36 @@ volumes:
 ```
 
 ## Development
+
+The app is comprised of two parts:
+
+* a [back-end](flask/) written in Python with [Flask](https://flask.palletsprojects.com/), [Flask-SocketIO](https://flask-socketio.readthedocs.io/en/latest/index.html) and [peewee](http://docs.peewee-orm.com/en/latest/).
+* a [front-end](angular/) written with [Angular](https://angular.io) and [Socket.IO](https://socket.io/).
+
+### Back-end development
+
+You must first initialise a virtual environment and install the dependencies
+
+```sh
+# Run the following commands in the flask/ folder
+python3 -m venv env
+source env/bin/activate
+pip3 install -r requirements.txt
+```
+
+Then launching the development server is as easy as that:
+```bash
+FLASK_DEBUG=1 python app.py
+```
+
+### Front-end development
+
+> **Note:** if you want to test the front-end against a front-end, **you must** start the later first.
+
+First make sure that [Node.js](https://nodejs.org/en/download/) is installed. Then, install dependencies and launch the development server
+
+```sh
+# Run the following commands in the angular/ folder
+npm install
+npm start
+```

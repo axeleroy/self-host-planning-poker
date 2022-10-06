@@ -78,6 +78,6 @@ npm install
 npm start
 ```
 
-## Publishing a new version to DockerHub
+### Publishing a new version to DockerHub
 
 A GitHub Action has been set to build and publish a new image on tags pushes. So push a new tag which follow the `vX.Y.Z` convention to start the Action.

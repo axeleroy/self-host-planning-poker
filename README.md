@@ -68,7 +68,7 @@ FLASK_DEBUG=1 python app.py
 
 ### Front-end development
 
-> **Note:** if you want to test the front-end against a front-end, **you must** start the later first.
+> **Note:** if you want to test the front-end against a back-end, **you must** start the later first.
 
 First make sure that [Node.js](https://nodejs.org/en/download/) is installed. Then, install dependencies and launch the development server
 
@@ -77,3 +77,7 @@ First make sure that [Node.js](https://nodejs.org/en/download/) is installed. Th
 npm install
 npm start
 ```
+
+## Publishing a new version to DockerHub
+
+A GitHub Action has been set to build and publish a new image on tags pushes. So push a new tag which follow the `vX.Y.Z` convention to start the Action.

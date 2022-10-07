@@ -45,7 +45,7 @@ volumes:
 
 ## Development
 
-The app is comprised of two parts:
+The app consists of two parts:
 
 * a [back-end](flask/) written in Python with [Flask](https://flask.palletsprojects.com/), [Flask-SocketIO](https://flask-socketio.readthedocs.io/en/latest/index.html) and [peewee](http://docs.peewee-orm.com/en/latest/).
 * a [front-end](angular/) written with [Angular](https://angular.io) and [Socket.IO](https://socket.io/).
@@ -68,9 +68,23 @@ FLASK_DEBUG=1 python app.py
 
 ### Front-end development
 
-> **Note:** if you want to test the front-end against a back-end, **you must** start the later first.
+> <details>
+> <summary>
+> <b>Note:</b> You might want to test the front-end against a back-end. You can either follow the instructions in the
+> previous section to install and run it locally or use the following command to run it in a Docker container:
+> </summary>
+>
+> ```bash
+> docker run --rm -it \
+>   -v $(pwd)/flask:/app \
+>   -p 5000:5000 \
+>   python:3.10-slim \
+>   bash -c "cd /app; pip install -r requirements.txt; FLASK_DEBUG=1 gunicorn --worker-class eventlet -w 1 app:app --bind 0.0.0.0:5000"
+> ```
+> </details>
 
-First make sure that [Node.js](https://nodejs.org/en/download/) is installed. Then, install dependencies and launch the development server
+First make sure that [Node.js](https://nodejs.org/en/) (preferably LTS) is installed.
+Then, install dependencies and launch the development server
 
 ```sh
 # Run the following commands in the angular/ folder

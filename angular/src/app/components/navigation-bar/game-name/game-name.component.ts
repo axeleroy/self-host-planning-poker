@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class GameNameComponent implements OnDestroy {
 
-  currentGameInfo?: GameInfo | null;
+  currentGameInfo: GameInfo | null | undefined;
   private gameInfoSubscription?: Subscription;
 
   constructor(private currentGameService: CurrentGameService) {

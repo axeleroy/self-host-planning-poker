@@ -3,7 +3,7 @@
     <span class="navbar-brand">{{ t('appTitle') }}</span>
   </ng-template>
   <ng-container *ngIf="currentGameInfo; else brandingContent">
-    <span class="navbar-brand">{{ currentGameInfo?.name }}</span>
+    <span class="navbar-brand">{{ currentGameInfo.name }}</span>
   </ng-container>
 </ng-container>
 

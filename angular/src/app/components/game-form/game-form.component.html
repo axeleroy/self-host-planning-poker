@@ -12,7 +12,7 @@
         </ng-container>
       </select>
     </div>
-    <button class="btn btn-primary" type="submit" [disabled]="formGroup?.invalid" (click)="validate()">
+    <button class="btn btn-primary" type="submit" [disabled]="formGroup.invalid" (click)="validate()">
       {{ isNewGame() ? t('createButton-label') : t('updateButton-label') }}
     </button>
   </form>

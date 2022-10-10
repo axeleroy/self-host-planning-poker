@@ -22,7 +22,10 @@ export class CardPickerComponent implements OnDestroy {
   constructor(private currentGame: CurrentGameService,
               private userInfoService: UserInformationService) {
     this.deckSubscription = currentGame.deck$
-    .subscribe((deck) => this.deck = deck);;
+    .subscribe((deck) => {
+      this.deck = deck;
+      this.selectedCard = undefined;
+    });
 
     this.newGameSubscription = this.currentGame.newGame$
     .subscribe(() => this.selectedCard = undefined);

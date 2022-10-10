@@ -15,7 +15,7 @@ export class CurrentGameService implements CanActivate {
   private socket: Socket;
 
   private stateSubject = new BehaviorSubject<GameState>({});
-  private handsSubject = new BehaviorSubject<GameHands>({});
+  private handsSubject = new BehaviorSubject<GameHands | null>(null);
   private infoSubject = new BehaviorSubject<GameInfo | null>(null);
   private newGameSubject = new Subject<void>();
   private errorSubject = new BehaviorSubject<ErrorMessage | null>(null);
@@ -32,7 +32,7 @@ export class CurrentGameService implements CanActivate {
     this.socket.on('disconnect', () => {
       this.stateSubject.next({});
       this.infoSubject.next(null);
-      this.handsSubject.next({});
+      this.handsSubject.next(null);
     })
 
     this.userInformation.nameObservable().subscribe((name: string) => {

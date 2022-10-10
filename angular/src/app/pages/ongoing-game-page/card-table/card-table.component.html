@@ -5,6 +5,6 @@
   </shpp-player-hand>
 </div>
 <div class="buttons" *transloco="let t; read 'buttons'">
-  <button class="btn btn-primary m-2 ms-0" (click)="revealCards()">{{ t('reveal') }}</button>
-  <button class="btn btn-primary m-2" (click)="endTurn()">{{ t('newTurn') }}</button>
+  <button class="btn btn-primary m-2 ms-0" (click)="revealCards()" [disabled]="!canReveal" >{{ t('reveal') }}</button>
+  <button class="btn btn-primary m-2" (click)="endTurn()" [disabled]="canReveal">{{ t('newTurn') }}</button>
 </div>

@@ -66,6 +66,13 @@ Then launching the development server is as easy as that:
 FLASK_DEBUG=1 python app.py
 ```
 
+#### Run unit tests
+
+After initalizing the virtual environment, run this command in the `flask/` directory:
+```sh
+python -m unittest
+```
+
 ### Front-end development
 
 > <details>

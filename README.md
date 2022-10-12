@@ -99,6 +99,15 @@ npm install
 npm start
 ```
 
-### Publishing a new version to DockerHub
+### Building Docker image
+
+```sh
+# After checking out the project
+docker build . -t axeleroy/self-host-planning-poker:custom
+# Alternatively, if you don't want to checkout the project
+docker build https://github.com/axeleroy/self-host-planning-poker -t axeleroy/self-host-planning-poker:custom
+```
+
+#### Publishing a new version to DockerHub
 
 A GitHub Action has been set to build and publish a new image on tags pushes. So push a new tag which follow the `vX.Y.Z` convention to start the Action.

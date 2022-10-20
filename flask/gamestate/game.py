@@ -76,5 +76,6 @@ class Game:
     def info(self) -> dict:
         return {
             'name': self.name,
-            'deck': self.__deck.name
+            'deck': self.__deck.name,
+            'revealed': self.__revealed
         }

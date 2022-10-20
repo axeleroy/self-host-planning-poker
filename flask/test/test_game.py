@@ -285,7 +285,6 @@ class GameTestCase(unittest.TestCase):
             'd': spectator1_state,
         })
 
-
     def test_reveal_hand(self):
         game = Game('PBR Team Pizza')
         self.assertFalse(game.get_revealed())
@@ -295,12 +294,15 @@ class GameTestCase(unittest.TestCase):
     def test_game_info(self):
         game_name1 = 'Fizz'
         game1 = Game(game_name1)
-        self.assertEqual(game1.info(), {'name': game_name1, 'deck': 'FIBONACCI'})
+        self.assertEqual(game1.info(), {'name': game_name1, 'deck': 'FIBONACCI', 'revealed': False})
 
         game_name2 = 'Buzz'
         game2 = Game(game_name2, Deck.POWERS)
-        self.assertEqual(game2.info(), {'name': game_name2, 'deck': 'POWERS'})
-
+        self.assertEqual(game2.info(), {'name': game_name2, 'deck': 'POWERS', 'revealed': False})
+        game2.reveal_hands()
+        self.assertEqual(game2.info(), {'name': game_name2, 'deck': 'POWERS', 'revealed': True})
+        game2.end_turn()
+        self.assertEqual(game2.info(), {'name': game_name2, 'deck': 'POWERS', 'revealed': False})
 
 
 if __name__ == '__main__':

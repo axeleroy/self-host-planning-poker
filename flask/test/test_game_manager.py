@@ -228,26 +228,30 @@ class GameManagerTestCase(unittest.TestCase):
 
     def test_reveal_cards(self):
         gm = GameManager()
-        game_mock = Mock(**{'state.return_value': "{'foo': 'bar'}"})
+        game_mock = Mock(**{'state.return_value': "{'foo': 'bar'}", 'info.return_value': "{'fizz': 'buzz'}"})
         gm.games = {'uuid1': game_mock}
 
-        state = gm.reveal_cards("uuid1")
+        state, info = gm.reveal_cards("uuid1")
         game_mock.reveal_hands.assert_called()
         game_mock.state.assert_called()
+        game_mock.info.assert_called()
         self.assertEqual(state, "{'foo': 'bar'}")
+        self.assertEqual(info, "{'fizz': 'buzz'}")
         with self.assertRaises(GameNotOngoingError) as ex:
             gm.reveal_cards('uuid2')
         self.assertEqual(str(ex.exception), 'Game uuid2 is not ongoing')
 
     def test_end_turn(self):
         gm = GameManager()
-        game_mock = Mock(**{'state.return_value': "{'foo': 'bar'}"})
+        game_mock = Mock(**{'state.return_value': "{'foo': 'bar'}", 'info.return_value': "{'fizz': 'buzz'}"})
         gm.games = {'uuid1': game_mock}
 
-        state = gm.end_turn("uuid1")
+        state, info = gm.end_turn("uuid1")
         game_mock.end_turn.assert_called()
         game_mock.state.assert_called()
+        game_mock.info.assert_called()
         self.assertEqual(state, "{'foo': 'bar'}")
+        self.assertEqual(info, "{'fizz': 'buzz'}")
         with self.assertRaises(GameNotOngoingError) as ex:
             gm.end_turn('uuid2')
         self.assertEqual(str(ex.exception), 'Game uuid2 is not ongoing')

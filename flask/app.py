@@ -138,16 +138,18 @@ def pick_card(data):
 def reveal_cards():
     game_id = session['game_id']
 
-    state = gm.reveal_cards(game_id)
+    state, info = gm.reveal_cards(game_id)
     emit('state', state, to=game_id, json=True)
+    emit('info', info, to=game_id, json=True)
 
 
 @socketio.event
 def end_turn():
     game_id = session['game_id']
 
-    state = gm.end_turn(game_id)
+    state, info = gm.end_turn(game_id)
     emit('state', state, to=game_id, json=True)
+    emit('info', info, to=game_id, json=True)
     emit('new_game', to=game_id)
 
 

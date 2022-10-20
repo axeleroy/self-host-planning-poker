@@ -39,63 +39,63 @@ class GameManager:
             raise GameNotOngoingError(f'Game {game_uuid} is not ongoing')
         return game
     
-    def set_deck(self, game_uuid: str, deck_name: str):
+    def set_deck(self, game_uuid: str, deck_name: str) -> tuple[dict, dict]:
         deck = self.__get_deck(deck_name)
         game = self.__get_ongoing_game(game_uuid)
         game.set_deck(deck)
         StoredGame.update(deck=deck_name).where(StoredGame.uuid == uuid.UUID(game_uuid)).execute()
         return game.info(), game.state()
 
-    def join_game(self, game_uuid: str, player_id: str, player_name: str, is_spectator: bool):
+    def join_game(self, game_uuid: str, player_id: str, player_name: str, is_spectator: bool) -> tuple[dict, dict]:
         game = self.get(game_uuid)
         player = Player(player_name, is_spectator)
         game.player_joins(player_id, player)
         return game.info(), game.state()
 
-    def leave_game(self, game_uuid: str, player_uuid: str):
+    def leave_game(self, game_uuid: str, player_uuid: str) -> dict:
         game = self.__get_ongoing_game(game_uuid)
         game.player_leaves(player_uuid)
         if game.is_game_empty():
             self.games.pop(game_uuid)
         return game.state()
 
-    def rename_game(self, game_uuid: str, game_name: str):
+    def rename_game(self, game_uuid: str, game_name: str) -> dict:
         game = self.__get_ongoing_game(game_uuid)
         game.name = game_name
         StoredGame.update(name=game_name).where(StoredGame.uuid == uuid.UUID(game_uuid)).execute()
         return game.info()
 
-    def set_player_name(self, game_uuid: str, player_uuid: str, player_name: str):
+    def set_player_name(self, game_uuid: str, player_uuid: str, player_name: str) -> dict:
         game = self.__get_ongoing_game(game_uuid)
         player = game.get_player(player_uuid)
         player.name = player_name
         return game.state()
 
-    def set_player_spectator(self, game_uuid: str, player_uuid: str, is_spectator: bool):
+    def set_player_spectator(self, game_uuid: str, player_uuid: str, is_spectator: bool) -> dict:
         game = self.__get_ongoing_game(game_uuid)
         player = game.get_player(player_uuid)
         player.spectator = is_spectator
         player.clear_hand()
         return game.state()
 
-    def pick_card(self, game_uuid: str, player_uuid: str, pick: Optional[int]):
+    def pick_card(self, game_uuid: str, player_uuid: str, pick: Optional[int]) -> dict:
         game = self.__get_ongoing_game(game_uuid)
         player = game.get_player(player_uuid)
         player.set_hand(pick)
         return game.state()
 
-    def reveal_cards(self, game_uuid: str):
+    def reveal_cards(self, game_uuid: str) -> tuple[dict, dict]:
         game = self.__get_ongoing_game(game_uuid)
         game.reveal_hands()
-        return game.state()
+        return game.state(), game.info()
 
-    def end_turn(self, game_uuid: str):
+    def end_turn(self, game_uuid: str) -> tuple[dict, dict]:
         game = self.__get_ongoing_game(game_uuid)
         game.end_turn()
-        return game.state()
+        return game.state(), game.info()
 
     @staticmethod
-    def __get_deck(deck_name):
+    def __get_deck(deck_name) -> Deck:
         if deck_name not in Deck.__members__.keys():
             raise DeckDoesNotExistError(f'Deck {deck_name} does not exist')
         deck = Deck[deck_name]

@@ -18,3 +18,15 @@ jobs:
           cd flask; pip install -r requirements.txt
       - name: Run tests
         run: python -m unittest
+  frontend-tests:
+    name: Front-end tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3.5.1
+        with:
+          node-version: 16
+          cache: 'npm'
+          cache-dependency-path: angular/package-lock.json
+      - uses: browser-actions/setup-chrome@latest
+      - run: cd angular; npm i; CHROMIUM_BIN=$(which chrome) npm test

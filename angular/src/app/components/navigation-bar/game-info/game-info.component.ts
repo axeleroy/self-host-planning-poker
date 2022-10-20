@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 export class GameInfoComponent implements OnDestroy {
 
   currentGameInfo?: GameInfo | null;
-  private subscription?: Subscription;
+  private subscription: Subscription;
 
   constructor(private currentGameService: CurrentGameService,
               private offcanvaseService: NgbOffcanvas) {
@@ -32,7 +32,7 @@ export class GameInfoComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
 }

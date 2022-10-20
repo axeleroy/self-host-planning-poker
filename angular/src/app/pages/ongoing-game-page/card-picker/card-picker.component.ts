@@ -14,10 +14,12 @@ export class CardPickerComponent implements OnDestroy {
   deck?: Deck
   selectedCard?: CardValue;
   isSpectator = false;
+  isGameRevealed = false;
 
-  private deckSubscription?: Subscription;
-  private newGameSubscription?: Subscription;
-  private spectatorSubscription?: Subscription;
+  private deckSubscription: Subscription;
+  private newGameSubscription: Subscription;
+  private spectatorSubscription: Subscription;
+  private gameRevealedSubscription: Subscription;
 
   constructor(private currentGame: CurrentGameService,
               private userInfoService: UserInformationService) {
@@ -31,16 +33,19 @@ export class CardPickerComponent implements OnDestroy {
     .subscribe(() => this.selectedCard = undefined);
 
     this.spectatorSubscription = this.userInfoService.spectatorObservable()
-    .subscribe((spectator) => {
+    .subscribe((spectator: boolean) => {
       this.isSpectator = spectator;
       if (spectator) {
         this.selectedCard = undefined;
       }
-    })
+    });
+
+    this.gameRevealedSubscription = this.currentGame.revealed$
+    .subscribe((revealed: boolean) => this.isGameRevealed = revealed);
   }
 
   selectCard(card: CardValue): void {
-    if (this.isSpectator) {
+    if (this.isSpectator || this.isGameRevealed) {
       return;
     }
     if (this.selectedCard !== card) {
@@ -53,9 +58,9 @@ export class CardPickerComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.deckSubscription?.unsubscribe();
-    this.newGameSubscription?.unsubscribe();
-    this.spectatorSubscription?.unsubscribe();
+    this.deckSubscription.unsubscribe();
+    this.newGameSubscription.unsubscribe();
+    this.spectatorSubscription.unsubscribe();
   }
 
 }

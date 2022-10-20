@@ -1,13 +1,13 @@
-<ng-container *ngIf="playerHand">
+<ng-container *ngIf="playerState">
   <div class="player-container m-3">
     <div class="card-border"
-         [class.card-disabled]="playerHand.spectator"
-         [class.picked]="playerHand.hasPicked && !playerHand.hand"
-         [class.dashed]="playerHand.spectator || (!playerHand.hand && !playerHand.hasPicked)">
-      <div class="card-value" *ngIf="playerHand.hand && deck">
-        {{ displayCardValue(deck, playerHand.hand) }}
+         [class.card-disabled]="playerState.spectator"
+         [class.picked]="playerState.hasPicked"
+         [class.dashed]="playerState.spectator || (!playerState.hand && !playerState.hasPicked)">
+      <div class="card-value" *ngIf="playerState.hand && deck">
+        {{ displayCardValue(deck, playerState.hand) }}
       </div>
-      <div class="card-value" *ngIf="playerHand.spectator">
+      <div class="card-value" *ngIf="playerState.spectator">
         <svg [attr.aria-labbel]="'playerState.spectator'"
              class="bi bi-eye-fill" width="1em" height="1em" fill="currentColor">
           <use xlink:href="assets/bootstrap-icons.svg#eye-fill"/>
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="player-name">
-      {{ playerHand.name }}
+      {{ playerState.name }}
     </div>
   </div>
 </ng-container>

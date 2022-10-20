@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { CurrentGameService } from '../../../services/current-game.service';
-import { PlayerHand } from '../../../model/events';
-import { combineLatest, Subscription } from 'rxjs';
+import { GameState } from '../../../model/events';
+import { Subscription } from 'rxjs';
 import { Deck } from '../../../model/deck';
 
 @Component({
@@ -10,31 +10,25 @@ import { Deck } from '../../../model/deck';
   styleUrls: [ './card-table.component.scss' ]
 })
 export class CardTableComponent implements OnDestroy {
-  state: TableState = {}
+  state: GameState = {}
   canReveal = true;
   deck?: Deck;
 
-  private stateSubscription?: Subscription;
-  private handsSubscription?: Subscription;
-  private endTurnSubscription?: Subscription;
-  private deckSubscription?: Subscription;
+  private stateSubscription: Subscription;
+  private revealedSubscription: Subscription;
+  private deckSubscription: Subscription;
 
   constructor(private currentGameService: CurrentGameService) {
-    this.stateSubscription = combineLatest([this.currentGameService.state$, this.currentGameService.hands$])
-    .subscribe(([state, hands]) => {
+    this.stateSubscription = this.currentGameService.state$
+    .subscribe((state: GameState) => {
       this.state = state;
-      this.canReveal = hands === null || Object.keys(hands).length === 0;
-      for (let key in this.state) {
-        if (!hands) {
-          this.state[key].hand = undefined;
-        } else {
-          this.state[key].hand = hands[key];
-        }
-      }
     });
 
     this.deckSubscription = currentGameService.deck$
-    .subscribe((deck) => this.deck = deck);
+    .subscribe((deck: Deck) => this.deck = deck);
+
+    this.revealedSubscription = currentGameService.revealed$
+    .subscribe((revealed: boolean) => this.canReveal = !revealed)
   }
 
   revealCards(): void {
@@ -46,11 +40,9 @@ export class CardTableComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.stateSubscription?.unsubscribe();
-    this.handsSubscription?.unsubscribe();
-    this.endTurnSubscription?.unsubscribe();
+    this.stateSubscription.unsubscribe();
+    this.revealedSubscription.unsubscribe();
+    this.deckSubscription.unsubscribe();
   }
 
 }
-
-type TableState = Record<string, PlayerHand>;

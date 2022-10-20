@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PlayerHand } from '../../../../model/events';
+import { PlayerState } from '../../../../model/events';
 import { Deck, displayCardValue } from '../../../../model/deck';
 
 @Component({
@@ -8,7 +8,7 @@ import { Deck, displayCardValue } from '../../../../model/deck';
   styleUrls: [ './player-hand.component.scss' ]
 })
 export class PlayerHandComponent {
-  @Input() playerHand?: PlayerHand;
+  @Input() playerState?: PlayerState;
   @Input() deck?: Deck;
 
   displayCardValue = displayCardValue;

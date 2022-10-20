@@ -1,6 +1,7 @@
 export interface GameInfo {
   name: string;
   deck: string;
+  revealed: boolean;
   playerId?: string;
 }
 
@@ -10,15 +11,11 @@ export interface Player {
 }
 
 export interface PlayerState extends Player {
-  hasPicked: boolean;
-}
-
-export interface PlayerHand extends PlayerState {
+  hasPicked?: boolean;
   hand?: number;
 }
 
 export type GameState = Record<string, PlayerState>;
-export type GameHands = Record<string, number>;
 
 export interface ErrorMessage {
   error: true;

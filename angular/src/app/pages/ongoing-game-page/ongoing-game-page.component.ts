@@ -10,17 +10,18 @@ import { Subscription } from 'rxjs';
   styleUrls: [ './ongoing-game-page.component.scss' ]
 })
 export class OngoingGamePageComponent implements OnDestroy {
-  private subscription?: Subscription;
+  private subscription: Subscription;
 
   constructor(private currentGameService: CurrentGameService,
               private titleService: Title,
               private transloco: TranslocoService) {
-    this.currentGameService.gameInfo$.subscribe((gameInfo) =>
+    this.subscription = this.currentGameService.gameInfo$
+    .subscribe((gameInfo) =>
       this.titleService.setTitle(this.transloco.translate('ongoingGame.page-title', { gameName: gameInfo?.name })))
   }
 
   ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
+    this.subscription.unsubscribe();
     this.currentGameService.leave();
   }
 

@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 export class GameNameComponent implements OnDestroy {
 
   currentGameInfo: GameInfo | null | undefined;
-  private gameInfoSubscription?: Subscription;
+  private gameInfoSubscription: Subscription;
 
   constructor(private currentGameService: CurrentGameService) {
     this.gameInfoSubscription = this.currentGameService.gameInfo$
@@ -20,7 +20,7 @@ export class GameNameComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.gameInfoSubscription?.unsubscribe();
+    this.gameInfoSubscription.unsubscribe();
   }
 
 }

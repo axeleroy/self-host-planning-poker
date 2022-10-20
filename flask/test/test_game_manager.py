@@ -228,12 +228,13 @@ class GameManagerTestCase(unittest.TestCase):
 
     def test_reveal_cards(self):
         gm = GameManager()
-        game_mock = Mock(**{'reveal_hands.return_value': "{'foo': 'bar'}"})
+        game_mock = Mock(**{'state.return_value': "{'foo': 'bar'}"})
         gm.games = {'uuid1': game_mock}
 
-        hands = gm.reveal_cards("uuid1")
+        state = gm.reveal_cards("uuid1")
         game_mock.reveal_hands.assert_called()
-        self.assertEqual(hands, "{'foo': 'bar'}")
+        game_mock.state.assert_called()
+        self.assertEqual(state, "{'foo': 'bar'}")
         with self.assertRaises(GameNotOngoingError) as ex:
             gm.reveal_cards('uuid2')
         self.assertEqual(str(ex.exception), 'Game uuid2 is not ongoing')

@@ -104,6 +104,15 @@ class GameTestCase(unittest.TestCase):
         player_2.clear_hand.assert_called()
         spectator_1.clear_hand.assert_called()
 
+    def test_end_turn_should_set_revealed_as_false(self):
+        game = Game('PBR Team Pizza')
+        self.assertFalse(game.get_revealed())
+        game.reveal_hands()
+        self.assertTrue(game.get_revealed())
+        game.end_turn()
+        self.assertFalse(game.get_revealed())
+
+
     def test_setting_deck_should_clear_hands(self):
         game = Game('PBR Team Pizza')
         player_1 = Mock()
@@ -117,6 +126,13 @@ class GameTestCase(unittest.TestCase):
         player_2.clear_hand.assert_called()
         spectator_1.clear_hand.assert_called()
 
+    def test_setting_deck_should_set_revealed_as_false(self):
+        game = Game('PBR Team Pizza')
+        game.reveal_hands()
+        self.assertTrue(game.get_revealed())
+        game.set_deck(Deck.POWERS)
+        self.assertFalse(game.get_revealed())
+
     def test_setting_deck_should_not_clear_hands_when_deck_is_the_same(self):
         game = Game('PBR Team Pizza', Deck.POWERS)
         player_1 = Mock()
@@ -129,6 +145,13 @@ class GameTestCase(unittest.TestCase):
         player_1.clear_hand.assert_not_called()
         player_2.clear_hand.assert_not_called()
         spectator_1.clear_hand.assert_not_called()
+
+    def test_setting_deck_should_no_set_revealed_as_false_if_deck_is_the_same(self):
+        game = Game('PBR Team Pizza', Deck.POWERS)
+        game.reveal_hands()
+        self.assertTrue(game.get_revealed())
+        game.set_deck(Deck.POWERS)
+        self.assertTrue(game.get_revealed())
 
     def test_is_game_empty(self):
         uuid = '47b71b00-e060-47ba-8fae-029f5473794b'
@@ -178,7 +201,7 @@ class GameTestCase(unittest.TestCase):
         player_2.configure_mock(**player2_conf)
         self.assertTrue(game.has_all_players_picked_card())
 
-    def test_state(self):
+    def test_state_when_revealed_is_false(self):
         game = Game('PBR Team Pizza')
         player_1 = Mock()
         player1_state = {'name': 'John', 'spectator': False, 'hasPicked': True}
@@ -199,26 +222,75 @@ class GameTestCase(unittest.TestCase):
             'd': spectator1_state,
         })
 
-    def test_reveal_hand(self):
+    def test_state_when_revealed_is_true(self):
         game = Game('PBR Team Pizza')
         player_1 = Mock()
-        player1_state = {'spectator': False, 'get_hand.return_value': 8}
-        player_1.configure_mock(**player1_state)
+        player1_state = {'name': 'John', 'spectator': False, 'hand': 3}
+        player_1.configure_mock(**{'state_with_hand.return_value': player1_state})
         game.player_joins('j', player_1)
         player_2 = Mock()
-        player2_state = {'spectator': False, 'get_hand.return_value': None}
-        player_2.configure_mock(**player2_state)
+        player2_state = {'name': 'Peter', 'spectator': False, 'hasPicked': None}
+        player_2.configure_mock(**{'state_with_hand.return_value': player2_state})
         game.player_joins('p', player_2)
         spectator_1 = Mock()
-        spectator1_state = {'spectator': True}
-        spectator_1.configure_mock(**spectator1_state)
+        spectator1_state = {'name': 'Daisy', 'spectator': True, 'hasPicked': None}
+        spectator_1.configure_mock(**{'state_with_hand.return_value': spectator1_state})
         game.player_joins('d', spectator_1)
 
-        self.assertEqual(game.reveal_hands(), {
-            'j': 8,
-            'p': None,
+        game.reveal_hands()
+        self.assertEqual(game.state(), {
+            'j': player1_state,
+            'p': player2_state,
+            'd': spectator1_state,
         })
-        spectator_1.get_hand.assert_not_called()
+
+    def test_state_when_revealed_is_true_then_false(self):
+        game = Game('PBR Team Pizza')
+        player_1 = Mock()
+        player1_state = {'name': 'John', 'spectator': False, 'hasPicked': True}
+        player1_state_with_hand = {'name': 'John', 'spectator': False, 'hand': 3}
+        player_1.configure_mock(**{'state.return_value': player1_state,
+                                   'state_with_hand.return_value': player1_state_with_hand})
+        game.player_joins('j', player_1)
+        player_2 = Mock()
+        player2_state = {'name': 'Peter', 'spectator': False, 'hasPicked': False}
+        player2_state_with_hand = {'name': 'Peter', 'spectator': False, 'hand': None}
+        player_2.configure_mock(**{'state.return_value': player2_state,
+                                   'state_with_hand.return_value': player2_state_with_hand})
+        game.player_joins('p', player_2)
+        spectator_1 = Mock()
+        spectator1_state = {'name': 'Daisy', 'spectator': True, 'hasPicked': False}
+        spectator1_state_with_hand = {'name': 'Daisy', 'spectator': True, 'hand': None}
+        spectator_1.configure_mock(**{'state.return_value': spectator1_state,
+                                      'state_with_hand.return_value': spectator1_state_with_hand})
+        game.player_joins('d', spectator_1)
+
+        self.assertEqual(game.state(), {
+            'j': player1_state,
+            'p': player2_state,
+            'd': spectator1_state,
+        })
+
+        game.reveal_hands()
+        self.assertEqual(game.state(), {
+            'j': player1_state_with_hand,
+            'p': player2_state_with_hand,
+            'd': spectator1_state_with_hand,
+        })
+
+        game.end_turn()
+        self.assertEqual(game.state(), {
+            'j': player1_state,
+            'p': player2_state,
+            'd': spectator1_state,
+        })
+
+
+    def test_reveal_hand(self):
+        game = Game('PBR Team Pizza')
+        self.assertFalse(game.get_revealed())
+        game.reveal_hands()
+        self.assertTrue(game.get_revealed())
 
     def test_game_info(self):
         game_name1 = 'Fizz'

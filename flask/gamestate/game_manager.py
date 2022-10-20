@@ -86,7 +86,8 @@ class GameManager:
 
     def reveal_cards(self, game_uuid: str):
         game = self.__get_ongoing_game(game_uuid)
-        return game.reveal_hands()
+        game.reveal_hands()
+        return game.state()
 
     def end_turn(self, game_uuid: str):
         game = self.__get_ongoing_game(game_uuid)

@@ -9,6 +9,7 @@ class Game:
         self.name = name
         self.__state = {}
         self.__deck = deck
+        self.__revealed = False
 
     def player_joins(self, uuid: str, player: Player):
         self.__state[uuid] = player
@@ -24,6 +25,9 @@ class Game:
 
     def get_deck(self) -> Deck:
         return self.__deck
+
+    def get_revealed(self) -> bool:
+        return self.__revealed
 
     def list_players(self) -> [tuple[str, Player]]:
         return list(self.__state.items())
@@ -42,7 +46,8 @@ class Game:
         player: Player = self.get_player(uuid)
         player.set_hand(card)
 
-    def end_turn(self):
+    def end_turn(self) -> None:
+        self.__revealed = False
         for player in self.__state.values():
             player.clear_hand()
 
@@ -58,18 +63,15 @@ class Game:
         return list(filter(lambda p: p.spectator is False, self.__state.values()))
 
     def state(self) -> dict:
-        """Returns the game's state with the players' hands hidden"""
+        """Returns the game's state with the players' hands hidden or shown depending on revealed's value"""
         return dict(list(map(
-            lambda i: (i[0], i[1].state()),
+            lambda i: (i[0], i[1].state_with_hand() if self.__revealed else i[1].state()),
             self.list_players()
         )))
 
-    def reveal_hands(self) -> dict:
+    def reveal_hands(self) -> None:
         """Return the players' with their hands"""
-        return dict(list(map(
-            lambda i: (i[0], i[1].get_hand()),
-            filter(lambda p: p[1].spectator is False, self.list_players())
-        )))
+        self.__revealed = True
 
     def info(self) -> dict:
         return {

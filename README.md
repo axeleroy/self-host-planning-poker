@@ -2,19 +2,28 @@
 
 A hassle-free Planning Poker application to deploy on your NAS.
 
+[![Docker Hub](https://img.shields.io/docker/v/axeleroy/self-host-planning-poker?sort=semver)](https://hub.docker.com/r/axeleroy/self-host-planning-poker/tags)
+[![Tests](https://github.com/axeleroy/self-host-planning-poker/actions/workflows/tests.yml/badge.svg)](https://github.com/axeleroy/self-host-planning-poker/actions/workflows/tests.yml)
+[![Docker build](https://github.com/axeleroy/self-host-planning-poker/actions/workflows/publish.yml/badge.svg)](https://github.com/axeleroy/self-host-planning-poker/actions/workflows/publish.yml)
+
 ## What is it?
 
-This application is intended as a simplified and self-hostable alternative to [Planning Poker Online](https://planningpokeronline.com/).
+This application is intended as a simplified and self-hostable alternative to
+[Planning Poker Online](https://planningpokeronline.com/).
 
 It features:
 
   * Multiple deck types: Fibonacci, modified Fibonacci, T-Shirt sizes, powers of 2 and trust vote (0 to 5)
   * Spectator mode
-  * Vote summary
   * Responsive layout
-  * Translations
+  * _Coming soon<sup>TM</sup>_:
+    * Vote summary
+    * Translations
  
 It does not have fancy features like issues management, Jira integration or timers.
+
+## Screenshots
+_Coming soon<sup>TM</sup>_
 
 ## Deployment
 
@@ -42,6 +51,17 @@ services:
 volumes:
   planning-poker-data:
 ```
+
+## Getting involved
+
+### I'm a developer and I want to help
+
+A [Project](https://github.com/users/axeleroy/projects/1/views/1) is set up to track the features and enhancements that need work.
+Just open a Pull Request mentioning the linked issue and we'll take a look at it.
+
+### I'm a user and I need help / I encountered a bug / I have a feature request
+
+[Open an issue](https://github.com/axeleroy/self-host-planning-poker/issues/new) and we'll take a look at it.
 
 ## Development
 
@@ -108,6 +128,4 @@ docker build . -t axeleroy/self-host-planning-poker:custom
 docker build https://github.com/axeleroy/self-host-planning-poker -t axeleroy/self-host-planning-poker:custom
 ```
 
-#### Publishing a new version to DockerHub
 
-A GitHub Action has been set to build and publish a new image on tags pushes. So push a new tag which follow the `vX.Y.Z` convention to start the Action.

@@ -175,7 +175,6 @@ class GameManagerTestCase(unittest.TestCase):
         stored_game = StoredGame.get(StoredGame.uuid == uuid.UUID(game_id))
         self.assertEqual(stored_game.name, new_name)
 
-
     def test_set_player_name(self):
         gm = GameManager()
         player_mock = Mock()
@@ -212,13 +211,11 @@ class GameManagerTestCase(unittest.TestCase):
 
     def test_pick_card(self):
         gm = GameManager()
-        player_mock = Mock()
-        game_mock = Mock(**{'get_player.return_value': player_mock, 'state.return_value': "{'foo': 'bar'}"})
+        game_mock = Mock(**{'state.return_value': "{'foo': 'bar'}"})
         gm.games = {'uuid1': game_mock}
 
         state = gm.pick_card('uuid1', "puuid1", 3)
-        game_mock.get_player.assert_called_with('puuid1')
-        player_mock.set_hand.assert_called_with(3)
+        game_mock.player_picks.assert_called_with("puuid1", 3)
         game_mock.state.assert_called()
         self.assertEqual(state, "{'foo': 'bar'}")
 

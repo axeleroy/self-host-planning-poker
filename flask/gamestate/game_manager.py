@@ -80,8 +80,7 @@ class GameManager:
 
     def pick_card(self, game_uuid: str, player_uuid: str, pick: Optional[int]) -> dict:
         game = self.__get_ongoing_game(game_uuid)
-        player = game.get_player(player_uuid)
-        player.set_hand(pick)
+        game.player_picks(player_uuid, pick)
         return game.state()
 
     def reveal_cards(self, game_uuid: str) -> tuple[dict, dict]:

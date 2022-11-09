@@ -27,9 +27,8 @@ export class CurrentGameService implements CanActivate {
     this.socket.on('info', (info: GameInfo) => this.infoSubject.next(info));
     this.socket.on('new_game', () => this.newGameSubject.next());
 
-    this.socket.on('disconnect', () => {
-      this.stateSubject.next({});
-      this.infoSubject.next(null);
+    this.socket.on('disconnect', (reason) => {
+      console.debug(`Socket disconnected. Reason is "${reason}"`);
     })
 
     this.userInformation.nameObservable().subscribe((name: string) => {
@@ -98,6 +97,8 @@ export class CurrentGameService implements CanActivate {
 
   public leave(): void {
     this.socket.disconnect();
+    this.stateSubject.next({});
+    this.infoSubject.next(null);
   }
 
   public renameGame(newName: string): void {

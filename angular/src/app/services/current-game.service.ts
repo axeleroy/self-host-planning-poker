@@ -6,6 +6,8 @@ import { BehaviorSubject, filter, map, Observable, Subject } from 'rxjs';
 import { ErrorMessage, GameInfo, GameState } from '../model/events';
 import { Deck, decksDict } from '../model/deck';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ToastService } from './toast/toast.service';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +19,11 @@ export class CurrentGameService implements CanActivate {
   private stateSubject = new BehaviorSubject<GameState>({});
   private infoSubject = new BehaviorSubject<GameInfo | null>(null);
   private newGameSubject = new Subject<void>();
-  private errorSubject = new BehaviorSubject<ErrorMessage | null>(null);
 
   constructor(private router: Router,
-              private userInformation: UserInformationService) {
+              private userInformation: UserInformationService,
+              private transloco: TranslocoService,
+              private toastService: ToastService) {
     this.socket = io(environment.urlRoot);
 
     this.socket.on('state', (state: GameState) => this.stateSubject.next(state));
@@ -28,6 +31,10 @@ export class CurrentGameService implements CanActivate {
     this.socket.on('new_game', () => this.newGameSubject.next());
 
     this.socket.on('disconnect', (reason) => {
+      if (reason !== 'io client disconnect') {
+        let text = this.transloco.translate('errors.disconnect', { reason: reason });
+        this.toastService.show(text, { className: 'bg-danger text-light' });
+      }
       console.debug(`Socket disconnected. Reason is "${reason}"`);
     })
 
@@ -61,10 +68,6 @@ export class CurrentGameService implements CanActivate {
     );
   }
 
-  public get errors$(): Observable<ErrorMessage | null> {
-    return this.errorSubject.asObservable();
-  }
-
   public get deck$(): Observable<Deck> {
     return this.infoSubject.asObservable()
     .pipe(
@@ -83,7 +86,6 @@ export class CurrentGameService implements CanActivate {
         spectator: this.userInformation.isSpectator()
       }, (response: GameInfo | ErrorMessage) => {
         if ('error' in response) {
-          this.handleError(response);
           this.socket.disconnect();
           resolve(this.router.parseUrl('/'));
         } else {
@@ -102,27 +104,30 @@ export class CurrentGameService implements CanActivate {
   }
 
   public renameGame(newName: string): void {
-    this.socket.emit('rename_game', { name: newName });
+    this.socket.emit('rename_game', { name: newName }, (response?: ErrorMessage) => this.handleError(response));
   }
 
   public setDeck(deck: Deck): void {
-    this.socket.emit('set_deck', {deck: deck.name});
+    this.socket.emit('set_deck', { deck: deck.name }, (response?: ErrorMessage) => this.handleError(response));
   }
 
   public pickCard(cardValue: number | null): void {
-    this.socket.emit('pick_card', { card: cardValue });
+    this.socket.emit('pick_card', { card: cardValue }, (response?: ErrorMessage) => this.handleError(response));
   }
 
   public revealCards(): void {
-    this.socket.emit('reveal_cards');
+    this.socket.emit('reveal_cards', (response?: ErrorMessage) => this.handleError(response));
   }
 
   public endTurn(): void {
-    this.socket.emit('end_turn');
+    this.socket.emit('end_turn', (response?: ErrorMessage) => this.handleError(response));
   }
 
-  private handleError(error: ErrorMessage) {
-    this.errorSubject.next(error);
+  private handleError(error?: ErrorMessage) {
+    if (error) {
+      let text = this.transloco.translate(`errors.${error.code}`);
+      this.toastService.show(text, {className: 'bg-danger text-light'})
+    }
   }
 
 }

@@ -44,5 +44,14 @@
   "footer": {
     "github": "GitHub",
     "license": "License"
+  },
+  "errors": {
+    "disconnect": "Disconnected from game. Reason: \"{{reason}}\".",
+    "4001": "You have selected a deck that does not exist.",
+    "4002": "Somehow, you are trying to do an action while this game is not ongoing.",
+    "4003": "Somehow, you are trying to do an action while you are not part of this game.",
+    "4004": "This game does not exist.",
+    "4005": "The card you have picked is not an acceptable value of the current deck.",
+    "4006": "You are a spectator, you should not be able to pick a card."
   }
 }

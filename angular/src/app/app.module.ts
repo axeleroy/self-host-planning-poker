@@ -18,6 +18,7 @@ import { CardPickerComponent } from './pages/ongoing-game-page/card-picker/card-
 import { PickableCardComponent } from './pages/ongoing-game-page/card-picker/card/pickable-card.component';
 import { CardTableComponent } from './pages/ongoing-game-page/card-table/card-table.component';
 import { PlayerHandComponent } from './pages/ongoing-game-page/card-table/player-hand/player-hand.component';
+import { ToastsContainer } from './services/toast/toast-container.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PlayerHandComponent } from './pages/ongoing-game-page/card-table/player
     CardPickerComponent,
     PickableCardComponent,
     CardTableComponent,
-    PlayerHandComponent
+    PlayerHandComponent,
+    ToastsContainer
   ],
   imports: [
     BrowserModule,

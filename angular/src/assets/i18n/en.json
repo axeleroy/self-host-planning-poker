@@ -43,6 +43,7 @@
   },
   "footer": {
     "github": "GitHub",
+    "dockerhub": "DockerHub",
     "license": "License"
   },
   "errors": {

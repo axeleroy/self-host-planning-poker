@@ -1,4 +1,4 @@
-name: Docker build
+name: Docker build and publish new tagged version
 
 on:
   push:

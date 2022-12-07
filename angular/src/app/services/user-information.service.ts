@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { nameByRace } from 'fantasy-name-generator';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -12,8 +11,8 @@ export class UserInformationService {
 
   constructor() {
     // If new user or loading from localstorage failed, use a generated name
-    let name = this.loadFromLocalStorage('name') || nameByRace('human');
-    let isSpectator = this.loadFromLocalStorage('isSpectator') === "true";
+    let name = this.loadFromLocalStorage('name');
+    let isSpectator = this.loadFromLocalStorage('isSpectator');
     this.nameSubject.next(name);
     this.isSpectatorSubject.next(isSpectator)
   }

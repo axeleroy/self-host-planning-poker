@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col"></div>
+  <div class="col col-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" *transloco="let t; read 'setUsername'">
+    <h2 class="mb-5">{{ t('page-title') }}</h2>
+    <form [formGroup]="formGroup">
+      <div class="mb-3">
+        <label [for]="usernameInput" class="form-label">{{ t('username-label') }}</label>
+        <input type="text" class="form-control" formControlName="username" #usernameInput>
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="formGroup.invalid" (click)="join()">
+        {{ t('joinButton-label') }}
+      </button>
+    </form>
+  </div>
+  <div class="col"></div>
+</div>

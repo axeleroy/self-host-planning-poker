@@ -31,6 +31,11 @@
   "ongoingGame": {
     "page-title": "Planning Poker {{gameName}}"
   },
+  "setUsername": {
+    "page-title": "Please enter your name before joining the game",
+    "username-label": "Player name",
+    "joinButton-label": "Join the game"
+  },
   "buttons": {
     "edit": "Edit",
     "save": "Save",

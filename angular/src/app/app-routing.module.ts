@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { NewGamePageComponent } from './pages/new-game-page/new-game-page.component';
 import { OngoingGamePageComponent } from './pages/ongoing-game-page/ongoing-game-page.component';
 import { CurrentGameService } from './services/current-game.service';
+import { UsernameSetGuard } from './services/username-set.guard';
+import { SetUsernamePageComponent } from './pages/set-username-page/set-username-page.component';
 
 const routes: Routes = [
   {
@@ -13,7 +15,11 @@ const routes: Routes = [
   {
     path: 'game/:gameId',
     component: OngoingGamePageComponent,
-    canActivate: [ CurrentGameService ]
+    canActivate: [ UsernameSetGuard, CurrentGameService ]
+  },
+  {
+    path: 'set-username',
+    component: SetUsernamePageComponent
   }
 ];
 

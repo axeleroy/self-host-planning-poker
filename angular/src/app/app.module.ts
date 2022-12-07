@@ -19,6 +19,7 @@ import { PickableCardComponent } from './pages/ongoing-game-page/card-picker/car
 import { CardTableComponent } from './pages/ongoing-game-page/card-table/card-table.component';
 import { PlayerHandComponent } from './pages/ongoing-game-page/card-table/player-hand/player-hand.component';
 import { ToastsContainer } from './services/toast/toast-container.component';
+import { SetUsernamePageComponent } from './pages/set-username-page/set-username-page.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ToastsContainer } from './services/toast/toast-container.component';
     PickableCardComponent,
     CardTableComponent,
     PlayerHandComponent,
-    ToastsContainer
+    ToastsContainer,
+    SetUsernamePageComponent
   ],
   imports: [
     BrowserModule,

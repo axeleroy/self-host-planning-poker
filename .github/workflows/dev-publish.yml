@@ -10,6 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
+        name: Add SHORT_SHA env property with commit short sha
+        id: vars
+        run: |
+          calculatedSha=$(echo ${{ github.sha }} | cut -c1-8)
+          echo "::set-output name=short_sha::$calculatedSha"
+      -
         name: Login to DockerHub
         uses: docker/login-action@v2
         with:
@@ -21,4 +27,4 @@ jobs:
         with:
           push: true
           platforms: linux/amd64
-          tags: axeleroy/self-host-planning-poker:development,axeleroy/self-host-planning-poker:${{ github.sha }}
+          tags: axeleroy/self-host-planning-poker:development,axeleroy/self-host-planning-poker:${{ steps.vars.outputs.short_sha }}

@@ -7,9 +7,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'shpp-game-info',
-  templateUrl: './game-info.component.html',
-  styles: [
-  ]
+  templateUrl: './game-info.component.html'
 })
 export class GameInfoComponent implements OnDestroy {
 

@@ -8,7 +8,7 @@
         {{ displayCardValue(deck, playerState.hand) }}
       </div>
       <div class="card-value" *ngIf="playerState.spectator">
-        <svg [attr.aria-labbel]="'playerState.spectator'"
+        <svg *transloco="let t" [attr.aria-labbel]="t('playerState.spectator')"
              class="bi bi-eye-fill" width="1em" height="1em" fill="currentColor">
           <use xlink:href="assets/bootstrap-icons.svg#eye-fill"/>
         </svg>

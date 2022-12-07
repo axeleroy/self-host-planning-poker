@@ -1,6 +1,6 @@
 <ng-container *ngIf="currentGameInfo">
   <ng-container *ngIf="currentGameInfo">
-    <span class="navbar-text" *transloco="let n; read 'deckNames'">{{ n(currentGameInfo.deck) }}</span>
+    <span class="text-muted" *transloco="let n; read 'deckNames'">{{ n(currentGameInfo.deck) }}</span>
   </ng-container>
   <button class="btn btn-light btn-sm mx-2"
           [attr.aria-label]="t('edit')"

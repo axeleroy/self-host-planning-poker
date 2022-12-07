@@ -2,8 +2,8 @@
   "navbar": {
     "appTitle": "Self-Host Planning Poker",
     "playerInfo": {
+      "spectator": "Spectator",
       "actions": {
-        "setSpectator": "Set spectator",
         "setPlayer": "Set Player",
         "editPlayerName": "Edit player name"
       },

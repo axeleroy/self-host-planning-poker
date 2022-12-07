@@ -23,12 +23,6 @@ export class PlayerInfoComponent {
     this.userInformation.setSpectator(!this.userInformation.isSpectator());
   }
 
-  getActionKey(): string {
-    return this.userInformation.isSpectator()
-      ? 'navbar.playerInfo.actions.setPlayer'
-      : 'navbar.playerInfo.actions.setSpectator';
-  }
-
   validateNameChange(): void {
     const newName = this.formControl.value;
     this.userInformation.setName(newName);

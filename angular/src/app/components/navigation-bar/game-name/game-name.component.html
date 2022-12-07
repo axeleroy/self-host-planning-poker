@@ -1,9 +1,9 @@
 <ng-container *transloco="let t; read 'navbar'">
   <ng-template #brandingContent>
-    <span class="navbar-brand">{{ t('appTitle') }}</span>
+    <span class="navbar navbar-brand">{{ t('appTitle') }}</span>
   </ng-template>
   <ng-container *ngIf="currentGameInfo; else brandingContent">
-    <span class="navbar-brand">{{ currentGameInfo.name }}</span>
+    <span class="navbar navbar-brand">{{ currentGameInfo.name }}</span>
   </ng-container>
 </ng-container>
 

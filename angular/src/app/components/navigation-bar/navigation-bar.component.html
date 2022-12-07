@@ -1,12 +1,9 @@
-<nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <shpp-game-name></shpp-game-name>
-    <button class="navbar-toggler" type="button" (click)="toggleCollapse()" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
-      <shpp-game-info class="flex-grow-1"></shpp-game-info>
-      <shpp-player-info></shpp-player-info>
+<nav class="bg-light">
+  <div class="container-fluid d-flex flex-row p-2 ps-3 pe-3">
+    <div class="d-flex flex-column flex-grow-1">
+      <shpp-game-name></shpp-game-name>
+      <shpp-game-info></shpp-game-info>
     </div>
+    <shpp-player-info></shpp-player-info>
   </div>
 </nav>

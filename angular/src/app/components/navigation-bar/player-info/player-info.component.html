@@ -14,35 +14,30 @@
   </form>
 </ng-template>
 
-<ng-container *ngIf="!editMode; else editTemplate">
-  <span class="navbar-text" >
-    {{ userInformation.getName() }}
-    <div class="btn-group mx-2" *transloco="let t">
-      <button class="btn btn-light btn-sm"
-              [attr.aria-label]="t('buttons.edit')"
-              [ngbTooltip]="t('navbar.playerInfo.actions.editPlayerName')"
-              placement="bottom"
-              (click)="editMode = true">
-        <svg class="bi bi-pencil-fill" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-          <use xlink:href="assets/bootstrap-icons.svg#pencil-fill"/>
-        </svg>
-      </button>
-      <button class="btn btn-light btn-sm"
-              [attr.aria-labbel]="t(getActionKey())"
-              (click)="toggleSpectator()"
-              [ngbTooltip]="t(getActionKey())"
-              placement="bottom">
-        <svg *ngIf="userInformation.isSpectator()"
-             [attr.aria-labbel]="t('playerState.spectator')"
-             class="bi bi-eye-fill" width="1em" height="1em" fill="currentColor">
-          <use xlink:href="assets/bootstrap-icons.svg#eye-fill"/>
-        </svg>
-        <svg *ngIf="!userInformation.isSpectator()"
-             [attr.aria-labbel]="t('playerState.player')"
-             class="bi bi-eye" width="1em" height="1em" fill="currentColor">
-          <use xlink:href="assets/bootstrap-icons.svg#eye"/>
-        </svg>
-      </button>
-    </div>
-  </span>
-</ng-container>
+<div class="d-flex flex-column align-items-end">
+  <ng-container *ngIf="!editMode; else editTemplate">
+    <span class="navbar-text">
+      {{ userInformation.getName() }}
+      <div class="btn-group mx-2" *transloco="let t">
+        <button class="btn btn-light btn-sm"
+                [attr.aria-label]="t('buttons.edit')"
+                [ngbTooltip]="t('navbar.playerInfo.actions.editPlayerName')"
+                placement="bottom"
+                (click)="editMode = true">
+          <svg class="bi bi-pencil-fill" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+            <use xlink:href="assets/bootstrap-icons.svg#pencil-fill"/>
+          </svg>
+        </button>
+      </div>
+    </span>
+  </ng-container>
+
+  <div class="form-check form-switch form-check-reverse" *transloco="let t">
+    <input class="form-check-input" type="checkbox" id="spectator-checkbox"
+           [checked]="userInformation.isSpectator()"
+           (change)="toggleSpectator()">
+    <label class="form-check-label text-muted" for="spectator-checkbox">
+      {{ t('navbar.playerInfo.spectator') }}
+    </label>
+  </div>
+</div>

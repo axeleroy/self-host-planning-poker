@@ -13,6 +13,9 @@
     },
     "gameInfo": {
       "editTitle": "Edit game"
+    },
+    "gameName": {
+      "copy-toast": "Game's link copied to clipboard"
     }
   },
   "gameForm": {
@@ -40,7 +43,8 @@
     "edit": "Edit",
     "save": "Save",
     "reveal": "Reveal cards",
-    "newTurn": "New turn"
+    "newTurn": "New turn",
+    "link": "Copy game link"
   },
   "playerState": {
     "spectator": "Spectator",

@@ -12,7 +12,7 @@ export class UserInformationService {
   constructor() {
     // If new user or loading from localstorage failed, use a generated name
     let name = this.loadFromLocalStorage('name');
-    let isSpectator = this.loadFromLocalStorage('isSpectator');
+    let isSpectator = this.loadFromLocalStorage('isSpectator') === "true";
     this.nameSubject.next(name);
     this.isSpectatorSubject.next(isSpectator)
   }

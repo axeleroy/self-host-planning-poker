@@ -36,7 +36,7 @@
   },
   "setUsername": {
     "page-title": "Please enter your name before joining the game",
-    "username-label": "Player name",
+    "username-placeholder": "John",
     "joinButton-label": "Join the game"
   },
   "buttons": {

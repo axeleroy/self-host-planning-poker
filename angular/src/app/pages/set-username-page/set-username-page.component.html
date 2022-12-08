@@ -4,8 +4,7 @@
     <h2 class="mb-5">{{ t('page-title') }}</h2>
     <form [formGroup]="formGroup">
       <div class="mb-3">
-        <label [for]="usernameInput" class="form-label">{{ t('username-label') }}</label>
-        <input type="text" class="form-control" formControlName="username" #usernameInput>
+        <input type="text" class="form-control" formControlName="username" [placeholder]="t('username-placeholder')">
       </div>
       <button class="btn btn-primary" type="submit" [disabled]="formGroup.invalid" (click)="join()">
         {{ t('joinButton-label') }}

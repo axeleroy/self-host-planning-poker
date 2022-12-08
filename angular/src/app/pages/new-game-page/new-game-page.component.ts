@@ -22,7 +22,7 @@ export class NewGamePageComponent implements OnInit {
       name: newGame.name,
       deck: newGame.deck.name
     }
-    this.http.post(environment.urlRoot + 'create', body, { responseType: 'text' })
+    this.http.post(environment.urlRoot + '/create', body, { responseType: 'text' })
       .subscribe((gameId) => this.router.navigate(['game', gameId]));
   }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { io, Socket } from 'socket.io-client';
+import { Manager, Socket } from 'socket.io-client';
 import { environment } from '../../environments/environment';
 import { UserInformationService } from './user-information.service';
 import { BehaviorSubject, filter, map, Observable, Subject } from 'rxjs';
@@ -7,13 +7,16 @@ import { ErrorMessage, GameInfo, GameState } from '../model/events';
 import { Deck, decksDict } from '../model/deck';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { ToastService } from './toast/toast.service';
-import { TranslocoService } from '@ngneat/transloco';
+import { HashMap, TranslocoService } from '@ngneat/transloco';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CurrentGameService implements CanActivate {
+  private readonly totalAttempts = 10;
+  private readonly reconnectDelaySeconds = 5;
 
+  private manager: Manager;
   private socket: Socket;
 
   private stateSubject = new BehaviorSubject<GameState>({});
@@ -24,7 +27,12 @@ export class CurrentGameService implements CanActivate {
               private userInformation: UserInformationService,
               private transloco: TranslocoService,
               private toastService: ToastService) {
-    this.socket = io(environment.urlRoot);
+    this.manager = new Manager(environment.urlRoot, {
+      reconnection: true,
+      reconnectionDelay: this.reconnectDelaySeconds * 1000,
+      reconnectionAttempts: this.totalAttempts
+    });
+    this.socket = this.manager.socket('/');
 
     this.socket.on('state', (state: GameState) => this.stateSubject.next(state));
     this.socket.on('info', (info: GameInfo) => this.infoSubject.next(info));
@@ -32,11 +40,23 @@ export class CurrentGameService implements CanActivate {
 
     this.socket.on('disconnect', (reason) => {
       if (reason !== 'io client disconnect') {
-        let text = this.transloco.translate('errors.disconnect', { reason: reason });
+        let text = this.transloco.translate('errors.disconnect', { reason: reason, delay: this.reconnectDelaySeconds });
         this.toastService.show(text, { className: 'bg-danger text-light' });
       }
-      console.debug(`Socket disconnected. Reason is "${reason}"`);
-    })
+      console.info(`Socket disconnected. Reason is "${reason}"`);
+    });
+    this.manager.on('reconnect_attempt', (attempt: number) => {
+      this.info('reconnect.attempt', { attempt: attempt, total: this.totalAttempts });
+    });
+    this.manager.on('reconnect_error', (err: Error) => {
+      this.error('reconnect.error', { error: err.message });
+    });
+    this.manager.on('reconnect_failed', () => {
+      this.error('reconnect.failed', { attempts: this.totalAttempts });
+    });
+    this.manager.on('reconnect', (attempt: number) => {
+      this.success('reconnect.success', { attempts: attempt });
+    });
 
     this.userInformation.nameObservable().subscribe((name: string) => {
       if (this.socket.connected) {
@@ -47,7 +67,7 @@ export class CurrentGameService implements CanActivate {
       if (this.socket.connected) {
         this.socket.emit('set_spectator', {spectator: spectator})
       }
-    })
+    });
   }
 
   public get state$(): Observable<GameState> {
@@ -87,6 +107,7 @@ export class CurrentGameService implements CanActivate {
       }, (response: GameInfo | ErrorMessage) => {
         if ('error' in response) {
           this.socket.disconnect();
+          this.handleError(response);
           resolve(this.router.parseUrl('/'));
         } else {
           this.infoSubject.next(response);
@@ -123,11 +144,28 @@ export class CurrentGameService implements CanActivate {
     this.socket.emit('end_turn', (response?: ErrorMessage) => this.handleError(response));
   }
 
-  private handleError(error?: ErrorMessage) {
+  private handleError(error?: ErrorMessage): void {
     if (error) {
-      let text = this.transloco.translate(`errors.${error.code}`);
-      this.toastService.show(text, {className: 'bg-danger text-light'})
+      this.error(`errors.${error.code}`)
     }
+  }
+
+  private info(key: string, translateParams?: HashMap): void {
+    let text = this.transloco.translate(key, translateParams);
+    console.info(text);
+    this.toastService.show(text, { className: 'bg-info' });
+  }
+
+  private success(key: string, translateParams?: HashMap): void {
+    let text = this.transloco.translate(key, translateParams);
+    console.info(text);
+    this.toastService.show(text, { className: 'bg-success text-light' });
+  }
+
+  private error(key: string, translateParams?: HashMap): void {
+    let text = this.transloco.translate(key, translateParams);
+    console.error(text);
+    this.toastService.show(text, { className: 'bg-danger text-light' });
   }
 
 }

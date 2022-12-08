@@ -83,6 +83,9 @@ class GameTestCase(unittest.TestCase):
         game.player_picks(uuid1, 8)
         player_mock.set_hand.assert_called_with(8)
 
+        game.player_picks(uuid1, None)
+        player_mock.set_hand.assert_called_with(None)
+
         with self.assertRaises(PlayerNotInGameError) as ex1:
             game.player_picks(uuid2, 8)
         self.assertEqual(str(ex1.exception), f'Player with UUID {uuid2} is not in this game')

@@ -1,3 +1,5 @@
+from typing import Optional
+
 from gamestate.deck import Deck
 from gamestate.exceptions import PlayerNotInGameError, InvalidCardValueError
 from gamestate.player import Player
@@ -40,8 +42,8 @@ class Game:
             raise PlayerNotInGameError(f'Player with UUID {uuid} is not in this game')
         return self.__state.get(uuid)
         
-    def player_picks(self, uuid: str, card: int):
-        if card not in self.__deck.value:
+    def player_picks(self, uuid: str, card: Optional[int]):
+        if card is not None and card not in self.__deck.value:
             raise InvalidCardValueError(f'Card value {card} is not valid. Current deck is {self.__deck.name}')
         player: Player = self.get_player(uuid)
         player.set_hand(card)

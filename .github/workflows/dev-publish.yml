@@ -13,7 +13,7 @@ jobs:
         name: Add SHORT_SHA env property with commit short sha
         id: vars
         run: |
-          calculatedSha=$(echo ${{ github.sha }} | cut -c1-8)
+          calculatedSha=$(echo ${{ github.sha }} | cut -c1-7)
           echo "::set-output name=short_sha::$calculatedSha"
       -
         name: Login to DockerHub

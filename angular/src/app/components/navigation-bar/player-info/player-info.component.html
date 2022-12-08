@@ -8,7 +8,7 @@
   </div>
 </ng-template>
 
-<div class="d-flex flex-column align-items-end">
+<div class="d-flex flex-column align-items-end" *ngIf="show">
   <div>
     {{ userInformation.getName() }}
     <div class="btn-group mx-2" *transloco="let t">

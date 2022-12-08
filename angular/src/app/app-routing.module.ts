@@ -15,7 +15,10 @@ const routes: Routes = [
   {
     path: 'game/:gameId',
     component: OngoingGamePageComponent,
-    canActivate: [ UsernameSetGuard, CurrentGameService ]
+    canActivate: [ UsernameSetGuard, CurrentGameService ],
+    data: {
+      displayPlayerInfo: true
+    }
   },
   {
     path: 'set-username',

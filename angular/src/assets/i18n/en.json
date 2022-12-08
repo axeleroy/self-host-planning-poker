@@ -1,4 +1,7 @@
 {
+  "translation-hints": {
+    "game": "In the project, it's \"game\" as in \"a game of chess\", not as in \"a party game\"."
+  },
   "navbar": {
     "appTitle": "Self-Host Planning Poker",
     "playerInfo": {

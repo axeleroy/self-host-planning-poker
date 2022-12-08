@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { UserInformationService } from '../../../services/user-information.service';
+import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'shpp-player-info',
@@ -10,23 +10,15 @@ import { UserInformationService } from '../../../services/user-information.servi
 })
 export class PlayerInfoComponent {
 
-  formControl: FormControl;
-  editMode = false;
-
-  constructor(private fb: FormBuilder,
-              public userInformation: UserInformationService) {
-    this.formControl = this.fb.control(this.userInformation.getName(),
-      { validators: [Validators.required, Validators.minLength(1)] });
+  constructor(public userInformation: UserInformationService,
+              private offcanvaseService: NgbOffcanvas) {
   }
 
   toggleSpectator(): void {
     this.userInformation.setSpectator(!this.userInformation.isSpectator());
   }
 
-  validateNameChange(): void {
-    const newName = this.formControl.value;
-    this.userInformation.setName(newName);
-    this.editMode = false;
+  openEdit(content: any): void {
+    this.offcanvaseService.open(content, { ariaLabelledBy: 'offcanvas-basic-title', position: 'end' });
   }
-
 }

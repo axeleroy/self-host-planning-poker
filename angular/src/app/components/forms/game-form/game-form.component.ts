@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Deck, decks, decksDict, displayDeckValues } from '../../model/deck';
+import { Deck, decks, decksDict, displayDeckValues } from '../../../model/deck';
 
 @Component({
   selector: 'shpp-game-form',
@@ -18,7 +18,7 @@ export class GameFormComponent implements OnInit{
   name?: string;
   @Input()
   deck?: string;
-  @Output() result = new EventEmitter<{name: string, deck: Deck}>()
+  @Output() result = new EventEmitter<{name: string, deck: Deck}>();
 
   constructor(private fb: FormBuilder) {
     this.formGroup = this.fb.group({

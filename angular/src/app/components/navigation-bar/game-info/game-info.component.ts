@@ -26,7 +26,7 @@ export class GameInfoComponent implements OnDestroy {
       .then((result: {name: string, deck: Deck}) => {
         this.currentGameService.setDeck(result.deck);
         this.currentGameService.renameGame(result.name);
-      })
+      });
   }
 
   ngOnDestroy(): void {

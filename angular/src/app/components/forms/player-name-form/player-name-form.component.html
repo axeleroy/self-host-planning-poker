@@ -1,0 +1,10 @@
+<ng-container *transloco="let t; read 'playerName-form'">
+  <form [formGroup]="formGroup">
+    <div class="mb-3">
+      <input type="text" class="form-control" formControlName="username" [placeholder]="t('username-placeholder')">
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="formGroup.invalid" (click)="setUsername()">
+      {{ join ? t('joinButton-label') : t('updateButton-label')}}
+    </button>
+  </form>
+</ng-container>

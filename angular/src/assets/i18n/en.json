@@ -10,12 +10,11 @@
         "setPlayer": "Set Player",
         "editPlayerName": "Edit player name"
       },
-      "form": {
-        "playerName": "Player name"
-      }
+      "cancel": "{{buttons.cancel}}"
     },
     "gameInfo": {
-      "editTitle": "Edit game"
+      "editTitle": "Edit game",
+      "cancel": "{{buttons.cancel}}"
     },
     "gameName": {
       "copy-toast": "Game's link copied to clipboard"
@@ -25,7 +24,7 @@
     "name-label": "Game's name",
     "deck-label": "Game's deck",
     "createButton-label": "Create new game",
-    "updateButton-label": "Update"
+    "updateButton-label": "{{buttons.update}}"
   },
   "deckNames": {
     "FIBONACCI": "Fibonacci",
@@ -38,13 +37,18 @@
     "page-title": "Planning Poker {{gameName}}"
   },
   "setUsername": {
-    "page-title": "Please enter your name before joining the game",
+    "page-title": "Please enter your name before joining the game"
+  },
+  "playerName-form": {
     "username-placeholder": "John",
-    "joinButton-label": "Join the game"
+    "joinButton-label": "Join the game",
+    "updateButton-label": "{{buttons.update}}"
   },
   "buttons": {
     "edit": "Edit",
     "save": "Save",
+    "cancel": "Cancel",
+    "update": "Update",
     "reveal": "Reveal cards",
     "newTurn": "New turn",
     "link": "Copy game link"

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GameFormComponent } from './components/game-form/game-form.component';
+import { GameFormComponent } from './components/forms/game-form/game-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NewGamePageComponent } from './pages/new-game-page/new-game-page.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,6 +20,7 @@ import { CardTableComponent } from './pages/ongoing-game-page/card-table/card-ta
 import { PlayerHandComponent } from './pages/ongoing-game-page/card-table/player-hand/player-hand.component';
 import { ToastsContainer } from './services/toast/toast-container.component';
 import { SetUsernamePageComponent } from './pages/set-username-page/set-username-page.component';
+import { PlayerNameFormComponent } from './components/forms/player-name-form/player-name-form.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { SetUsernamePageComponent } from './pages/set-username-page/set-username
     CardTableComponent,
     PlayerHandComponent,
     ToastsContainer,
-    SetUsernamePageComponent
+    SetUsernamePageComponent,
+    PlayerNameFormComponent
   ],
   imports: [
     BrowserModule,

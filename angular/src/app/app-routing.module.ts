@@ -23,6 +23,10 @@ const routes: Routes = [
   {
     path: 'set-username',
     component: SetUsernamePageComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/'
   }
 ];
 

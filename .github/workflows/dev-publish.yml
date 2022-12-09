@@ -1,4 +1,4 @@
-name: Docker build and publish development versions
+name: Docker publish development versions
 
 on:
   push:

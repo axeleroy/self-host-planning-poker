@@ -1,5 +1,3 @@
-.vertical-container {
-  height: calc(100vh - 65px - 3rem);
-  display: grid;
-  grid-template-rows: 1fr 40px;
+:host {
+  flex-grow: 1;
 }

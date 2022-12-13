@@ -4,8 +4,8 @@
 @import '~bootstrap/scss/bootstrap';
 
 .card-border  {
-  height: 89px;
-  width: 64px;
+  aspect-ratio: 64 / 89;
+  height: 100px;
   outline: 2px cornflowerblue solid;
   outline-offset: -2px;
   border-radius: 10px;

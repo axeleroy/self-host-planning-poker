@@ -44,6 +44,10 @@
     "joinButton-label": "Join the game",
     "updateButton-label": "{{buttons.update}}"
   },
+  "turnSummary": {
+    "average-label": "Average:",
+    "votes-label": "{{votes}} Votes"
+  },
   "buttons": {
     "edit": "Edit",
     "save": "Save",

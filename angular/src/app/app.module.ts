@@ -21,6 +21,7 @@ import { PlayerHandComponent } from './pages/ongoing-game-page/card-table/player
 import { ToastsContainer } from './services/toast/toast-container.component';
 import { SetUsernamePageComponent } from './pages/set-username-page/set-username-page.component';
 import { PlayerNameFormComponent } from './components/forms/player-name-form/player-name-form.component';
+import { TurnSummaryComponent } from './pages/ongoing-game-page/turn-summary/turn-summary.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { PlayerNameFormComponent } from './components/forms/player-name-form/pla
     PlayerHandComponent,
     ToastsContainer,
     SetUsernamePageComponent,
-    PlayerNameFormComponent
+    PlayerNameFormComponent,
+    TurnSummaryComponent
   ],
   imports: [
     BrowserModule,

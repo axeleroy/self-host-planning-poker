@@ -1,4 +1,4 @@
-<ng-container *ngIf="deck">
+<div class="container d-flex overflow-auto align-items-center" *ngIf="deck">
   <div class="flex-grow-1"></div>
   <shpp-pickable-card *ngFor="let card of deck.values"
              [cardValue]="card"
@@ -7,4 +7,4 @@
              (click)="selectCard(card)">
   </shpp-pickable-card>
   <div class="flex-grow-1"></div>
-</ng-container>
+</div>

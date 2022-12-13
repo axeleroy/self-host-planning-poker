@@ -1,2 +1,3 @@
 <shpp-card-table class="flex-grow-1"></shpp-card-table>
-<shpp-card-picker class="mb-3"></shpp-card-picker>
+<shpp-turn-summary *ngIf="showSummary" class="pt-5 pb-3"></shpp-turn-summary>
+<shpp-card-picker *ngIf="!showSummary" class="pt-5 pb-3"></shpp-card-picker>

@@ -4,6 +4,10 @@
 
 .card-border {
   height: 75px;
+  &.muted {
+    outline-color: gray;
+    outline-width: 2px;
+  }
 }
 
 .card-value {

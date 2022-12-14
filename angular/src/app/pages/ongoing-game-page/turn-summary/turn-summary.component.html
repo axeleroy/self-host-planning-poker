@@ -2,7 +2,7 @@
   <div class="row align-items-center" *transloco="let t; read 'turnSummary'">
     <div class="col col-md-4 offset-md-3">
       <div class="d-flex flex-wrap justify-content-center text-center">
-        <div *ngFor="let item of counts | keyvalue" class="d-flex flex-column align-items-center m-3">
+        <div *ngFor="let item of counts | keyvalue: valueDescOrder" class="d-flex flex-column align-items-center m-3">
           <div class="card-border">
             <div class="card-value">
               {{ displayCardValue(deck, Number(item.key)) }}

@@ -3,6 +3,7 @@ import { CurrentGameService } from '../../../services/current-game.service';
 import { PlayerState } from '../../../model/events';
 import { combineLatest, filter, map, Subscription, tap } from 'rxjs';
 import { Deck, decksDict, displayCardValue } from '../../../model/deck';
+import { KeyValue } from '@angular/common';
 
 @Component({
   selector: 'shpp-turn-summary',
@@ -15,6 +16,8 @@ export class TurnSummaryComponent implements OnDestroy {
   displayCardValue = displayCardValue;
   Number = Number;
   round = Math.round;
+  valueDescOrder = (a: KeyValue<string, number>, b: KeyValue<string, number>): number =>
+    a.value > b.value ? -1 : (b.value > a.value ? 1 : 0)
 
   deck: Deck = decksDict['FIBONACCI'];
   average = 0;
@@ -24,13 +27,13 @@ export class TurnSummaryComponent implements OnDestroy {
   constructor(private currentGameService: CurrentGameService) {
     this.subscription = combineLatest([this.currentGameService.state$, this.currentGameService.gameInfo$])
     .pipe(
-      filter(([gameState, gameInfo]) => gameInfo !== null && gameInfo.revealed),
-      tap(([gameState, gameInfo]) => {
+      filter(([, gameInfo]) => gameInfo !== null && gameInfo.revealed),
+      tap(([, gameInfo]) => {
         if (gameInfo) {
           this.deck = decksDict[gameInfo.deck];
         }
       }),
-      map(([gameState, gameInfo]) => Object.values(gameState))
+      map(([gameState]) => Object.values(gameState))
     ).subscribe((playerStates: PlayerState[]) => {
       const players = playerStates.filter((state) => state.hand !== undefined && state.hand !== null);
       this.average = players.reduce((prev, current) => prev + (current.hand || 0) , 0) / players.length;

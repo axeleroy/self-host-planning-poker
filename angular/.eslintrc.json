@@ -16,6 +16,7 @@
       },
       "extends": [
         "plugin:@angular-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
@@ -33,6 +34,12 @@
             "type": "element",
             "prefix": "shpp",
             "style": "kebab-case"
+          }
+        ],
+        "@typescript-eslint/unbound-method": [
+          "error",
+          {
+            "ignoreStatic": true
           }
         ]
       }

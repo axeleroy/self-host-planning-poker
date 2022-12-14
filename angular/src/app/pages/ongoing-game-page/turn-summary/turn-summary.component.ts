@@ -1,22 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { CurrentGameService } from '../../../services/current-game.service';
 import { PlayerState } from '../../../model/events';
-import { combineLatest, filter, map, Subscription } from 'rxjs';
+import { combineLatest, filter, map, Subscription, tap } from 'rxjs';
+import { Deck, decksDict, displayCardValue } from '../../../model/deck';
 
 @Component({
   selector: 'shpp-turn-summary',
   templateUrl: './turn-summary.component.html',
   styleUrls: [ './turn-summary.component.scss' ]
 })
-export class TurnSummaryComponent {
+export class TurnSummaryComponent implements OnDestroy {
   private subscription: Subscription;
 
+  displayCardValue = displayCardValue;
+  Number = Number;
+  round = Math.round;
+
+  deck: Deck = decksDict['FIBONACCI'];
   average = 0;
   counts: CardCount = {};
   constructor(private currentGameService: CurrentGameService) {
     this.subscription = combineLatest([this.currentGameService.state$, this.currentGameService.gameInfo$])
     .pipe(
       filter(([gameState, gameInfo]) => gameInfo !== null && gameInfo.revealed),
+      tap(([gameState, gameInfo]) => {
+        if (gameInfo) {
+          this.deck = decksDict[gameInfo.deck];
+        }
+      }),
       map(([gameState, gameInfo]) => Object.values(gameState))
     ).subscribe((playerStates: PlayerState[]) => {
       let players = playerStates.filter((state) => state.hand !== undefined && state.hand !== null);
@@ -28,6 +39,10 @@ export class TurnSummaryComponent {
           return previous;
         }, {} as CardCount)
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

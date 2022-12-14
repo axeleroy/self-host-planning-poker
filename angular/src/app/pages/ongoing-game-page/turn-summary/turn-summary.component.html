@@ -3,19 +3,19 @@
     <div class="col"></div>
     <div class="col-8 col-md-4 col-lg-4 col-xl-4">
       <div class="d-flex justify-content-center text-center">
-        <div *ngFor="let item of counts | keyvalue" class="d-flex flex-column align-items-center">
+        <div *ngFor="let item of counts | keyvalue" class="d-flex flex-column align-items-center m-3">
           <div class="card-border">
             <div class="card-value">
-              {{ item.key }}
+              {{ displayCardValue(deck, Number(item.key)) }}
             </div>
           </div>
           <p class="text-muted mt-1">{{ t('votes-label', { votes: item.value }) }}</p>
         </div>
       </div>
     </div>
-    <div class="col-4 col-md-2 col-lg-2 col-xl-2 text-center">
+    <div class="col-4 col-md-2 col-lg-2 col-xl-2 text-center mt-3">
       <p class="text-muted mb-1">{{ t('average-label') }}</p>
-      <p class="fs-4 fw-bold">{{ average }}</p>
+      <p class="fs-2 fw-bold">{{ deck.textValues ? displayCardValue(deck, round(average)) : average }}</p>
     </div>
     <div class="col"></div>
   </div>

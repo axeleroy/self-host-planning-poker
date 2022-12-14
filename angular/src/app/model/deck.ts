@@ -5,12 +5,14 @@ export interface CardValue {
 
 export interface Deck {
   name: string;
+  textValues: boolean;
   values: CardValue[];
 }
 
 export const decks: Deck[] = [
   {
     name: 'FIBONACCI',
+    textValues: false,
     values: [
       { value: 0, display: 0 },
       { value: 1, display: 1 },
@@ -27,6 +29,7 @@ export const decks: Deck[] = [
   },
   {
     name: 'MODIFIED_FIBONACCI',
+    textValues: false,
     values: [
       { value: 0, display: 0 },
       { value: 0.5, display: 0.5 },
@@ -44,6 +47,7 @@ export const decks: Deck[] = [
   },
   {
     name: 'POWERS',
+    textValues: false,
     values: [
       { value: 0, display: 0 },
       { value: 1, display: 1 },
@@ -57,6 +61,7 @@ export const decks: Deck[] = [
   },
   {
     name: 'TRUST_VOTE',
+    textValues: false,
     values: [
       { value: 0, display: 0 },
       { value: 1, display: 1 },
@@ -68,6 +73,7 @@ export const decks: Deck[] = [
   },
   {
     name: 'T_SHIRTS',
+    textValues: true,
     values: [
       { value: 1, display: 'XXS' },
       { value: 2, display: 'XS' },

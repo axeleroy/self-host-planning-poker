@@ -19,6 +19,8 @@ export class TurnSummaryComponent implements OnDestroy {
   deck: Deck = decksDict['FIBONACCI'];
   average = 0;
   counts: CardCount = {};
+  agreement = 0;
+
   constructor(private currentGameService: CurrentGameService) {
     this.subscription = combineLatest([this.currentGameService.state$, this.currentGameService.gameInfo$])
     .pipe(
@@ -30,14 +32,15 @@ export class TurnSummaryComponent implements OnDestroy {
       }),
       map(([gameState, gameInfo]) => Object.values(gameState))
     ).subscribe((playerStates: PlayerState[]) => {
-      let players = playerStates.filter((state) => state.hand !== undefined && state.hand !== null);
+      const players = playerStates.filter((state) => state.hand !== undefined && state.hand !== null);
       this.average = players.reduce((prev, current) => prev + (current.hand || 0) , 0) / players.length;
       this.counts = players.map((player) => player.hand || 0)
         .reduce((previous, current) => {
           let num = previous[current.toString()] || 0;
           previous[current.toString()] = num + 1;
           return previous;
-        }, {} as CardCount)
+        }, {} as CardCount);
+      this.agreement = Math.max(...Object.values(this.counts)) / players.length;
     });
   }
 

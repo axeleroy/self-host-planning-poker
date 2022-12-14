@@ -46,6 +46,7 @@
   },
   "turnSummary": {
     "average-label": "Average:",
+    "agreement-label": "Agreement:",
     "votes-label": "{{votes}} Votes"
   },
   "buttons": {

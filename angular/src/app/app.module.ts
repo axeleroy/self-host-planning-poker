@@ -18,7 +18,7 @@ import { CardPickerComponent } from './pages/ongoing-game-page/card-picker/card-
 import { PickableCardComponent } from './pages/ongoing-game-page/card-picker/card/pickable-card.component';
 import { CardTableComponent } from './pages/ongoing-game-page/card-table/card-table.component';
 import { PlayerHandComponent } from './pages/ongoing-game-page/card-table/player-hand/player-hand.component';
-import { ToastsContainer } from './services/toast/toast-container.component';
+import { ToastsContainerComponent } from './services/toast/toast-container.component';
 import { SetUsernamePageComponent } from './pages/set-username-page/set-username-page.component';
 import { PlayerNameFormComponent } from './components/forms/player-name-form/player-name-form.component';
 import { TurnSummaryComponent } from './pages/ongoing-game-page/turn-summary/turn-summary.component';
@@ -37,7 +37,7 @@ import { TurnSummaryComponent } from './pages/ongoing-game-page/turn-summary/tur
     PickableCardComponent,
     CardTableComponent,
     PlayerHandComponent,
-    ToastsContainer,
+    ToastsContainerComponent,
     SetUsernamePageComponent,
     PlayerNameFormComponent,
     TurnSummaryComponent

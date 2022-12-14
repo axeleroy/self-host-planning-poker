@@ -44,3 +44,17 @@ jobs:
       -
         name: Run tests
         run: cd angular; npm i; CHROMIUM_BIN=$(which chrome) npm test
+  frontend-lint:
+    name: Front-end linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3.5.1
+        with:
+          node-version: 16
+          cache: 'npm'
+          cache-dependency-path: angular/package-lock.json
+      - name: Run linting
+        run: cd angular; npm i; npm lint

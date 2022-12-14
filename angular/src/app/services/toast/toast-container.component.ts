@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { ToastService } from './toast.service';
 
 
@@ -15,9 +15,10 @@ import { ToastService } from './toast.service';
 			{{ toast.text }}
 		</ngb-toast>
 	`,
-	host: { class: 'toast-container position-fixed top-0 end-0 p-3', style: 'z-index: 1200' },
 })
-export class ToastsContainer {
-	constructor(public toastService: ToastService) {}
+export class ToastsContainerComponent {
+  @HostBinding('class') classAttr = 'toast-container position-fixed top-0 end-0 p-3';
+  @HostBinding('style') styleAttr = 'z-index: 1200';
 
+	constructor(public toastService: ToastService) {}
 }

@@ -9,13 +9,10 @@ import { Router } from '@angular/router';
   templateUrl: './new-game-page.component.html',
   styleUrls: [ './new-game-page.component.scss' ]
 })
-export class NewGamePageComponent implements OnInit {
+export class NewGamePageComponent {
 
   constructor(private http: HttpClient,
               private router: Router) { }
-
-  ngOnInit(): void {
-  }
 
   onNewGame(newGame: {name: string, deck: Deck}): void {
     const body = {

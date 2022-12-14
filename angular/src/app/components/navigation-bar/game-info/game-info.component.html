@@ -23,7 +23,7 @@
     <shpp-game-form
       [name]="currentGameInfo?.name"
       [deck]="currentGameInfo?.deck"
-      (result)="offcanvas.close($event)">
+      (gameOutput)="offcanvas.close($event)">
     </shpp-game-form>
   </div>
 </ng-template>

@@ -24,7 +24,7 @@ export class PlayerNameFormComponent {
   }
 
   setUsername(): void {
-    let username = this.formGroup.get('username')?.value;
+    const username = this.formGroup.get('username')?.value;
     this.userInformation.setName(username);
     this.validated.emit();
   }

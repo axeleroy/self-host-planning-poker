@@ -18,12 +18,12 @@ export class GameFormComponent implements OnInit{
   name?: string;
   @Input()
   deck?: string;
-  @Output() result = new EventEmitter<{name: string, deck: Deck}>();
+  @Output() gameOutput = new EventEmitter<{name: string, deck: Deck}>();
 
   constructor(private fb: FormBuilder) {
     this.formGroup = this.fb.group({
-      name: [ '', [Validators.required, Validators.minLength(1)]],
-      deck: [ decksDict['FIBONACCI'], Validators.required]
+      name: [ '', [ Validators.required, Validators.minLength(1) ]],
+      deck: [ decksDict['FIBONACCI'], Validators.required ]
     });
   }
 
@@ -37,7 +37,7 @@ export class GameFormComponent implements OnInit{
   }
 
   validate(): void {
-    this.result.emit(this.formGroup?.getRawValue());
+    this.gameOutput.emit(this.formGroup?.getRawValue());
   }
 
   isNewGame(): boolean {

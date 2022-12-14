@@ -1,10 +1,10 @@
-<div class="container card-table">
+<div class="container flex-grow-1 d-flex justify-content-evenly flex-wrap align-items-center">
   <shpp-player-hand *ngFor="let player of state | keyvalue"
                     [playerState]="player.value"
                     [deck]="deck">
   </shpp-player-hand>
 </div>
-<div class="buttons mb-2" *transloco="let t; read 'buttons'">
+<div class="d-flex justify-content-center mb-2" *transloco="let t; read 'buttons'">
   <button class="btn btn-primary m-2 ms-0" (click)="revealCards()" [disabled]="!canReveal" >{{ t('reveal') }}</button>
   <button class="btn btn-primary m-2" (click)="endTurn()" [disabled]="canReveal">{{ t('newTurn') }}</button>
 </div>

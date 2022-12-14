@@ -18,8 +18,8 @@ It features:
   * Multiple deck types: Fibonacci, modified Fibonacci, T-Shirt sizes, powers of 2 and trust vote (0 to 5)
   * Spectator mode
   * Responsive layout
-  * _Coming soon<sup>TM</sup>_:
-    * Vote summary
+  * Vote summary
+* _Coming soon<sup>TM</sup>_:
     * Translations
  
 It does not have fancy features like issues management, Jira integration or timers.

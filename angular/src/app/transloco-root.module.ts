@@ -9,6 +9,7 @@ import {
 } from '@ngneat/transloco';
 import { Injectable, NgModule } from '@angular/core';
 import { environment } from '../environments/environment';
+import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 
 @Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {
@@ -20,6 +21,12 @@ export class TranslocoHttpLoader implements TranslocoLoader {
 }
 
 @NgModule({
+  imports: [ TranslocoLocaleModule.forRoot({
+    langToLocaleMapping: {
+      en: 'en-US',
+      fr: 'fr-FR'
+    }
+  }) ],
   exports: [ TranslocoModule ],
   providers: [
     {

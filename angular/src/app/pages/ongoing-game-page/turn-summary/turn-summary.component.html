@@ -14,9 +14,15 @@
     </div>
     <div class="col col-md-2 col-lg-2 col-xl-2 text-center">
       <p class="text-muted mb-1">{{ t('average-label') }}</p>
-      <p class="fs-2 fw-bold">{{ deck.textValues ? displayCardValue(deck, round(average)) : average.toPrecision(1) }}</p>
+      <p class="fs-2 fw-bold">
+        {{
+        deck.textValues
+        ? displayCardValue(deck, round(average))
+        : (average | translocoDecimal: { maximumFractionDigits: 1 })
+        }}
+      </p>
       <p class="text-muted mb-1">{{ t('agreement-label') }}</p>
-      <p class="fs-2 fw-bold">{{ agreement | percent }}</p>
+      <p class="fs-2 fw-bold">{{ agreement | translocoPercent: { maximumFractionDigits: 0 } }}</p>
     </div>
   </div>
 </div>

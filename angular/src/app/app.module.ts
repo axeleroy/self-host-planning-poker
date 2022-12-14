@@ -22,6 +22,7 @@ import { ToastsContainerComponent } from './services/toast/toast-container.compo
 import { SetUsernamePageComponent } from './pages/set-username-page/set-username-page.component';
 import { PlayerNameFormComponent } from './components/forms/player-name-form/player-name-form.component';
 import { TurnSummaryComponent } from './pages/ongoing-game-page/turn-summary/turn-summary.component';
+import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { TurnSummaryComponent } from './pages/ongoing-game-page/turn-summary/tur
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    TranslocoRootModule
+    TranslocoRootModule,
+    TranslocoLocaleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

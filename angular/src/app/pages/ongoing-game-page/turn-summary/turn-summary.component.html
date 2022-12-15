@@ -4,11 +4,11 @@
       <div class="d-flex flex-wrap justify-content-center text-center">
         <div *ngFor="let item of counts | keyvalue: valueDescOrder; index as i" class="d-flex flex-column align-items-center m-3">
           <div class="card-border" [class.muted]="i > 0">
-            <div class="card-value" [class.text-muted]="i > 0" [class.fw-bold]="i == 0">
+            <div class="card-value" [class.text-muted]="i > 0" [class.fw-bold]="i === 0">
               {{ displayCardValue(deck, Number(item.key)) }}
             </div>
           </div>
-          <p class="mt-1" [class.text-muted]="i > 0" [class.fw-bold]="i == 0">
+          <p class="mt-1" [class.text-muted]="i > 0" [class.fw-bold]="i === 0">
             {{ t('votes-label', { votes: item.value }) }}
           </p>
         </div>

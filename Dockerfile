@@ -8,7 +8,7 @@ RUN mkdir -p /dist
 RUN cp -R dist/self-host-planning-poker/assets/* /dist
 RUN cp dist/self-host-planning-poker/*.* /dist
 
-FROM python:3.10-slim
+FROM python:3.11-slim
 WORKDIR /app
 COPY flask/ ./
 COPY --from=node_builder /dist ./static

@@ -11,6 +11,6 @@ RUN cp dist/self-host-planning-poker/*.* /dist
 FROM python:3.11-slim
 WORKDIR /app
 COPY flask/ ./
-COPY --from=node_builder /dist ./static
 RUN pip install -r requirements.txt
+COPY --from=node_builder /dist ./static
 CMD [ "gunicorn", "--worker-class", "eventlet", "-w", "1", "app:app", "--bind", "0.0.0.0:8000" ]

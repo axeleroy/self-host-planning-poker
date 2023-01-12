@@ -6,7 +6,7 @@ eventlet==0.33.1
 Flask==2.2.2
 Flask-Cors==3.0.10
 Flask-SocketIO==5.2.0
-greenlet==1.1.3
+greenlet==2.0.1
 # Still no point release containing PR #2581
 # see https://github.com/benoitc/gunicorn/pull/2581
 https://github.com/benoitc/gunicorn/archive/ff58e0c6da83d5520916bc4cc109a529258d76e1.zip#egg=gunicorn==20.1.0

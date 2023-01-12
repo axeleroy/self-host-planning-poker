@@ -29,7 +29,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           tags: axeleroy/self-host-planning-poker:development,axeleroy/self-host-planning-poker:${{ steps.vars.outputs.short_sha }}
           # See https://docs.docker.com/build/ci/github-actions/examples/#github-cache
           cache-from: type=gha

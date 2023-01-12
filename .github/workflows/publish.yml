@@ -28,3 +28,6 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: axeleroy/self-host-planning-poker:latest,axeleroy/self-host-planning-poker:${{ github.ref_name }}
+          # See https://docs.docker.com/build/ci/github-actions/examples/#github-cache
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

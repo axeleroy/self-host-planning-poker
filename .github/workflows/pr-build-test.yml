@@ -1,4 +1,4 @@
-name: Docker publish development versions
+name: Docker build PR
 
 on:
   pull_request:

@@ -2,7 +2,7 @@
   <form [formGroup]="formGroup">
     <div class="mb-3">
       <label [for]="nameInput" class="form-label">{{ t('name-label') }}</label>
-      <input type="text" class="form-control" formControlName="name" #nameInput>
+      <input type="text" class="form-control" formControlName="name" [placeholder]="t('name-placeholder')" #nameInput>
     </div>
     <div class="mb-3">
       <label [for]="deckSelect" class="form-label">{{ t('deck-label') }}</label>

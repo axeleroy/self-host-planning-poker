@@ -7,8 +7,7 @@
     "playerInfo": {
       "spectator": "Spectator",
       "actions": {
-        "setPlayer": "Set Player",
-        "editPlayerName": "Edit player name"
+        "editPlayerName": "Edit your name"
       },
       "cancel": "{{buttons.cancel}}"
     },
@@ -22,6 +21,7 @@
   },
   "gameForm": {
     "name-label": "Game's name",
+    "name-placeholder": "Backlog Review Team Pizza",
     "deck-label": "Game's deck",
     "createButton-label": "Create new game",
     "updateButton-label": "{{buttons.update}}"
@@ -70,8 +70,8 @@
   "errors": {
     "disconnect": "Disconnected from game. Reason: \"{{reason}}\". Will reconnect in {{delay}}s...",
     "4001": "You have selected a deck that does not exist.",
-    "4002": "Somehow, you are trying to do an action while this game is not ongoing.",
-    "4003": "Somehow, you are trying to do an action while you are not part of this game.",
+    "4002": "Somehow, you are trying to do an action on a game that is not ongoing.",
+    "4003": "Somehow, you are trying to do an action on a game you are not part of.",
     "4004": "This game does not exist.",
     "4005": "The card you have picked is not an acceptable value of the current deck.",
     "4006": "You are a spectator, you should not be able to pick a card."

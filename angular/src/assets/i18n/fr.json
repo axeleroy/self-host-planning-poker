@@ -1,9 +1,27 @@
 {
   "navbar": {
-    "appTitle": "Self-Host Planning Poker"
+    "appTitle": "Self-Host Planning Poker",
+    "playerInfo": {
+      "spectator": "Spectateur",
+      "actions": {
+        "editPlayerName": "Modifier votre nom"
+      },
+      "cancel": "{{buttons.cancel}}"
+    },
+    "gameInfo": {
+      "editTitle": "Modifier la partie",
+      "cancel": "{{buttons.cancel}}"
+    },
+    "gameName": {
+      "copy-toast": "Le lien de la partie a été copié dans le presse-papier"
+    }
   },
   "gameForm": {
-    "createButton-label": "Créer une nouvelle partie"
+    "name-label": "Nom de la partie",
+    "name-placeholder": "Backlog Review Équipe Pizza",
+    "deck-label": "Deck de la partie",
+    "createButton-label": "Créer une nouvelle partie",
+    "updateButton-label": "{{buttons.update}}"
   },
   "deckNames": {
     "FIBONACCI": "Fibonacci",
@@ -12,12 +30,53 @@
     "TRUST_VOTE": "Vote de confiance",
     "T_SHIRTS": "Tailles de t-shirt"
   },
+  "ongoingGame": {
+    "page-title": "Planning Poker {{gameName}}"
+  },
+  "setUsername": {
+    "page-title": "Veuillez saisir votre nom avant de rejoindre la partie"
+  },
+  "playerName-form": {
+    "username-placeholder": "Paul",
+    "joinButton-label": "Rejoindre la partie",
+    "updateButton-label": "{{buttons.update}}"
+  },
+  "turnSummary": {
+    "average-label": "Moyenne :",
+    "agreement-label": "Entente :",
+    "votes-label": "{{votes}} Votes"
+  },
   "buttons": {
     "edit": "Modifier",
-    "toggleSpectator": "Basculer"
+    "save": "Sauvegarder",
+    "cancel": "Annuler",
+    "update": "Mettre à jour",
+    "reveal": "Révéler les cartes",
+    "newTurn": "Nouveau tour",
+    "link": "Copier le lien de la partie"
   },
   "playerState": {
     "spectator": "Spectateur",
     "player": "Joueur"
+  },
+  "footer": {
+    "github": "GitHub",
+    "dockerhub": "DockerHub",
+    "license": "Licence"
+  },
+  "errors": {
+    "disconnect": "Déconnecté du jeu. Raison: \"{{reason}}\". Reconnection dans {{delay}}s...",
+    "4001": "Vous avez sélectionné un deck qui n'existe pas.",
+    "4002": "Curieusement, vous essayez de réaliser une action sur une partie qui n'est pas en cours.",
+    "4003": "Curieusement, vous essayez de réaliser une action sur une partie dans laquelle vous n'êtes pas.",
+    "4004": "Cette partie n'existe pas.",
+    "4005": "La carte que vous avez pioché n'est pas une valeur acceptée du deck.",
+    "4006": "Vous êtes un spectateur, vous ne devriez pas pouvoir sélectionner une carte."
+  },
+  "reconnect": {
+    "attempt": "Connection perdue. Tentative de reconnection... ({{attempt}}/{{total}})",
+    "error": "Échec de la tentative de reconnection. Raison: \"{{error}}\".",
+    "failed": "Impossible de se reconnecter après {{attempts}} tentatives.",
+    "success": "Reconnection réussie après {{attempts}} tentatives."
   }
 }

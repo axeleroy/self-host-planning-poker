@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { getBrowserCultureLang, getBrowserLang, TranslocoService } from '@ngneat/transloco';
+import { TranslocoLocaleService } from '@ngneat/transloco-locale';
 
 @Component({
   selector: 'shpp-root',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  constructor(private transloco: TranslocoService,
+              private translocoLocale: TranslocoLocaleService) {
+    transloco.setActiveLang(getBrowserLang() || 'en');
+    translocoLocale.setLocale(getBrowserCultureLang())
+  }
 }

@@ -1,4 +1,4 @@
-FROM node:lts-slim AS node_builder
+FROM --platform=$BUILDPLATFORM node:lts-slim AS node_builder
 WORKDIR /angular
 COPY angular/ /angular
 RUN npm i

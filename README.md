@@ -19,8 +19,7 @@ It features:
   * Spectator mode
   * Responsive layout
   * Vote summary
-* _Coming soon<sup>TM</sup>_:
-    * Translations
+  * Translations _(French, English. [PR welcome!](https://github.com/axeleroy/self-host-planning-poker/pulls))_
  
 It does not have fancy features like issues management, Jira integration or timers.
 

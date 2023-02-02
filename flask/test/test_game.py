@@ -228,15 +228,15 @@ class GameTestCase(unittest.TestCase):
     def test_state_when_revealed_is_true(self):
         game = Game('PBR Team Pizza')
         player_1 = Mock()
-        player1_state = {'name': 'John', 'spectator': False, 'hand': 3}
+        player1_state = {'name': 'John', 'spectator': False, 'hand': 3, 'hasPicked': True}
         player_1.configure_mock(**{'state_with_hand.return_value': player1_state})
         game.player_joins('j', player_1)
         player_2 = Mock()
-        player2_state = {'name': 'Peter', 'spectator': False, 'hasPicked': None}
+        player2_state = {'name': 'Peter', 'spectator': False, 'hand': None, 'hasPicked': False}
         player_2.configure_mock(**{'state_with_hand.return_value': player2_state})
         game.player_joins('p', player_2)
         spectator_1 = Mock()
-        spectator1_state = {'name': 'Daisy', 'spectator': True, 'hasPicked': None}
+        spectator1_state = {'name': 'Daisy', 'spectator': True, 'hand': None, 'hasPicked': False}
         spectator_1.configure_mock(**{'state_with_hand.return_value': spectator1_state})
         game.player_joins('d', spectator_1)
 

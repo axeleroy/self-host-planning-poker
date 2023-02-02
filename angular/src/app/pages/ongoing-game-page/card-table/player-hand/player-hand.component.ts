@@ -12,4 +12,7 @@ export class PlayerHandComponent {
   @Input() deck?: Deck;
 
   displayCardValue = displayCardValue;
+  isNan(input: any) {
+    return Number.isNaN(Number(input));
+  }
 }

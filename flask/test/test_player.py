@@ -51,12 +51,12 @@ class PlayerTestCase(unittest.TestCase):
     def test_state_with_hand(self):
         name1 = "John"
         player1 = Player(name1, False)
-        self.assertEqual(player1.state_with_hand(), {'name': name1, 'spectator': False, 'hand': None})
+        self.assertEqual(player1.state_with_hand(), {'name': name1, 'spectator': False, 'hand': None, 'hasPicked': False})
         player1.set_hand(3)
-        self.assertEqual(player1.state_with_hand(), {'name': name1, 'spectator': False, 'hand': 3})
+        self.assertEqual(player1.state_with_hand(), {'name': name1, 'spectator': False, 'hand': 3, 'hasPicked': True})
         name2 = "Peter"
         player2 = Player(name2, True)
-        self.assertEqual(player2.state_with_hand(), {'name': name2, 'spectator': True, 'hand': None})
+        self.assertEqual(player2.state_with_hand(), {'name': name2, 'spectator': True, 'hand': None, 'hasPicked': False})
 
 
 if __name__ == '__main__':

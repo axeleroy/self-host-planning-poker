@@ -2,9 +2,9 @@
   <div class="d-flex flex-column align-items-center m-2 m-sm-5">
     <div class="card-border"
          [class.card-disabled]="playerState.spectator"
-         [class.picked]="playerState.hasPicked"
-         [class.dashed]="playerState.spectator || (!playerState.hand && !playerState.hasPicked)">
-      <div class="card-value" *ngIf="playerState.hand && deck">
+         [class.face-down]="playerState.hasPicked && playerState.hand === undefined"
+         [class.dashed]="playerState.spectator || !playerState.hasPicked">
+      <div class="card-value" *ngIf="playerState.hand !== undefined && deck">
         {{ displayCardValue(deck, playerState.hand) }}
       </div>
       <div class="card-value" *ngIf="playerState.spectator">

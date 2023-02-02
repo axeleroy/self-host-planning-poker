@@ -37,5 +37,6 @@ class Player:
         return {
             'name': self.name,
             'spectator': self.spectator,
-            'hand': self.__hand
+            'hand': self.__hand,
+            'hasPicked': self.has_picked_card()
         }

@@ -36,14 +36,14 @@ export class TurnSummaryComponent implements OnDestroy {
       map(([gameState]) => Object.values(gameState))
     ).subscribe((playerStates: PlayerState[]) => {
       const players = playerStates.filter((state) => state.hand !== undefined && state.hand !== null);
-      this.average = players.reduce((prev, current) => prev + (current.hand || 0) , 0) / players.length;
+      this.average = players.reduce((prev, current) => prev + (current.hand || 0) , 0) / players.length || 0;
       this.counts = players.map((player) => player.hand || 0)
         .reduce((previous, current) => {
           let num = previous[current.toString()] || 0;
           previous[current.toString()] = num + 1;
           return previous;
         }, {} as CardCount);
-      this.agreement = Math.max(...Object.values(this.counts)) / players.length;
+      this.agreement = Math.max(0, ...Object.values(this.counts)) / players.length || 0;
     });
   }
 

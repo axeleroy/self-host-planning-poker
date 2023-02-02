@@ -1,14 +1,12 @@
 import { Component, OnDestroy } from '@angular/core';
 import { CurrentGameService } from '../../../services/current-game.service';
-import { CardValue, Deck, decksDict } from '../../../model/deck';
-import { filter, Subscription } from 'rxjs';
-import { GameInfo } from '../../../model/events';
+import { CardValue, Deck } from '../../../model/deck';
+import { Subscription } from 'rxjs';
 import { UserInformationService } from '../../../services/user-information.service';
 
 @Component({
   selector: 'shpp-card-picker',
-  templateUrl: './card-picker.component.html',
-  styleUrls: [ './card-picker.component.scss' ]
+  templateUrl: './card-picker.component.html'
 })
 export class CardPickerComponent implements OnDestroy {
   deck?: Deck

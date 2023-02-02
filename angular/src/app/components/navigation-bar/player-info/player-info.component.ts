@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserInformationService } from '../../../services/user-information.service';
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute, Data, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
 
 @Component({

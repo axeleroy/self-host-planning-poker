@@ -47,6 +47,18 @@ export class TurnSummaryComponent implements OnDestroy {
     });
   }
 
+  agreementClass(): string {
+    if (this.agreement === 0) {
+      return '';
+    } else if (this.agreement < .5) {
+      return 'text-danger';
+    } else if (this.agreement < .7) {
+      return 'text-warning';
+    } else {
+      return 'text-success';
+    }
+  }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

@@ -24,7 +24,7 @@
         }}
       </p>
       <p class="text-muted mb-1">{{ t('agreement-label') }}</p>
-      <p class="fs-2 fw-bold">{{
+      <p class="fs-2 fw-bold" [ngClass]="agreementClass()">{{
         agreement === 0 ? '−' : agreement | translocoPercent: { maximumFractionDigits: 0 }
         }}</p>
     </div>

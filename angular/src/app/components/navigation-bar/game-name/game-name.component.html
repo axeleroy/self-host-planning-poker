@@ -5,7 +5,7 @@
   <ng-container *ngIf="currentGameInfo; else brandingContent">
     <div class="fs-4">
       {{ currentGameInfo.name }}
-      <button class="btn btn-light btn-sm"
+      <button class="btn btn-outline-light btn-sm"
               *transloco="let t"
               [attr.aria-label]="t('buttons.link')"
               [ngbTooltip]="t('buttons.link')"

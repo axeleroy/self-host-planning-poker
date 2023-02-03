@@ -1,0 +1,7 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+nav {
+  border-bottom: 1px solid $gray-400;
+  box-shadow: 0 0 10px 0 $gray-400;
+}

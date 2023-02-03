@@ -12,7 +12,7 @@
   <div>
     {{ userInformation.getName() }}
     <div class="btn-group mx-2" *transloco="let t">
-      <button class="btn btn-light btn-sm"
+      <button class="btn btn-outline-light btn-sm"
               [attr.aria-label]="t('buttons.edit')"
               [ngbTooltip]="t('navbar.playerInfo.actions.editPlayerName')"
               placement="bottom"
@@ -24,8 +24,8 @@
     </div>
   </div>
 
-  <div class="form-check form-switch form-check-reverse" *transloco="let t">
-    <input class="form-check-input" type="checkbox" id="spectator-checkbox"
+  <div class="form-check form-switch form-check-reverse mt-1" *transloco="let t">
+    <input class="form-check-input" type="checkbox" role="switch" id="spectator-checkbox"
            [checked]="userInformation.isSpectator()"
            (change)="toggleSpectator()">
     <label class="form-check-label text-muted" for="spectator-checkbox">

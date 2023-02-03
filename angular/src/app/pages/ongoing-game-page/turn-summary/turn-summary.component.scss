@@ -1,7 +1,10 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
 .card-border {
   height: 75px;
   &.muted {
-    outline-color: gray;
+    outline-color: $gray-600;
     outline-width: 2px;
   }
 }

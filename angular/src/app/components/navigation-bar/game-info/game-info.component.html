@@ -2,7 +2,7 @@
   <ng-container *ngIf="currentGameInfo">
     <span class="text-muted" *transloco="let n; read 'deckNames'">{{ n(currentGameInfo.deck) }}</span>
   </ng-container>
-  <button class="btn btn-light btn-sm mx-2"
+  <button class="btn btn-outline-light btn-sm mx-2"
           [attr.aria-label]="t('edit')"
           [ngbTooltip]="t('edit')"
           placement="bottom"

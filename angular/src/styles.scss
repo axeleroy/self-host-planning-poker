@@ -1,17 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* Importing Bootstrap SCSS file. */
+$primary: #198754;
+$enable-shadows: true;
+
+  /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+:root {
+  --card-color: #{$green-500};
+}
+
+.bg-primary {
+  background-color: $green-400 !important;
+  color: white !important;
+  .text-muted {
+    color: $gray-400 !important;
+  }
+}
+
+.btn-sm {
+  display: inline-flex;
+  align-items: center;
+  height: 1.8rem;
+}
 
 .card-border  {
   aspect-ratio: 64 / 89;
   height: 100px;
-  outline: 3px cornflowerblue solid;
+  outline: 3px var(--card-color) solid;
   outline-offset: -3px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: $body-bg;
+  box-shadow: 0 0 10px 0 $gray-300;
 
   transition: 200ms ease-in-out;
 }
@@ -22,9 +45,9 @@
 }
 
 .card-disabled {
-  background: lightgrey;
-  outline-color: grey;
-  color: grey;
+  background: $gray-200;
+  outline-color: $gray-600;
+  color: $gray-700;
 }
 
 .svh-100 {

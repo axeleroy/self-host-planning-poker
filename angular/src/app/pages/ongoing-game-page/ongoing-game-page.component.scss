@@ -11,3 +11,7 @@
   border-top: 1px solid $gray-100;
   box-shadow: 0 0 10px 0 $gray-300;
 }
+
+shpp-turn-summary, shpp-card-picker {
+  min-height: 250px;
+}

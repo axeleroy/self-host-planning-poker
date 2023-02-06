@@ -4,7 +4,7 @@
                     [deck]="deck">
   </shpp-player-hand>
 </div>
-<div class="d-flex justify-content-center mb-2" *transloco="let t; read 'buttons'">
+<div class="d-flex justify-content-center mb-4" *transloco="let t; read 'buttons'">
   <button class="btn btn-primary m-2 ms-0" (click)="revealCards()" [disabled]="!canReveal" >{{ t('reveal') }}</button>
   <button class="btn btn-primary m-2" (click)="endTurn()" [disabled]="canReveal">{{ t('newTurn') }}</button>
 </div>

@@ -45,4 +45,7 @@ export class CardTableComponent implements OnDestroy {
     this.deckSubscription.unsubscribe();
   }
 
+  getId(item: any): string {
+    return item.key;
+  }
 }

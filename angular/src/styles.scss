@@ -3,7 +3,7 @@
 $primary: #198754;
 $enable-shadows: true;
 
-  /* Importing Bootstrap SCSS file. */
+/* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
 :root {
@@ -34,9 +34,11 @@ $enable-shadows: true;
   align-items: center;
   justify-content: center;
   background-color: $body-bg;
-  box-shadow: 0 0 10px 0 $gray-300;
+  transition: transform 200ms ease-in-out, background-color 100ms ease-in, outline-color 100ms ease-in;
 
-  transition: 200ms ease-in-out;
+  &:not(.card-disabled, .dashed) {
+    box-shadow: 0 0 15px 0 $gray-400;
+  }
 }
 
 .card-value {

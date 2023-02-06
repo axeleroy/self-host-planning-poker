@@ -1,5 +1,5 @@
 <div class="container flex-grow-1 d-flex justify-content-evenly flex-wrap align-items-center">
-  <shpp-player-hand *ngFor="let player of state | keyvalue"
+  <shpp-player-hand *ngFor="let player of (state | keyvalue); trackBy: getId"
                     [playerState]="player.value"
                     [deck]="deck">
   </shpp-player-hand>

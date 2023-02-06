@@ -8,9 +8,7 @@ import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'shpp-game-name',
-  templateUrl: './game-name.component.html',
-  styles: [
-  ]
+  templateUrl: './game-name.component.html'
 })
 export class GameNameComponent implements OnDestroy {
 

@@ -56,3 +56,9 @@ $enable-shadows: true;
   height: 100vh;
   height: 100svh;
 }
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

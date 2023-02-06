@@ -3,20 +3,18 @@
     <span class="fs-4">{{ t('appTitle') }}</span>
   </ng-template>
   <ng-container *ngIf="currentGameInfo; else brandingContent">
-    <div class="fs-4">
-      {{ currentGameInfo.name }}
-      <button class="btn btn-outline-light btn-sm"
-              *transloco="let t"
-              [attr.aria-label]="t('buttons.link')"
-              [ngbTooltip]="t('buttons.link')"
-              placement="bottom"
-              (click)="copyLink()"
-      >
-        <svg class="bi bi-link-45deg" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-          <use xlink:href="assets/bootstrap-icons.svg#link-45deg"/>
-        </svg>
-      </button>
-    </div>
+    <span class="fs-4 ellipsis">{{ currentGameInfo.name }}&nbsp;</span>
+    <button class="btn btn-outline-light btn-sm"
+            *transloco="let t"
+            [attr.aria-label]="t('buttons.link')"
+            [ngbTooltip]="t('buttons.link')"
+            placement="bottom"
+            (click)="copyLink()"
+    >
+      <svg class="bi bi-link-45deg" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+        <use xlink:href="assets/bootstrap-icons.svg#link-45deg"/>
+      </svg>
+    </button>
   </ng-container>
 </ng-container>
 

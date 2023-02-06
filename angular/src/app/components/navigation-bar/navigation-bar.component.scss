@@ -1,7 +1,19 @@
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 
 nav {
   border-bottom: 1px solid $gray-400;
   box-shadow: 0 0 10px 0 $gray-400;
+}
+
+.min-w {
+  min-width: 0;
+}
+
+.icon {
+  height: 38px;
+  @include media-breakpoint-up(sm) {
+    height: 48px;
+  }
 }

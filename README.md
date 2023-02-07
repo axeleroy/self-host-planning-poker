@@ -19,7 +19,7 @@ It features:
   * Spectator mode
   * Responsive layout
   * Vote summary
-  * Translations _(French, English. [PR welcome!](https://github.com/axeleroy/self-host-planning-poker/pulls))_
+  * Translations _(French, English. [Contributions welcome!](#getting-involved))_
  
 It does not have fancy features like issues management, Jira integration or timers.
 
@@ -64,6 +64,11 @@ Just open a Pull Request mentioning the linked issue and we'll take a look at it
 ### I'm a user and I need help / I encountered a bug / I have a feature request
 
 [Open an issue](https://github.com/axeleroy/self-host-planning-poker/issues/new) and we'll take a look at it.
+
+### I'm a user and want to contribute translations
+
+We have a [Crowdin project](https://crowdin.com/project/self-host-planning-poker) that lets you add translations for
+your language. If your language is not available, feel free to contact me over Crowdin.
 
 ## Development
 

@@ -10,6 +10,16 @@ $enable-shadows: true;
   --card-color: #{$green-500};
 }
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: $gray-800;
+    color: white;
+  }
+  .offcanvas {
+    background-color: $gray-900;
+  }
+}
+
 .bg-primary {
   background-color: $green-400 !important;
   color: white !important;
@@ -39,6 +49,14 @@ $enable-shadows: true;
   &:not(.card-disabled, .dashed) {
     box-shadow: 0 0 15px 0 $gray-400;
   }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: $gray-800;
+    color: white;
+    &:not(.card-disabled, .dashed) {
+      box-shadow: 0 0 15px 0 $gray-800;
+    }
+  }
 }
 
 .card-value {
@@ -50,6 +68,10 @@ $enable-shadows: true;
   background: $gray-200;
   outline-color: $gray-600;
   color: $gray-700;
+  @media (prefers-color-scheme: dark) {
+    background: $gray-800;
+    color: $gray-600;
+  }
 }
 
 .svh-100 {

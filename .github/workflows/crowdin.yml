@@ -20,6 +20,8 @@ jobs:
           upload_language: 'en'
           upload_translations: true
           download_translations: true
+          skip_untranslated_files: true
+          export_only_approved: true
           localization_branch_name: l10n_crowdin_translations
           config: 'crowdin.yml'
           create_pull_request: true

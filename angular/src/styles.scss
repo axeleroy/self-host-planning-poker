@@ -4,7 +4,7 @@ $primary: #198754;
 $enable-shadows: true;
 
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/bootstrap';
 
 :root {
   --card-color: #{$green-500};

@@ -12,7 +12,10 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: haya14busa/action-workflow_run-status@v1
+      -
+        name: Update commit status
+        uses: haya14busa/action-workflow_run-status@v1
+        if: ${{ github.event_name == 'workflow_run' }}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2

@@ -3,8 +3,12 @@
 A hassle-free Planning Poker application to deploy on your NAS.
 
 [![Docker Hub](https://img.shields.io/docker/v/axeleroy/self-host-planning-poker?sort=semver&logo=docker)](https://hub.docker.com/r/axeleroy/self-host-planning-poker/tags)
-[![GitHub last commit](https://img.shields.io/github/last-commit/axeleroy/self-host-planning-poker?logo=github&logoColor=959DA5)](https://github.com/axeleroy/self-host-planning-poker/commits/main)
+[![Docker Hub](https://img.shields.io/docker/pulls/axeleroy/self-host-planning-poker?logo=docker)](https://hub.docker.com/r/axeleroy/self-host-planning-poker/tags)
+[![GitHub release](https://img.shields.io/github/v/release/axeleroy/self-host-planning-poker?logo=github&logoColor=959DA5)](https://github.com/axeleroy/self-host-planning-poker/packages)
+[![GitHub release](https://img.shields.io/github/downloads/axeleroy/self-host-planning-poker/total?color=%230b7cbc&logo=github&logoColor=959DA5)](https://github.com/axeleroy/self-host-planning-poker/packages)
+
 [![License](https://img.shields.io/github/license/axeleroy/self-host-planning-poker?logo=github&logoColor=959DA5)](https://github.com/axeleroy/self-host-planning-poker/blob/main/LICENSE)
+[![GitHub last commit](https://img.shields.io/github/last-commit/axeleroy/self-host-planning-poker?logo=github&logoColor=959DA5)](https://github.com/axeleroy/self-host-planning-poker/commits/main)
 [![Tests](https://github.com/axeleroy/self-host-planning-poker/actions/workflows/tests.yml/badge.svg)](https://github.com/axeleroy/self-host-planning-poker/actions/workflows/tests.yml)
 [![Docker build](https://github.com/axeleroy/self-host-planning-poker/actions/workflows/publish.yml/badge.svg)](https://github.com/axeleroy/self-host-planning-poker/actions/workflows/publish.yml)
 
@@ -37,7 +41,7 @@ All you need is to create a volume to persist the games settings (ID, name and d
 docker run \
   -v planning-poker-data:/data \
   -p 8000:8000 \
-  axeleroy/self-host-planning-poker:latest
+  ghcr.io/axeleroy/self-host-planning-poker:latest
 ```
 
 ### docker-compose
@@ -45,7 +49,7 @@ docker run \
 version: "3"
 services:
   planning-poker:
-    image: axeleroy/self-host-planning-poker:latest
+    image: ghcr.io/axeleroy/self-host-planning-poker:latest
     ports:
       - 8000:8000
     volumes:

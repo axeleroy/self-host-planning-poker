@@ -46,7 +46,7 @@ def catch_all(path):
 
 @app.route('/favicon.ico')
 def serve_icon():
-    return app.send_static_file('favicon.ico')
+    return app.send_static_file('favicon/favicon.ico')
 
 
 @app.route('/assets/<path:path>')

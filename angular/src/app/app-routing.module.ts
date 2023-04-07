@@ -9,6 +9,11 @@ import { SetUsernamePageComponent } from './pages/set-username-page/set-username
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'new',
+    pathMatch: 'full'
+  },
+  {
+    path: 'new',
     component: NewGamePageComponent,
     title: 'Self-Host Planning Poker'
   },

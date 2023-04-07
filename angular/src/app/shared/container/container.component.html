@@ -1,0 +1,9 @@
+<div class="d-flex flex-column svh-100">
+  <shpp-navigation-bar>
+    <ng-content select="[navbar]"></ng-content>
+  </shpp-navigation-bar>
+  <div class="mt-5 flex-grow-1 d-flex flex-column">
+    <ng-content select="[content]"></ng-content>
+  </div>
+</div>
+<shpp-toasts aria-live="polite" aria-atomic="true"></shpp-toasts>

@@ -1,10 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NewGamePageComponent } from './pages/new-game-page/new-game-page.component';
-import { OngoingGamePageComponent } from './pages/ongoing-game-page/ongoing-game-page.component';
-import { CurrentGameService } from './services/current-game.service';
-import { UsernameSetGuard } from './services/username-set.guard';
-import { SetUsernamePageComponent } from './pages/set-username-page/set-username-page.component';
 
 const routes: Routes = [
   {
@@ -14,20 +9,15 @@ const routes: Routes = [
   },
   {
     path: 'new',
-    component: NewGamePageComponent,
-    title: 'Self-Host Planning Poker'
+    loadChildren: () => import('./new-game/new-game.module').then(m => m.NewGameModule)
   },
   {
-    path: 'game/:gameId',
-    component: OngoingGamePageComponent,
-    canActivate: [ UsernameSetGuard, CurrentGameService ],
-    data: {
-      displayPlayerInfo: true
-    }
+    path: 'game',
+    loadChildren: () => import('./ongoing-game/ongoing-game.module').then(m => m.OngoingGameModule)
   },
   {
     path: 'set-username',
-    component: SetUsernamePageComponent
+    loadChildren: () => import('./set-username/set-username.module').then(m => m.SetUsernameModule)
   },
   {
     path: '**',
@@ -36,7 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

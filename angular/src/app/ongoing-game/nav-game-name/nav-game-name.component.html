@@ -1,0 +1,17 @@
+<ng-container *transloco="let t; read 'navbar'">
+  <ng-container *ngIf="currentGameInfo">
+    <span class="fs-4 ellipsis">{{ currentGameInfo.name }}&nbsp;</span>
+    <button class="btn btn-outline-light btn-sm"
+            *transloco="let t"
+            [attr.aria-label]="t('buttons.link')"
+            [ngbTooltip]="t('buttons.link')"
+            placement="bottom"
+            (click)="copyLink()"
+    >
+      <svg class="bi bi-link-45deg" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+        <use xlink:href="assets/bootstrap-icons.svg#link-45deg"/>
+      </svg>
+    </button>
+  </ng-container>
+</ng-container>
+

@@ -1,0 +1,35 @@
+<ng-template #gameEdit let-offcanvas>
+  <div class="offcanvas-header" *transloco="let t; read 'navbar.playerInfo'">
+    <h4 class="offcanvas-title" id="offcanvas-basic-title">{{ t('actions.editPlayerName') }}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('cancel')"></button>
+  </div>
+  <div class="offcanvas-body">
+    <shpp-player-name-form (validated)="offcanvas.close()"></shpp-player-name-form>
+  </div>
+</ng-template>
+
+<div class="d-flex flex-column align-items-end">
+  <div>
+    {{ userInformation.getName() }}
+    <div class="btn-group mx-2" *transloco="let t">
+      <button class="btn btn-outline-light btn-sm"
+              [attr.aria-label]="t('buttons.edit')"
+              [ngbTooltip]="t('navbar.playerInfo.actions.editPlayerName')"
+              placement="bottom"
+              (click)="openEdit(gameEdit)">
+        <svg class="bi bi-pencil-fill" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+          <use xlink:href="assets/bootstrap-icons.svg#pencil-fill"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="form-check form-switch form-check-reverse mt-1" *transloco="let t">
+    <input class="form-check-input" type="checkbox" role="switch" id="spectator-checkbox"
+           [checked]="userInformation.isSpectator()"
+           (change)="toggleSpectator()">
+    <label class="form-check-label text-muted" for="spectator-checkbox">
+      {{ t('navbar.playerInfo.spectator') }}
+    </label>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslocoService } from '@ngneat/transloco';
-import { Subscription } from 'rxjs';
+import { Subscription, switchMap } from 'rxjs';
 import { CurrentGameService } from './current-game.service';
 
 @Component({
@@ -19,8 +19,9 @@ export class OngoingGamePageComponent implements OnDestroy {
               private titleService: Title,
               private transloco: TranslocoService) {
     this.gameInfoSubscription = this.currentGameService.gameInfo$
-    .subscribe((gameInfo) =>
-      this.titleService.setTitle(this.transloco.translate('ongoingGame.page-title', { gameName: gameInfo?.name })))
+    .pipe(
+      switchMap((gameInfo) => this.transloco.selectTranslate('ongoingGame.page-title', { gameName: gameInfo?.name })))
+    .subscribe((translatedPageTitle) => this.titleService.setTitle(translatedPageTitle));
     this.revealedSubscription = this.currentGameService.revealed$.subscribe((revealed) => this.showSummary = revealed);
   }
 

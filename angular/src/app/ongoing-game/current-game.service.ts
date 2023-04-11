@@ -40,8 +40,8 @@ export class CurrentGameService implements CanActivate {
 
     this.socket.on('disconnect', (reason) => {
       if (reason !== 'io client disconnect') {
-        let text = this.transloco.translate('errors.disconnect', { reason: reason, delay: this.reconnectDelaySeconds });
-        this.toastService.show(text, { className: 'bg-danger text-light' });
+        this.transloco.selectTranslate('errors.disconnect', { reason: reason, delay: this.reconnectDelaySeconds })
+        .subscribe((text) =>this.toastService.show(text, { className: 'bg-danger text-light' }));
       }
       console.info(`Socket disconnected. Reason is "${reason}"`);
     });
@@ -151,21 +151,24 @@ export class CurrentGameService implements CanActivate {
   }
 
   private info(key: string, translateParams?: HashMap): void {
-    let text = this.transloco.translate(key, translateParams);
-    console.info(text);
-    this.toastService.show(text, { className: 'bg-info' });
+    this.transloco.selectTranslate(key, translateParams).subscribe((text) => {
+      console.info(text);
+      this.toastService.show(text, { className: 'bg-info' });
+    })
   }
 
   private success(key: string, translateParams?: HashMap): void {
-    let text = this.transloco.translate(key, translateParams);
-    console.info(text);
-    this.toastService.show(text, { className: 'bg-success text-light' });
+    this.transloco.selectTranslate(key, translateParams).subscribe((text) => {
+      console.info(text);
+      this.toastService.show(text, { className: 'bg-success text-light' });
+    });
   }
 
   private error(key: string, translateParams?: HashMap): void {
-    let text = this.transloco.translate(key, translateParams);
-    console.error(text);
-    this.toastService.show(text, { className: 'bg-danger text-light' });
+    this.transloco.selectTranslate(key, translateParams).subscribe((text) => {
+      console.error(text);
+      this.toastService.show(text, { className: 'bg-danger text-light' });
+    })
   }
 
 }

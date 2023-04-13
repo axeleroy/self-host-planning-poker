@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 export class UserInformationService {
   private nameSubject = new BehaviorSubject<string>('');

@@ -56,7 +56,9 @@ export class TurnSummaryComponent implements AfterViewInit, OnDestroy {
     ));
 
     this.$agreement = this.$counts
-    .pipe(map((counts) => (Math.max(0, ...counts.values()) / counts.size || 0)));
+    .pipe(
+      withLatestFrom(this.$playerStates),
+      map(([counts, players]) => (Math.max(0, ...counts.values()) / players.length || 0)));
 
     this.subscriptions.concat(
       this.$playerStates.pipe(

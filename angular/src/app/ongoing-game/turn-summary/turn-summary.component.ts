@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { PlayerState } from '../../model/events';
-import { combineLatest, debounceTime, filter, map, Observable, Subscription, tap } from 'rxjs';
+import { filter, map, Observable, Subscription, tap, withLatestFrom } from 'rxjs';
 import { Deck, decksDict, displayCardValue } from '../../model/deck';
 import { KeyValue } from '@angular/common';
 import { CurrentGameService } from '../current-game.service';
@@ -31,9 +31,9 @@ export class TurnSummaryComponent implements AfterViewInit, OnDestroy {
   private agreementElement?: ElementRef;
 
   constructor(private currentGameService: CurrentGameService) {
-    // FIXME: one ofthe two obserables are triggered multiple times after initial reveal
-    this.$playerStates = combineLatest([this.currentGameService.state$, this.currentGameService.gameInfo$])
+    this.$playerStates = this.currentGameService.state$
     .pipe(
+      withLatestFrom(this.currentGameService.gameInfo$),
       filter(([, gameInfo]) => gameInfo !== null && gameInfo.revealed),
       tap(([, gameInfo]) => {
         if (gameInfo) {
@@ -97,7 +97,6 @@ export class TurnSummaryComponent implements AfterViewInit, OnDestroy {
     const x = (domRect.left + domRect.width / 2) / window.innerWidth;
     const y = (domRect.top + domRect.height / 2) / window.innerHeight;
     const origin = { x: x, y: y };
-    console.log(origin)
     this.fireParticles(0.25, {
       origin: origin,
       spread: 26,

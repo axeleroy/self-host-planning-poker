@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 import { BehaviorSubject, filter, map, Observable, Subject } from 'rxjs';
 import { ErrorMessage, GameInfo, GameState } from '../model/events';
 import { Deck, decksDict } from '../model/deck';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, UrlTree } from '@angular/router';
 import { HashMap, TranslocoService } from '@ngneat/transloco';
 import { UserInformationService } from '../player-info/user-information.service';
 import { ToastService } from '../shared/toast/toast.service';
@@ -12,7 +12,7 @@ import { ToastService } from '../shared/toast/toast.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CurrentGameService implements CanActivate {
+export class CurrentGameService {
   private readonly totalAttempts = 10;
   private readonly reconnectDelaySeconds = 5;
 
@@ -96,7 +96,7 @@ export class CurrentGameService implements CanActivate {
     );
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
+  canActivate(route: ActivatedRouteSnapshot): Promise<boolean | UrlTree> {
     const gameId = route.params['gameId'];
     this.socket.connect();
     return new Promise((resolve) => {

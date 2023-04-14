@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { NgbOffcanvas, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { UserInformationService } from '../user-information.service';
+import { PlayerNameFormComponent } from '../player-name-form/player-name-form.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
-  selector: 'shpp-player-info',
-  templateUrl: './player-info.component.html'
+    selector: 'shpp-player-info',
+    templateUrl: './player-info.component.html',
+    standalone: true,
+    imports: [TranslocoModule, PlayerNameFormComponent, NgbTooltip]
 })
 export class PlayerInfoComponent {
   constructor(public userInformation: UserInformationService,

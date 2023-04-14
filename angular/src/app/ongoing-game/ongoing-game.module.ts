@@ -4,7 +4,6 @@ import { CardPickerComponent } from './card-picker/card-picker.component';
 import { CardTableComponent } from './card-table/card-table.component';
 import { TurnSummaryComponent } from './turn-summary/turn-summary.component';
 import { OngoingGamePageComponent } from './ongoing-game-page.component';
-import { PlayerInfoModule } from '../player-info/player-info.module';
 import { NavGameInfoComponent } from './nav-game-info/nav-game-info.component';
 import { NavGameNameComponent } from './nav-game-name/nav-game-name.component';
 import { PickableCardComponent } from './card-picker/card/pickable-card.component';
@@ -16,6 +15,8 @@ import { TranslocoRootModule } from '../transloco-root.module';
 import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 import { ContainerComponent } from '../shared/container/container.component';
 import { ToastService } from '../shared/toast/toast.service';
+import { PlayerNameFormComponent } from '../player-info/player-name-form/player-name-form.component';
+import { PlayerInfoComponent } from '../player-info/nav-player-info/player-info.component';
 
 
 
@@ -32,14 +33,15 @@ import { ToastService } from '../shared/toast/toast.service';
   ],
   imports: [
     CommonModule,
-    PlayerInfoModule,
     TranslocoRootModule,
     TranslocoLocaleModule,
     OngoingGameRoutingModule,
     NgbOffcanvasModule,
     NgbTooltipModule,
     ContainerComponent,
-    GameFormComponent
+    GameFormComponent,
+    PlayerNameFormComponent,
+    PlayerInfoComponent
   ],
   providers: [ ToastService ]
 })

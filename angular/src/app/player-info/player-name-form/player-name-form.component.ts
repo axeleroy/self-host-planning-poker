@@ -1,11 +1,14 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserInformationService } from '../user-information.service';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
-  selector: 'shpp-player-name-form',
-  templateUrl: './player-name-form.component.html'
+    selector: 'shpp-player-name-form',
+    templateUrl: './player-name-form.component.html',
+    standalone: true,
+    imports: [TranslocoModule, ReactiveFormsModule]
 })
 export class PlayerNameFormComponent {
   formGroup: FormGroup;

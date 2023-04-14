@@ -11,8 +11,8 @@ import { NavGameNameComponent } from './nav-game-name/nav-game-name.component';
 import { PickableCardComponent } from './card-picker/card/pickable-card.component';
 import { OngoingGameRoutingModule } from './ongoing-game-routing.module';
 import { PlayerHandComponent } from './card-table/player-hand/player-hand.component';
-import { GameFormModule } from '../game-form/game-form.module';
 import { NgbOffcanvasModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { GameFormComponent } from '../game-form/game-form.component';
 
 
 
@@ -32,9 +32,9 @@ import { NgbOffcanvasModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap
     PlayerInfoModule,
     SharedModule,
     OngoingGameRoutingModule,
-    GameFormModule,
     NgbOffcanvasModule,
-    NgbTooltipModule
+    NgbTooltipModule,
+    GameFormComponent
   ]
 })
 export class OngoingGameModule { }

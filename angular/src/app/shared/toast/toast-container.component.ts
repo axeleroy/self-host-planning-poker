@@ -1,7 +1,7 @@
 import { Component, HostBinding } from '@angular/core';
 import { ToastService } from './toast.service';
 import { NgbToast } from '@ng-bootstrap/ng-bootstrap';
-import { CommonModule, NgFor } from '@angular/common';
+import { NgFor } from '@angular/common';
 
 
 @Component({

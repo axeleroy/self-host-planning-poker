@@ -9,7 +9,8 @@ const routes: Routes = [
   },
   {
     path: 'new',
-    loadChildren: () => import('./new-game/new-game.module').then(m => m.NewGameModule)
+    loadComponent: () => import('./new-game/new-game-page.component').then(m => m.NewGamePageComponent),
+    title: 'Self-Host Planning Poker'
   },
   {
     path: 'game',

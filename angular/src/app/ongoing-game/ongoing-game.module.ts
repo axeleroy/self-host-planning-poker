@@ -12,6 +12,7 @@ import { PickableCardComponent } from './card-picker/card/pickable-card.componen
 import { OngoingGameRoutingModule } from './ongoing-game-routing.module';
 import { PlayerHandComponent } from './card-table/player-hand/player-hand.component';
 import { GameFormModule } from '../game-form/game-form.module';
+import { NgbOffcanvasModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -31,7 +32,9 @@ import { GameFormModule } from '../game-form/game-form.module';
     PlayerInfoModule,
     SharedModule,
     OngoingGameRoutingModule,
-    GameFormModule
+    GameFormModule,
+    NgbOffcanvasModule,
+    NgbTooltipModule
   ]
 })
 export class OngoingGameModule { }

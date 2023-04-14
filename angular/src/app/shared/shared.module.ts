@@ -5,7 +5,7 @@ import { ContainerComponent } from './container/container.component';
 import { ToastsContainerComponent } from './toast/toast-container.component';
 import { TranslocoRootModule } from '../transloco-root.module';
 import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -18,14 +18,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     TranslocoRootModule,
     TranslocoLocaleModule,
-    NgbModule
+    NgbToastModule
   ],
   exports: [
     NavigationBarComponent,
     ContainerComponent,
     TranslocoRootModule,
     TranslocoLocaleModule,
-    NgbModule
   ]
 })
 export class SharedModule { }

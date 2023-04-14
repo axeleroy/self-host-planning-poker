@@ -28,7 +28,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            axeleroy/self-host-planning-poker
+            name=axeleroy/self-host-planning-poker,enable=${{startsWith(github.ref, 'refs/tags/v')}}
             ghcr.io/axeleroy/self-host-planning-poker
           tags: |
             type=ref,event=branch

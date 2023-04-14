@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { UserInformationService } from './user-information.service';
-import { PlayerInfoModule } from './player-info.module';
 
 @Injectable({
-  providedIn: PlayerInfoModule
+  providedIn: 'root'
 })
 export class UsernameSetGuard implements CanActivate {
 

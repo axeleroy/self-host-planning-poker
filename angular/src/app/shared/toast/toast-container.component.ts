@@ -1,8 +1,11 @@
 import { Component, HostBinding } from '@angular/core';
 import { ToastService } from './toast.service';
+import { NgbToast } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule, NgFor } from '@angular/common';
 
 
 @Component({
+  standalone: true,
 	selector: 'shpp-toasts',
 	template: `
 		<ngb-toast
@@ -15,6 +18,7 @@ import { ToastService } from './toast.service';
 			{{ toast.text }}
 		</ngb-toast>
 	`,
+  imports: [ NgFor, NgbToast ]
 })
 export class ToastsContainerComponent {
   @HostBinding('class') classAttr = 'toast-container position-fixed top-0 end-0 p-3';

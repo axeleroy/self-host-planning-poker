@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Deck, decks, decksDict, displayDeckValues } from '../model/deck';
-import { TranslocoRootModule } from '../transloco-root.module';
+import { Deck, decks, decksDict, displayDeckValues } from '../../model/deck';
+import { TranslocoRootModule } from '../../transloco-root.module';
 import { CommonModule } from '@angular/common';
 
 @Component({

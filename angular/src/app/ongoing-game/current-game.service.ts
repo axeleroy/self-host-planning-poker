@@ -10,7 +10,7 @@ import { UserInformationService } from '../player-info/user-information.service'
 import { ToastService } from '../shared/toast/toast.service';
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 export class CurrentGameService implements CanActivate {
   private readonly totalAttempts = 10;

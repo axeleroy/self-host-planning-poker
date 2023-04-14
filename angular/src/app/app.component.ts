@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { getBrowserCultureLang, getBrowserLang, TranslocoService } from '@ngneat/transloco';
 import { TranslocoLocaleService } from '@ngneat/transloco-locale';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'shpp-root',
-  templateUrl: './app.component.html',
-  styles: []
+    selector: 'shpp-root',
+    templateUrl: './app.component.html',
+    styles: [],
+    standalone: true,
+    imports: [RouterOutlet]
 })
 export class AppComponent {
 

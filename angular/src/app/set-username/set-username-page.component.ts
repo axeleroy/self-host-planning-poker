@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PlayerInfoModule } from '../player-info/player-info.module';
+import { TranslocoRootModule } from '../transloco-root.module';
+import { ContainerComponent } from '../shared/container/container.component';
 
 @Component({
+  standalone: true,
   selector: 'shpp-set-username-page',
-  templateUrl: './set-username-page.component.html'
+  templateUrl: './set-username-page.component.html',
+  imports: [ PlayerInfoModule, TranslocoRootModule, ContainerComponent ]
 })
 export class SetUsernamePageComponent implements OnInit {
   gameId?: string;

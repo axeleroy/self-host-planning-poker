@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'set-username',
-    loadChildren: () => import('./set-username/set-username.module').then(m => m.SetUsernameModule)
+    loadComponent: () => import('./set-username/set-username-page.component').then(m => m.SetUsernamePageComponent)
   },
   {
     path: '**',

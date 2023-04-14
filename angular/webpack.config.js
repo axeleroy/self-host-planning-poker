@@ -10,6 +10,7 @@ module.exports = {
           /offcanvas-/,
           /tooltip-/,
           /tooltip/,
+          /show/,
           // Toast
           /toast-/,
           /toast/,

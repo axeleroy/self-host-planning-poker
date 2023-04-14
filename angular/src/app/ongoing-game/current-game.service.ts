@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Manager, Socket } from 'socket.io-client';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject, filter, map, Observable, Subject } from 'rxjs';
 import { ErrorMessage, GameInfo, GameState } from '../model/events';
 import { Deck, decksDict } from '../model/deck';
-import { ActivatedRouteSnapshot, Router, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { HashMap, TranslocoService } from '@ngneat/transloco';
 import { UserInformationService } from '../player-info/user-information.service';
 import { ToastService } from '../shared/toast/toast.service';
@@ -171,4 +171,8 @@ export class CurrentGameService {
     })
   }
 
+}
+
+export const canActivateGame: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  return inject(CurrentGameService).canActivate(route);
 }

@@ -3,11 +3,16 @@ import { GameState } from '../../model/events';
 import { Subscription } from 'rxjs';
 import { Deck } from '../../model/deck';
 import { CurrentGameService } from '../current-game.service';
+import { PlayerHandComponent } from './player-hand/player-hand.component';
+import { KeyValuePipe, NgFor } from '@angular/common';
+import { TranslocoRootModule } from '../../transloco-root.module';
 
 @Component({
-  selector: 'shpp-card-table',
-  templateUrl: './card-table.component.html',
-  styleUrls: [ './card-table.component.scss' ]
+    selector: 'shpp-card-table',
+    templateUrl: './card-table.component.html',
+    styleUrls: ['./card-table.component.scss'],
+    standalone: true,
+    imports: [NgFor, PlayerHandComponent, TranslocoRootModule, KeyValuePipe]
 })
 export class CardTableComponent implements OnDestroy {
   state: GameState = {}

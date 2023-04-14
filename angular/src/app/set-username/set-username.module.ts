@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SetUsernamePageComponent } from './set-username-page.component';
 import { SetUsernameRoutingModule } from './set-username-routing.module';
-import { SharedModule } from '../shared/shared.module';
 import { PlayerInfoModule } from '../player-info/player-info.module';
-
+import { ContainerComponent } from '../shared/container/container.component';
+import { TranslocoRootModule } from '../transloco-root.module';
 
 
 @NgModule({
@@ -13,7 +13,8 @@ import { PlayerInfoModule } from '../player-info/player-info.module';
     CommonModule,
     SetUsernameRoutingModule,
     PlayerInfoModule,
-    SharedModule
+    TranslocoRootModule,
+    ContainerComponent
   ]
 })
 export class SetUsernameModule { }

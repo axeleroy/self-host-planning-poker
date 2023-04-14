@@ -11,7 +11,7 @@ import { Injectable, NgModule } from '@angular/core';
 import { environment } from '../environments/environment';
 import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 
-@Injectable({ providedIn: 'any' })
+@Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {
   constructor(private http: HttpClient) {}
 

@@ -2,14 +2,19 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@ang
 import { PlayerState } from '../../model/events';
 import { filter, map, Observable, Subscription, tap, withLatestFrom } from 'rxjs';
 import { Deck, decksDict, displayCardValue } from '../../model/deck';
-import { KeyValue } from '@angular/common';
+import { KeyValue, NgFor, NgClass, AsyncPipe, KeyValuePipe } from '@angular/common';
 import { CurrentGameService } from '../current-game.service';
 import confetti from 'canvas-confetti';
+import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
+import { TranslocoModule } from '@ngneat/transloco';
+import { TranslocoRootModule } from '../../transloco-root.module';
 
 @Component({
-  selector: 'shpp-turn-summary',
-  templateUrl: './turn-summary.component.html',
-  styleUrls: [ './turn-summary.component.scss' ]
+    selector: 'shpp-turn-summary',
+    templateUrl: './turn-summary.component.html',
+    styleUrls: ['./turn-summary.component.scss'],
+    standalone: true,
+    imports: [TranslocoRootModule, NgFor, NgClass, AsyncPipe, KeyValuePipe, TranslocoLocaleModule]
 })
 export class TurnSummaryComponent implements AfterViewInit, OnDestroy {
   private subscriptions: Subscription[] = [];

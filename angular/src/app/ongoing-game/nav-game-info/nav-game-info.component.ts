@@ -2,12 +2,17 @@ import { Component, OnDestroy } from '@angular/core';
 import { GameInfo } from '../../model/events';
 import { CurrentGameService } from '../current-game.service';
 import { Deck } from '../../model/deck';
-import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+import { NgbOffcanvas, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
+import { GameFormComponent } from '../../shared/game-form/game-form.component';
+import { NgIf } from '@angular/common';
+import { TranslocoRootModule } from '../../transloco-root.module';
 
 @Component({
-  selector: 'shpp-game-info',
-  templateUrl: './nav-game-info.component.html'
+    selector: 'shpp-game-info',
+    templateUrl: './nav-game-info.component.html',
+    standalone: true,
+    imports: [NgIf, TranslocoRootModule, NgbTooltip, GameFormComponent]
 })
 export class NavGameInfoComponent implements OnDestroy {
 

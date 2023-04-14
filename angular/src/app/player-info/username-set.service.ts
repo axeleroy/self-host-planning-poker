@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { inject, Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { UserInformationService } from './user-information.service';
 
 @Injectable({
@@ -16,4 +16,8 @@ export class UsernameSetService {
       return router.parseUrl(`/set-username?gameId=${gameId}`)
     }
   }
+}
+
+export const usernameSetGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  return inject(UsernameSetService).canActivate(inject(UserInformationService), inject(Router), state);
 }

@@ -2,9 +2,10 @@ import { Component, Input } from '@angular/core';
 import { CardValue } from '../../../model/deck';
 
 @Component({
-  selector: 'shpp-pickable-card',
-  templateUrl: './pickable-card.component.html',
-  styleUrls: [ './pickable-card.component.scss' ]
+    selector: 'shpp-pickable-card',
+    templateUrl: './pickable-card.component.html',
+    styleUrls: ['./pickable-card.component.scss'],
+    standalone: true
 })
 export class PickableCardComponent {
   @Input() cardValue?: CardValue;

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { usernameSetGuard } from './player-info/username-set.service';
+import { canActivateGame } from './ongoing-game/current-game.service';
 
 const routes: Routes = [
   {
@@ -13,8 +15,9 @@ const routes: Routes = [
     title: 'Self-Host Planning Poker'
   },
   {
-    path: 'game',
-    loadChildren: () => import('./ongoing-game/ongoing-game.module').then(m => m.OngoingGameModule)
+    path: 'game/:gameId',
+    loadComponent: () => import('./ongoing-game/ongoing-game-page.component').then(m => m.OngoingGamePageComponent),
+    canActivate: [ usernameSetGuard, canActivateGame ]
   },
   {
     path: 'set-username',

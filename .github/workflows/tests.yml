@@ -18,7 +18,7 @@ jobs:
         name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10' 
+          python-version: '3.11'
           cache: 'pip'
       -
         name: Install dependencies
@@ -30,6 +30,7 @@ jobs:
         run: python -m unittest
   frontend-tests:
     name: Front-end tests
+    if: ${{ false }}  # Disabled as there are no tests
     runs-on: ubuntu-latest
     steps:
       -

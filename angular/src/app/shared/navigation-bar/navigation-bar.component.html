@@ -1,7 +1,9 @@
 <nav class="bg-primary">
   <div class="container-fluid d-flex flex-row align-items-center p-2 ps-2 pe-2 ps-md-3 pe-md-3">
-    <div>
-      <img class="me-2 me-md-3 icon" src="assets/icon.svg" alt="Icon" />
+    <div *transloco="let t; read 'navbar'">
+      <a href="/new" [attr.aria-label]="t('homeLink')">
+        <img class="me-2 me-md-3 icon" src="assets/icon.svg" [alt]="t('appIcon')" />
+      </a>
     </div>
     <ng-content></ng-content>
   </div>

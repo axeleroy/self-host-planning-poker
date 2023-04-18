@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { usernameSetGuard } from './player-info/username-set.service';
+import { usernameSetGuard } from './shared/user-info/username-set.service';
 import { canActivateGame } from './ongoing-game/current-game.service';
 
 const routes: Routes = [

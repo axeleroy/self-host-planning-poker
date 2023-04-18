@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslocoRootModule } from '../transloco-root.module';
 import { ContainerComponent } from '../shared/container/container.component';
-import { PlayerNameFormComponent } from '../player-info/player-name-form/player-name-form.component';
-import { NavAppTitleComponent } from '../shared/navigation-bar/app-title/nav-app-title.component';
+import { PlayerNameFormComponent } from '../shared/player-name-form/player-name-form.component';
+import { NavAppTitleComponent } from '../navigation-bar/app-title/nav-app-title.component';
 
 @Component({
   standalone: true,

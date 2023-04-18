@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { CardValue, Deck } from '../../model/deck';
 import { Subscription } from 'rxjs';
 import { CurrentGameService } from '../current-game.service';
-import { UserInformationService } from '../../player-info/user-information.service';
+import { UserInformationService } from '../../shared/user-info/user-information.service';
 import { PickableCardComponent } from './card/pickable-card.component';
 import { NgIf, NgFor } from '@angular/common';
 

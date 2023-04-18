@@ -7,9 +7,9 @@ import { CardPickerComponent } from './card-picker/card-picker.component';
 import { TurnSummaryComponent } from './turn-summary/turn-summary.component';
 import { NgIf } from '@angular/common';
 import { CardTableComponent } from './card-table/card-table.component';
-import { PlayerInfoComponent } from '../player-info/nav-player-info/player-info.component';
-import { NavGameInfoComponent } from './nav-game-info/nav-game-info.component';
-import { NavGameNameComponent } from './nav-game-name/nav-game-name.component';
+import { PlayerInfoComponent } from '../navigation-bar/player-info/player-info.component';
+import { NavGameInfoComponent } from '../navigation-bar/game-info/nav-game-info.component';
+import { NavGameNameComponent } from '../navigation-bar/game-name/nav-game-name.component';
 import { ContainerComponent } from '../shared/container/container.component';
 
 @Component({

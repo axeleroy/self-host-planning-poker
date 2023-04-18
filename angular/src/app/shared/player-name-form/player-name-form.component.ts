@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UserInformationService } from '../user-information.service';
+import { UserInformationService } from '../user-info/user-information.service';
 import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({

@@ -7,7 +7,7 @@ import { TranslocoRootModule } from '../transloco-root.module';
 import { GameFormComponent } from '../shared/game-form/game-form.component';
 import { NgFor } from '@angular/common';
 import { ContainerComponent } from '../shared/container/container.component';
-import { NavAppTitleComponent } from '../shared/navigation-bar/app-title/nav-app-title.component';
+import { NavAppTitleComponent } from '../navigation-bar/app-title/nav-app-title.component';
 
 @Component({
   standalone: true,

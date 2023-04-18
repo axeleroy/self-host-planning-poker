@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { GameInfo } from '../../model/events';
-import { CurrentGameService } from '../current-game.service';
+import { CurrentGameService } from '../../ongoing-game/current-game.service';
 import { Deck } from '../../model/deck';
 import { NgbOffcanvas, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';

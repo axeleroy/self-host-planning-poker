@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { CurrentGameService } from '../current-game.service';
+import { CurrentGameService } from '../../ongoing-game/current-game.service';
 import { GameInfo } from '../../model/events';
 import { Subscription } from 'rxjs';
 import { ToastService } from '../../shared/toast/toast.service';

@@ -4,7 +4,46 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    assignees:
+      - "axeleroy"
+    labels:
+      - "dependencies"
+      - "docker"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+    assignees:
+      - "axeleroy"
+    labels:
+        - "dependencies"
+        - "github_actions"
+  - package-ecosystem: "pip"
+    directory: "/flask"
+    schedule:
+      interval: "weekly"
+    assignees:
+      - "axeleroy"
+    labels:
+      - "dependencies"
+      - "python"
+  - package-ecosystem: "npm"
+    directory: "/angular"
+    schedule:
+      interval: "weekly"
+    assignees:
+      - "axeleroy"
+    labels:
+      - "dependencies"
+      - "angular"
+    ignore:
+      - dependency-name: "@angular*"
+        update-types:  ["major"]
+      - dependency-name: "rxjs"
+        update-types: [ "major" ]
+      - dependency-name: "typescript"
+        update-types: [ "major", "minor" ]
+      - dependency-name: "bootstrap"
+        update-types: [ "major" ]
+      - dependency-name: "@ng-bootstrap/ng-bootstrap"
+        update-types: [ "major" ]

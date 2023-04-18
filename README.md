@@ -40,7 +40,7 @@ All you need is to create a volume to persist the games settings (ID, name and d
 docker run \
   -v planning-poker-data:/data \
   -p 8000:8000 \
-  ghcr.io/axeleroy/self-host-planning-poker:latest
+  axeleroy/self-host-planning-poker:latest
 ```
 
 ### docker-compose
@@ -48,7 +48,7 @@ docker run \
 version: "3"
 services:
   planning-poker:
-    image: ghcr.io/axeleroy/self-host-planning-poker:latest
+    image: axeleroy/self-host-planning-poker:latest
     ports:
       - 8000:8000
     volumes:

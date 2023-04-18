@@ -46,6 +46,10 @@ $enable-shadows: true;
   background-color: $body-bg;
   transition: transform 200ms ease-in-out, background-color 100ms ease-in, outline-color 100ms ease-in;
 
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
   &:not(.card-disabled, .dashed) {
     box-shadow: 0 0 15px 0 $gray-400;
   }

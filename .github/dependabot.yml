@@ -38,12 +38,12 @@ updates:
       - "angular"
     ignore:
       - dependency-name: "@angular*"
-        update-types:  ["major"]
+        update-types:  ["version-update:semver-major"]
       - dependency-name: "rxjs"
-        update-types: [ "major" ]
+        update-types: [ "version-update:semver-major" ]
       - dependency-name: "typescript"
-        update-types: [ "major", "minor" ]
+        update-types: [ "version-update:semver-major", "version-update:semver-minor" ]
       - dependency-name: "bootstrap"
-        update-types: [ "major" ]
+        update-types: [ "version-update:semver-major" ]
       - dependency-name: "@ng-bootstrap/ng-bootstrap"
-        update-types: [ "major" ]
+        update-types: [ "version-update:semver-major" ]

@@ -4,6 +4,8 @@
   },
   "navbar": {
     "appTitle": "Self-Host Planning Poker",
+    "appIcon": "Icône de l'application",
+    "homeLink": "Page d'accueil",
     "playerInfo": {
       "spectator": "Spectateur",
       "actions": {

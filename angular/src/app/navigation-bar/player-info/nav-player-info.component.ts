@@ -5,12 +5,12 @@ import { PlayerNameFormComponent } from '../../shared/player-name-form/player-na
 import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
-    selector: 'shpp-player-info',
-    templateUrl: './player-info.component.html',
+    selector: 'shpp-nav-player-info',
+    templateUrl: './nav-player-info.component.html',
     standalone: true,
     imports: [TranslocoModule, PlayerNameFormComponent, NgbTooltip]
 })
-export class PlayerInfoComponent {
+export class NavPlayerInfoComponent {
   constructor(public userInformation: UserInformationService,
               private offcanvaseService: NgbOffcanvas) {
   }

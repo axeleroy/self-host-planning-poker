@@ -3,18 +3,23 @@ import { Deck } from '../model/deck';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
-import { TranslocoRootModule } from '../transloco-root.module';
 import { GameFormComponent } from '../shared/game-form/game-form.component';
-import { NgFor } from '@angular/common';
 import { ContainerComponent } from '../shared/container/container.component';
 import { NavAppTitleComponent } from '../navigation-bar/app-title/nav-app-title.component';
+import { FooterComponent } from '../shared/footer/footer.component';
 
 @Component({
   standalone: true,
   selector: 'shpp-new-game-page',
   templateUrl: './new-game-page.component.html',
   styleUrls: [ './new-game-page.component.scss' ],
-  imports: [TranslocoRootModule, HttpClientModule, GameFormComponent, ContainerComponent, NgFor, NavAppTitleComponent]
+  imports: [
+    HttpClientModule,
+    GameFormComponent,
+    ContainerComponent,
+    NavAppTitleComponent,
+    FooterComponent
+  ]
 })
 export class NewGamePageComponent {
 

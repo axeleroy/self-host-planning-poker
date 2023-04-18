@@ -7,7 +7,7 @@ import { CardPickerComponent } from './card-picker/card-picker.component';
 import { TurnSummaryComponent } from './turn-summary/turn-summary.component';
 import { NgIf } from '@angular/common';
 import { CardTableComponent } from './card-table/card-table.component';
-import { PlayerInfoComponent } from '../navigation-bar/player-info/player-info.component';
+import { NavPlayerInfoComponent } from '../navigation-bar/player-info/nav-player-info.component';
 import { NavGameInfoComponent } from '../navigation-bar/game-info/nav-game-info.component';
 import { NavGameNameComponent } from '../navigation-bar/game-name/nav-game-name.component';
 import { ContainerComponent } from '../shared/container/container.component';
@@ -21,7 +21,7 @@ import { ContainerComponent } from '../shared/container/container.component';
       ContainerComponent,
       NavGameNameComponent,
       NavGameInfoComponent,
-      PlayerInfoComponent,
+      NavPlayerInfoComponent,
       CardTableComponent,
       NgIf,
       TurnSummaryComponent,

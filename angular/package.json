@@ -31,7 +31,7 @@
     "bootstrap-icons": "^1.10.4",
     "canvas-confetti": "^1.6.0",
     "rxjs": "~7.8.0",
-    "socket.io-client": "^4.5.2",
+    "socket.io-client": "^4.6.1",
     "source-map-explorer": "^2.5.3",
     "tslib": "^2.5.0",
     "zone.js": "~0.11.4"

@@ -28,7 +28,7 @@
     "@popperjs/core": "^2.11.6",
     "@types/canvas-confetti": "^1.6.0",
     "bootstrap": "^5.2.3",
-    "bootstrap-icons": "^1.9.1",
+    "bootstrap-icons": "^1.10.4",
     "canvas-confetti": "^1.6.0",
     "rxjs": "~7.8.0",
     "socket.io-client": "^4.5.2",

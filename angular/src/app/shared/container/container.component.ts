@@ -6,7 +6,7 @@ import { NavigationBarComponent } from '../../navigation-bar/navigation-bar.comp
   standalone: true,
   selector: 'shpp-container',
   templateUrl: './container.component.html',
-  imports: [ NavigationBarComponent, ToastsContainerComponent ]
+  imports: [ NavigationBarComponent ]
 })
 export class ContainerComponent {
 

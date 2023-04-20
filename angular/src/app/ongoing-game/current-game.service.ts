@@ -15,6 +15,8 @@ import { ToastService } from '../shared/toast/toast.service';
 export class CurrentGameService {
   private readonly totalAttempts = 10;
   private readonly reconnectDelaySeconds = 5;
+  private readonly retries = 5;
+  private readonly ackTimeoutMs = 10000;
 
   private manager: Manager;
   private socket: Socket;
@@ -28,11 +30,15 @@ export class CurrentGameService {
               private transloco: TranslocoService,
               private toastService: ToastService) {
     this.manager = new Manager(environment.urlRoot, {
+      autoConnect: false,
       reconnection: true,
       reconnectionDelay: this.reconnectDelaySeconds * 1000,
       reconnectionAttempts: this.totalAttempts
     });
-    this.socket = this.manager.socket('/');
+    this.socket = this.manager.socket('/', {
+      retries: this.retries,
+      ackTimeout: this.ackTimeoutMs
+    });
 
     this.socket.on('state', (state: GameState) => this.stateSubject.next(state));
     this.socket.on('info', (info: GameInfo) => this.infoSubject.next(info));
@@ -98,24 +104,27 @@ export class CurrentGameService {
 
   canActivate(route: ActivatedRouteSnapshot): Promise<boolean | UrlTree> {
     const gameId = route.params['gameId'];
-    this.socket.connect();
-    return new Promise((resolve) => {
-      this.socket.emit('join', {
-        game: gameId,
-        name: this.userInformation.getName(),
-        spectator: this.userInformation.isSpectator()
-      }, (response: GameInfo | ErrorMessage) => {
+    return this.socket.connect()
+    .emitWithAck('join', {
+      game: gameId,
+      name: this.userInformation.getName(),
+      spectator: this.userInformation.isSpectator()
+    })
+    .then((response: GameInfo | ErrorMessage) => {
         if ('error' in response) {
           this.socket.disconnect();
           this.handleError(response);
-          resolve(this.router.parseUrl('/'));
+          return this.router.parseUrl('/');
         } else {
           this.infoSubject.next(response);
           this.userInformation.setPlayerIdSubject(response.playerId);
-          resolve(true);
+          return true;
         }
+      },
+      (reason: any) => {
+        this.handleError(reason);
+        return this.router.parseUrl('/');
       });
-    });
   }
 
   public leave(): void {
@@ -144,9 +153,11 @@ export class CurrentGameService {
     this.socket.emit('end_turn', (response?: ErrorMessage) => this.handleError(response));
   }
 
-  private handleError(error?: ErrorMessage): void {
-    if (error) {
-      this.error(`errors.${error.code}`)
+  private handleError(error?: ErrorMessage | any): void {
+    if (!!error && 'error' in error) {
+      this.error(`errors.${error.code}`, { message: error.message });
+    } else {
+      this.error(`errors.joinFailure`, { reason: error });
     }
   }
 

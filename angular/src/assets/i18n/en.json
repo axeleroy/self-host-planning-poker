@@ -71,6 +71,8 @@
   },
   "errors": {
     "disconnect": "Disconnected from game. Reason: \"{{reason}}\". Will reconnect in {{delay}}s...",
+    "joinFailure": "Could not join game. Reason: \"{{reason}}\".",
+    "0": "Error: \"{{message}}\"",
     "4001": "You have selected a deck that does not exist.",
     "4002": "Somehow, you are trying to do an action on a game that is not ongoing.",
     "4003": "Somehow, you are trying to do an action on a game you are not part of.",

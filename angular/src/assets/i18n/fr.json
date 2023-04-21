@@ -70,7 +70,7 @@
     "license": "Licence"
   },
   "errors": {
-    "disconnect": "Déconnecté du jeu. Raison: \"{{reason}}\". Reconnection dans {{delay}}s...",
+    "disconnect": "Déconnecté de la partie. Raison: \"{{reason}}\". Reconnection dans {{delay}}s...",
     "4001": "Vous avez sélectionné un deck qui n'existe pas.",
     "4002": "Curieusement, vous essayez de réaliser une action sur une partie qui n'est pas en cours.",
     "4003": "Curieusement, vous essayez de réaliser une action sur une partie dans laquelle vous n'êtes pas.",

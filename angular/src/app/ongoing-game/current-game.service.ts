@@ -46,8 +46,7 @@ export class CurrentGameService {
 
     this.socket.on('disconnect', (reason) => {
       if (reason !== 'io client disconnect') {
-        this.transloco.selectTranslate('errors.disconnect', { reason: reason, delay: this.reconnectDelaySeconds })
-        .subscribe((text) =>this.toastService.show(text, { className: 'bg-danger text-light' }));
+        this.error('errors.disconnect', {reason: reason, delay: this.reconnectDelaySeconds});
       }
       console.info(`Socket disconnected. Reason is "${reason}"`);
     });
@@ -154,10 +153,12 @@ export class CurrentGameService {
   }
 
   private handleError(error?: ErrorMessage | any): void {
-    if (!!error && 'error' in error) {
-      this.error(`errors.${error.code}`, { message: error.message });
-    } else {
-      this.error(`errors.joinFailure`, { reason: error });
+    if (!!error) {
+      if ('error' in error) {
+        this.error(`errors.${error.code}`, { message: error.message });
+      } else {
+        this.error(`errors.0`, { message: error });
+      }
     }
   }
 

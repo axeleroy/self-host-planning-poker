@@ -14,7 +14,7 @@ h11==0.13.0
 itsdangerous==2.1.2
 Jinja2==3.1.2
 MarkupSafe==2.1.1
-peewee==3.15.2
+peewee==3.16.2
 python-engineio==4.4.0
 python-socketio==5.7.1
 six==1.16.0

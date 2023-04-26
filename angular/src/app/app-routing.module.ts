@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { usernameSetGuard } from './shared/user-info/username-set.service';
 import { canActivateGame } from './ongoing-game/current-game.service';
+import { provideHttpClient } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
   {
     path: 'game/:gameId',
     loadComponent: () => import('./ongoing-game/ongoing-game-page.component').then(m => m.OngoingGamePageComponent),
-    canActivate: [ usernameSetGuard, canActivateGame ]
+    canActivate: [ usernameSetGuard, canActivateGame ],
+    providers: [ provideHttpClient() ]
   },
   {
     path: 'set-username',

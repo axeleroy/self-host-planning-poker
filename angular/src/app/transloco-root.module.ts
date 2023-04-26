@@ -1,10 +1,10 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 import {
-  TRANSLOCO_LOADER,
   Translation,
-  TranslocoLoader,
   TRANSLOCO_CONFIG,
+  TRANSLOCO_LOADER,
   translocoConfig,
+  TranslocoLoader,
   TranslocoModule
 } from '@ngneat/transloco';
 import { Injectable, NgModule } from '@angular/core';
@@ -27,8 +27,7 @@ export class TranslocoHttpLoader implements TranslocoLoader {
         en: 'en-US',
         fr: 'fr-FR'
       }
-    }),
-    HttpClientModule
+    })
   ],
   exports: [ TranslocoModule ],
   providers: [
@@ -43,7 +42,8 @@ export class TranslocoHttpLoader implements TranslocoLoader {
         }
       })
     },
-    { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader }
+    { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader },
+    provideHttpClient()
   ]
 })
 export class TranslocoRootModule {}

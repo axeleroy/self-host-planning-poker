@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Deck } from '../model/deck';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { GameFormComponent } from '../shared/game-form/game-form.component';
@@ -14,7 +14,6 @@ import { FooterComponent } from '../shared/footer/footer.component';
   templateUrl: './new-game-page.component.html',
   styleUrls: [ './new-game-page.component.scss' ],
   imports: [
-    HttpClientModule,
     GameFormComponent,
     ContainerComponent,
     NavAppTitleComponent,

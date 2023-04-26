@@ -1,6 +1,6 @@
 {
   "translation-hints": {
-    "game": "Dans le projet, c'est \"jeu\" comme dans \"un jeu d'échecs\", pas comme dans \"un jeu de fête\"."
+    "game": "Dans le projet, c'est \"partie\" comme dans \"une partie d'échecs\", pas comme dans \"un jeu de fête\"."
   },
   "navbar": {
     "appTitle": "Self-Host Planning Poker",
@@ -24,7 +24,7 @@
   "gameForm": {
     "name-label": "Nom de la partie",
     "name-placeholder": "Backlog Review Équipe Pizza",
-    "deck-label": "Deck de la partie",
+    "deck-label": "Paquet de la partie",
     "createButton-label": "Créer une nouvelle partie",
     "updateButton-label": "{{buttons.update}}"
   },
@@ -70,12 +70,13 @@
     "license": "Licence"
   },
   "errors": {
-    "disconnect": "Déconnecté de la partie. Raison: \"{{reason}}\". Reconnection dans {{delay}}s...",
-    "4001": "Vous avez sélectionné un deck qui n'existe pas.",
+    "disconnect": "Déconnecté de la partie. Raison : \"{{reason}}\". Reconnexion dans {{delay}}s...",
+    "0": "Erreur : \"{{message}}\"",
+    "4001": "Vous avez sélectionné un paquet de cartes qui n'existe pas.",
     "4002": "Curieusement, vous essayez de réaliser une action sur une partie qui n'est pas en cours.",
     "4003": "Curieusement, vous essayez de réaliser une action sur une partie dans laquelle vous n'êtes pas.",
     "4004": "Cette partie n'existe pas.",
-    "4005": "La carte que vous avez pioché n'est pas une valeur acceptée du deck.",
+    "4005": "La carte que vous avez piochée n'est pas une valeur acceptée du paquet de cartes actuel.",
     "4006": "Vous êtes un spectateur, vous ne devriez pas pouvoir sélectionner une carte."
   },
   "reconnect": {

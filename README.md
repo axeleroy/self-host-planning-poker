@@ -10,6 +10,7 @@ A hassle-free Planning Poker application to deploy on your NAS.
 [![License](https://img.shields.io/github/license/axeleroy/self-host-planning-poker?logo=github&logoColor=959DA5)](https://github.com/axeleroy/self-host-planning-poker/blob/main/LICENSE)
 [![Tests](https://github.com/axeleroy/self-host-planning-poker/actions/workflows/tests.yml/badge.svg)](https://github.com/axeleroy/self-host-planning-poker/actions/workflows/tests.yml)
 [![Docker build](https://github.com/axeleroy/self-host-planning-poker/actions/workflows/publish.yml/badge.svg)](https://github.com/axeleroy/self-host-planning-poker/actions/workflows/publish.yml)
+[![Crowdin](https://badges.crowdin.net/self-host-planning-poker/localized.svg)](https://crowdin.com/project/self-host-planning-poker)
 
 ## What is it?
 

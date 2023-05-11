@@ -16,7 +16,7 @@ Jinja2==3.1.2
 MarkupSafe==2.1.2
 peewee==3.16.2
 python-engineio==4.4.1
-python-socketio==5.7.1
+python-socketio==5.8.0
 six==1.16.0
 Werkzeug==2.3.3
 wsproto==1.2.0

@@ -20,7 +20,7 @@ files: [
   # Source files filter
   # e.g. "/resources/en/*.json"
   #
-  "source" : "/angular/src/assets/i18n/*.json",
+  "source" : "/angular/src/assets/i18n/en.json",
 
   #
   # Where translations will be placed

@@ -1,0 +1,88 @@
+{
+  "translation-hints": {
+    "game": "Nel progetto, si intende \"partita\" come \"una partita di scacchi\"."
+  },
+  "navbar": {
+    "appTitle": "Self-Host Planning Poker",
+    "appIcon": "Icona applicazione",
+    "homeLink": "Homepage",
+    "playerInfo": {
+      "spectator": "Spettatore",
+      "actions": {
+        "editPlayerName": "Modifica il tuo nome"
+      },
+      "cancel": "{{buttons.cancel}}"
+    },
+    "gameInfo": {
+      "editTitle": "Modifica partita",
+      "cancel": "{{buttons.cancel}}"
+    },
+    "gameName": {
+      "copy-toast": "Link della partita copiato"
+    }
+  },
+  "gameForm": {
+    "name-label": "Nome della partita",
+    "name-placeholder": "Backlog Review Team Pizza",
+    "deck-label": "Mazzo della partita",
+    "createButton-label": "Crea nuova partita",
+    "updateButton-label": "{{buttons.update}}"
+  },
+  "deckNames": {
+    "FIBONACCI": "Fibonacci",
+    "MODIFIED_FIBONACCI": "Fibonacci modificato",
+    "POWERS": "Poteri di 2",
+    "TRUST_VOTE": "Trust Vote",
+    "T_SHIRTS": "Taglia della maglietta"
+  },
+  "ongoingGame": {
+    "page-title": "Pianificando Poker {{gameName}}"
+  },
+  "setUsername": {
+    "page-title": "Inserisci il tuo nome prima di unirti a una partita"
+  },
+  "playerName-form": {
+    "username-placeholder": "Pietro",
+    "joinButton-label": "Unisciti alla partita",
+    "updateButton-label": "{{buttons.update}}"
+  },
+  "turnSummary": {
+    "average-label": "Media:",
+    "agreement-label": "Accordo:",
+    "votes-label": "{{votes}} Voti"
+  },
+  "buttons": {
+    "edit": "Modifica",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "update": "Aggiorna",
+    "reveal": "Rivela carte",
+    "newTurn": "Nuovo turno",
+    "link": "Copia link della partita"
+  },
+  "playerState": {
+    "spectator": "Spettatore",
+    "player": "Giocatore"
+  },
+  "footer": {
+    "github": "GitHub",
+    "dockerhub": "DockerHub",
+    "license": "Licenza"
+  },
+  "errors": {
+    "disconnect": "Disconnesso dalla partita. Motivo: \"{{reason}}\". Riconnesione tra {{delay}}s...",
+    "0": "Errore: \"{{message}}\"",
+    "4001": "Hai selezionato un mazzo inesistente.",
+    "4002": "In qualche modo, stai provando a eseguire un'azione su una partita che non è in corso.",
+    "4003": "In qualche modo, stai provando a eseguire un'azione su una partita di cui non fai parte.",
+    "4004": "Questa partita non esiste.",
+    "4005": "La carta che hai scelto non è un valore accettabile del mazzo corrente.",
+    "4006": "Sei uno spettatore, non dovresti essere in grado di scegliere una carta."
+  },
+  "reconnect": {
+    "attempt": "Connessione persa. Tentativo di riconnessione... ({{attempt}}/{{total}})",
+    "error": "Impossibile riconnettersi. Motivo: \"{{error}}\".",
+    "failed": "Impossibile riconnettersi dopo {{attempts}} tentativi.",
+    "success": "Riconnesso con successo dopo {{attempts}} tentativi."
+  }
+}

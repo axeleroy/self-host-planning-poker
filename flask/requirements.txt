@@ -18,7 +18,7 @@ peewee==3.16.2
 python-engineio==4.4.1
 python-socketio==5.8.0
 six==1.16.0
-Werkzeug==2.3.3
+Werkzeug==2.3.4
 wsproto==1.2.0
 zope.event==4.6
 zope.interface==6.0

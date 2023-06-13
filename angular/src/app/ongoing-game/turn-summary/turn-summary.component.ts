@@ -6,14 +6,14 @@ import { AsyncPipe, KeyValue, KeyValuePipe, NgClass, NgFor } from '@angular/comm
 import { CurrentGameService } from '../current-game.service';
 import confetti from 'canvas-confetti';
 import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
-import { TranslocoRootModule } from '../../transloco-root.module';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
     selector: 'shpp-turn-summary',
     templateUrl: './turn-summary.component.html',
     styleUrls: ['./turn-summary.component.scss'],
     standalone: true,
-    imports: [TranslocoRootModule, NgFor, NgClass, AsyncPipe, KeyValuePipe, TranslocoLocaleModule]
+    imports: [TranslocoModule, NgFor, NgClass, AsyncPipe, KeyValuePipe, TranslocoLocaleModule]
 })
 export class TurnSummaryComponent implements AfterViewInit, OnDestroy {
   private subscriptions: Subscription[] = [];

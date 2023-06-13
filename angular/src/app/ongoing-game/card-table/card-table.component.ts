@@ -5,14 +5,14 @@ import { Deck } from '../../model/deck';
 import { CurrentGameService } from '../current-game.service';
 import { PlayerHandComponent } from './player-hand/player-hand.component';
 import { KeyValuePipe, NgFor } from '@angular/common';
-import { TranslocoRootModule } from '../../transloco-root.module';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
     selector: 'shpp-card-table',
     templateUrl: './card-table.component.html',
     styleUrls: ['./card-table.component.scss'],
     standalone: true,
-    imports: [NgFor, PlayerHandComponent, TranslocoRootModule, KeyValuePipe]
+    imports: [TranslocoModule, NgFor, PlayerHandComponent, KeyValuePipe]
 })
 export class CardTableComponent implements OnDestroy {
   state: GameState = {}

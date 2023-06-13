@@ -1,14 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Deck, decks, decksDict, displayDeckValues } from '../../model/deck';
-import { TranslocoRootModule } from '../../transloco-root.module';
 import { NgFor } from '@angular/common';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   standalone: true,
   selector: 'shpp-game-form',
   templateUrl: './game-form.component.html',
-  imports: [ NgFor, ReactiveFormsModule, TranslocoRootModule ]
+  imports: [TranslocoModule, NgFor, ReactiveFormsModule]
 })
 export class GameFormComponent implements OnInit{
 

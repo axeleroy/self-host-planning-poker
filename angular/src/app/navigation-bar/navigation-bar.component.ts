@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { TranslocoRootModule } from '../transloco-root.module';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   standalone: true,
   selector: 'shpp-navigation-bar',
   templateUrl: './navigation-bar.component.html',
-  imports: [
-    TranslocoRootModule
-  ],
+  imports: [TranslocoModule],
   styleUrls: ['./navigation-bar.component.scss']
 })
 export class NavigationBarComponent {

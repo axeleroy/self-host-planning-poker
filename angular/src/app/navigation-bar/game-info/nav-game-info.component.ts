@@ -6,13 +6,13 @@ import { NgbOffcanvas, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { GameFormComponent } from '../../shared/game-form/game-form.component';
 import { NgIf } from '@angular/common';
-import { TranslocoRootModule } from '../../transloco-root.module';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
     selector: 'shpp-game-info',
     templateUrl: './nav-game-info.component.html',
     standalone: true,
-    imports: [NgIf, TranslocoRootModule, NgbTooltip, GameFormComponent]
+    imports: [TranslocoModule, NgIf, NgbTooltip, GameFormComponent]
 })
 export class NavGameInfoComponent implements OnDestroy {
 

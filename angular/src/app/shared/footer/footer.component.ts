@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { TranslocoRootModule } from '../../transloco-root.module';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'shpp-footer',
   templateUrl: './footer.component.html',
   standalone: true,
-  imports: [ TranslocoRootModule ]
+  imports: [ TranslocoModule ]
 })
 export class FooterComponent {
 

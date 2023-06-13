@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { TranslocoRootModule } from '../../transloco-root.module';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'shpp-nav-app-title',
   templateUrl: './nav-app-title.component.html',
   standalone: true,
-  imports: [ TranslocoRootModule ]
+  imports: [ TranslocoModule ]
 })
 export class NavAppTitleComponent {
 

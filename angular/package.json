@@ -30,7 +30,7 @@
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.4",
     "canvas-confetti": "^1.6.0",
-    "rxjs": "~7.8.0",
+    "rxjs": "~7.8.1",
     "socket.io-client": "^4.6.2",
     "source-map-explorer": "^2.5.3",
     "tslib": "^2.5.0",

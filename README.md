@@ -55,23 +55,24 @@ services:
     volumes:
       - planning-poker-data:/data
 volumes:
-  planning-poker-data:
+  planning-poker-data: {}
 ```
 
 ## Getting involved
 
 ### I'm a developer and I want to help
 
-A [Project](https://github.com/users/axeleroy/projects/1/views/1) is set up to track the features and enhancements that need work.
-Just open a Pull Request mentioning the linked issue and we'll take a look at it.
+You are welcome to open Pull Requests resolving issues in the [Project](https://github.com/users/axeleroy/projects/1/views/1) or 
+tagged [pr-welcome](https://github.com/axeleroy/self-host-planning-poker/issues?q=is%3Aissue+is%3Aopen+label%3Apr-welcome).
+Don't forget to mention the issue you want to close 😉
 
 ### I'm a user and I need help / I encountered a bug / I have a feature request
 
-[Open an issue](https://github.com/axeleroy/self-host-planning-poker/issues/new) and we'll take a look at it.
+[Open an issue](https://github.com/axeleroy/self-host-planning-poker/issues/new) and I'll take a look at it.
 
 ### I'm a user and want to contribute translations
 
-We have a [Crowdin project](https://crowdin.com/project/self-host-planning-poker) that lets you add translations for
+There is a [Crowdin project](https://crowdin.com/project/self-host-planning-poker) that lets you add translations for
 your language. If your language is not available, feel free to contact me over Crowdin.
 
 ## Development

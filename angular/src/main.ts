@@ -19,18 +19,18 @@ const routes: Routes = [
   },
   {
     path: 'new',
-    loadComponent: () => import('./app/new-game/new-game-page.component').then(m => m.NewGamePageComponent),
+    loadComponent: () => import('./app/new-game/new-game-page.component'),
     title: 'Self-Host Planning Poker'
   },
   {
     path: 'game/:gameId',
-    loadComponent: () => import('./app/ongoing-game/ongoing-game-page.component').then(m => m.OngoingGamePageComponent),
+    loadComponent: () => import('./app/ongoing-game/ongoing-game-page.component'),
     canActivate: [ usernameSetGuard, canActivateGame ],
     providers: [ provideHttpClient() ]
   },
   {
     path: 'set-username',
-    loadComponent: () => import('./app/set-username/set-username-page.component').then(m => m.SetUsernamePageComponent)
+    loadComponent: () => import('./app/set-username/set-username-page.component')
   },
   {
     path: '**',

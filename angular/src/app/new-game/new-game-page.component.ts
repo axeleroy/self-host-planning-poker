@@ -20,7 +20,7 @@ import { FooterComponent } from '../shared/footer/footer.component';
     FooterComponent
   ]
 })
-export class NewGamePageComponent {
+export default class NewGamePageComponent {
 
   constructor(private http: HttpClient,
               private router: Router) { }

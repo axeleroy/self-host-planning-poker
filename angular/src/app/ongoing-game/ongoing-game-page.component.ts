@@ -28,7 +28,7 @@ import { ContainerComponent } from '../shared/container/container.component';
       CardPickerComponent
     ]
 })
-export class OngoingGamePageComponent implements OnDestroy {
+export default class OngoingGamePageComponent implements OnDestroy {
   private gameInfoSubscription: Subscription;
   private revealedSubscription: Subscription;
 

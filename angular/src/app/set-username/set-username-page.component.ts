@@ -11,7 +11,7 @@ import { TranslocoModule } from '@ngneat/transloco';
   templateUrl: './set-username-page.component.html',
   imports: [TranslocoModule, PlayerNameFormComponent, ContainerComponent, NavAppTitleComponent]
 })
-export class SetUsernamePageComponent implements OnInit {
+export default class SetUsernamePageComponent implements OnInit {
   gameId?: string;
 
   constructor(private route: ActivatedRoute,

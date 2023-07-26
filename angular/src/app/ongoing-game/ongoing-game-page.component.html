@@ -1,15 +1,15 @@
 <shpp-container>
   <ng-container navbar>
     <div class="d-flex flex-column flex-grow-1 min-w">
-      <shpp-game-name class="d-flex"></shpp-game-name>
-      <shpp-game-info class="d-flex"></shpp-game-info>
+      <shpp-game-name class="d-flex" />
+      <shpp-game-info class="d-flex" />
     </div>
-    <shpp-nav-player-info></shpp-nav-player-info>
+    <shpp-nav-player-info />
   </ng-container>
 
   <ng-container content>
-    <shpp-card-table class="flex-grow-1"></shpp-card-table>
-    <shpp-turn-summary *ngIf="showSummary" class="bg-light"></shpp-turn-summary>
-    <shpp-card-picker *ngIf="!showSummary" class="bg-light"></shpp-card-picker>
+    <shpp-card-table class="flex-grow-1" />
+    <shpp-turn-summary *ngIf="showSummary" class="bg-light" />
+    <shpp-card-picker *ngIf="!showSummary" class="bg-light" />
   </ng-container>
 </shpp-container>

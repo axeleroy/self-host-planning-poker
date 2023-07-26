@@ -48,5 +48,7 @@
       "rules": {}
     }
   ],
-  "plugins": ["unused-imports"]
+  "plugins": [
+    "unused-imports"
+  ]
 }

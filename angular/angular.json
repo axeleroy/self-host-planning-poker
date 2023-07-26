@@ -128,7 +128,6 @@
       }
     }
   },
-  "defaultProject": "self-host-planning-poker",
   "cli": {
     "schematicCollections": [
       "@angular-eslint/schematics"

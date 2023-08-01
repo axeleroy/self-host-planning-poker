@@ -9,7 +9,7 @@ Flask-SocketIO==5.3.4
 greenlet==2.0.2
 # Still no point release containing PR #2581
 # see https://github.com/benoitc/gunicorn/pull/2581
-https://github.com/benoitc/gunicorn/archive/ff58e0c6da83d5520916bc4cc109a529258d76e1.zip#egg=gunicorn==20.1.0
+https://github.com/benoitc/gunicorn/archive/ff58e0c6da83d5520916bc4cc109a529258d76e1.zip#egg=gunicorn==21.2.0
 h11==0.14.0
 itsdangerous==2.1.2
 Jinja2==3.1.2

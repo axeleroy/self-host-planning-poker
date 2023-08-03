@@ -1,9 +1,7 @@
-import { enableProdMode, importProvidersFrom, Injectable } from '@angular/core';
-
-
+import { enableProdMode, Injectable } from '@angular/core';
 import {environment} from './environments/environment';
 import {AppComponent} from './app/app.component';
-import {TranslocoLocaleModule} from '@ngneat/transloco-locale';
+import { provideTranslocoLocale } from '@ngneat/transloco-locale';
 import {bootstrapApplication} from '@angular/platform-browser';
 import {provideRouter, Routes} from "@angular/router";
 import {usernameSetGuard} from "./app/shared/user-info/username-set.service";
@@ -53,12 +51,12 @@ export class TranslocoHttpLoader implements TranslocoLoader {
 
 bootstrapApplication(AppComponent, {
     providers: [
-      importProvidersFrom(TranslocoLocaleModule.forRoot({
+      provideTranslocoLocale({
         langToLocaleMapping: {
           en: 'en-US',
           fr: 'fr-FR'
         }
-      })),
+      }),
       provideRouter(routes),
       provideHttpClient(),
       provideTransloco({

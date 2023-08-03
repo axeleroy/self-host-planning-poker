@@ -23,7 +23,7 @@
     "@angular/platform-browser-dynamic": "^16.1.8",
     "@angular/router": "^16.1.8",
     "@ng-bootstrap/ng-bootstrap": "^15.1.0",
-    "@ngneat/transloco": "^4.3.0",
+    "@ngneat/transloco": "^5.0.3",
     "@ngneat/transloco-locale": "^5.0.0",
     "@popperjs/core": "^2.11.8",
     "@types/canvas-confetti": "^1.6.0",

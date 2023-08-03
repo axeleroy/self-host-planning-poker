@@ -1,14 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserInformationService } from '../user-info/user-information.service';
-import { TranslocoModule } from '@ngneat/transloco';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 @Component({
     selector: 'shpp-player-name-form',
     templateUrl: './player-name-form.component.html',
     standalone: true,
-    imports: [TranslocoModule, ReactiveFormsModule]
+    imports: [TranslocoDirective, ReactiveFormsModule]
 })
 export class PlayerNameFormComponent {
   formGroup: FormGroup;
@@ -17,9 +16,7 @@ export class PlayerNameFormComponent {
   join = false;
   @Output() validated = new EventEmitter<void>();
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private fb: FormBuilder,
+  constructor(private fb: FormBuilder,
               private userInformation: UserInformationService) {
     this.formGroup = this.fb.group({
       username: [ this.userInformation.getName(), [Validators.required, Validators.minLength(1)]]

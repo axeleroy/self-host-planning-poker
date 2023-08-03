@@ -4,7 +4,7 @@ import { GameInfo } from '../../model/events';
 import { Subscription } from 'rxjs';
 import { ToastService } from '../../shared/toast/toast.service';
 import { Clipboard } from '@angular/cdk/clipboard';
-import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
+import { TranslocoDirective, TranslocoService } from '@ngneat/transloco';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { NgIf } from '@angular/common';
 
@@ -12,7 +12,7 @@ import { NgIf } from '@angular/common';
     selector: 'shpp-game-name',
     templateUrl: './nav-game-name.component.html',
     standalone: true,
-    imports: [TranslocoModule, NgIf, NgbTooltip]
+    imports: [TranslocoDirective, NgIf, NgbTooltip]
 })
 export class NavGameNameComponent implements OnDestroy {
 

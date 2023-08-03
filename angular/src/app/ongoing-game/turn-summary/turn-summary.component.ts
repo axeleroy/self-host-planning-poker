@@ -5,15 +5,15 @@ import { Deck, decksDict, displayCardValue } from '../../model/deck';
 import { AsyncPipe, KeyValue, KeyValuePipe, NgClass, NgFor } from '@angular/common';
 import { CurrentGameService } from '../current-game.service';
 import confetti from 'canvas-confetti';
-import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
-import { TranslocoModule } from '@ngneat/transloco';
+import { TranslocoDecimalPipe, TranslocoPercentPipe } from '@ngneat/transloco-locale';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 @Component({
     selector: 'shpp-turn-summary',
     templateUrl: './turn-summary.component.html',
     styleUrls: ['./turn-summary.component.scss'],
     standalone: true,
-    imports: [TranslocoModule, NgFor, NgClass, AsyncPipe, KeyValuePipe, TranslocoLocaleModule]
+    imports: [TranslocoDirective, NgFor, NgClass, AsyncPipe, KeyValuePipe, TranslocoDecimalPipe, TranslocoPercentPipe]
 })
 export class TurnSummaryComponent implements AfterViewInit, OnDestroy {
   private subscriptions: Subscription[] = [];

@@ -3,7 +3,7 @@ click==8.1.6
 coverage==7.2.7
 dnspython==2.4.1
 eventlet==0.33.3
-Flask==2.3.2
+Flask==2.3.3
 Flask-Cors==4.0.0
 Flask-SocketIO==5.3.5
 greenlet==2.0.2

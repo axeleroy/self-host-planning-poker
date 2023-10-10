@@ -1,88 +1,88 @@
 {
   "translation-hints": {
-    "game": "In the project, it's \"game\" as in \"a game of chess\", not as in \"a party game\"."
+    "game": "To jest \"gra\" jak \"gra w szachy\", nie jak \"gra imprezowa\"."
   },
   "navbar": {
     "appTitle": "Self-Host Planning Poker",
-    "appIcon": "Application icon",
-    "homeLink": "Homepage",
+    "appIcon": "Ikona aplikacji",
+    "homeLink": "Strona główna",
     "playerInfo": {
-      "spectator": "Spectator",
+      "spectator": "Obserwator",
       "actions": {
-        "editPlayerName": "Edit your name"
+        "editPlayerName": "Edytuj nazwę użytkownika"
       },
       "cancel": "{{buttons.cancel}}"
     },
     "gameInfo": {
-      "editTitle": "Edit game",
+      "editTitle": "Edytuj grę",
       "cancel": "{{buttons.cancel}}"
     },
     "gameName": {
-      "copy-toast": "Game's link copied to clipboard"
+      "copy-toast": "Link do gry skopiowany do schowka"
     }
   },
   "gameForm": {
-    "name-label": "Game's name",
-    "name-placeholder": "Backlog Review Team Pizza",
-    "deck-label": "Game's deck",
-    "createButton-label": "Create new game",
+    "name-label": "Nazwa gry",
+    "name-placeholder": "Drużyna Pizzy",
+    "deck-label": "Talia do gry",
+    "createButton-label": "Stwórz nową grę",
     "updateButton-label": "{{buttons.update}}"
   },
   "deckNames": {
     "FIBONACCI": "Fibonacci",
-    "MODIFIED_FIBONACCI": "Modified Fibonacci",
-    "POWERS": "Powers of 2",
-    "TRUST_VOTE": "Trust Vote",
-    "T_SHIRTS": "T-Shirt Sizes"
+    "MODIFIED_FIBONACCI": "Zmodyfikowany Fibonacci",
+    "POWERS": "Moc 2",
+    "TRUST_VOTE": "Wotum zaufania",
+    "T_SHIRTS": "Rozmiar koszulek"
   },
   "ongoingGame": {
-    "page-title": "Planning Poker {{gameName}}"
+    "page-title": "Poker planistyczny {{gameName}}"
   },
   "setUsername": {
-    "page-title": "Please enter your name before joining the game"
+    "page-title": "Wprowadź nazwę użytkownika przed dołączeniem do gry"
   },
   "playerName-form": {
-    "username-placeholder": "John",
-    "joinButton-label": "Join the game",
+    "username-placeholder": "Jan",
+    "joinButton-label": "Dołącz do gry",
     "updateButton-label": "{{buttons.update}}"
   },
   "turnSummary": {
-    "average-label": "Average:",
-    "agreement-label": "Agreement:",
-    "votes-label": "{{votes}} Votes"
+    "average-label": "Średnio:",
+    "agreement-label": "Zgodność:",
+    "votes-label": "{{votes}} głosów"
   },
   "buttons": {
-    "edit": "Edit",
-    "save": "Save",
-    "cancel": "Cancel",
-    "update": "Update",
-    "reveal": "Reveal cards",
-    "newTurn": "New turn",
-    "link": "Copy game link"
+    "edit": "Edytuj",
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "update": "Aktualizuj",
+    "reveal": "Pokaż karty",
+    "newTurn": "Nowa tura",
+    "link": "Kopiuj link do gry"
   },
   "playerState": {
-    "spectator": "Spectator",
-    "player": "Player"
+    "spectator": "Obserwator",
+    "player": "Gracz"
   },
   "footer": {
     "github": "GitHub",
     "dockerhub": "DockerHub",
-    "license": "License"
+    "license": "Licencja"
   },
   "errors": {
-    "disconnect": "Disconnected from game. Reason: \"{{reason}}\". Will reconnect in {{delay}}s...",
-    "0": "Error: \"{{message}}\"",
-    "4001": "You have selected a deck that does not exist.",
-    "4002": "Somehow, you are trying to do an action on a game that is not ongoing.",
-    "4003": "Somehow, you are trying to do an action on a game you are not part of.",
-    "4004": "This game does not exist.",
-    "4005": "The card you have picked is not an acceptable value of the current deck.",
-    "4006": "You are a spectator, you should not be able to pick a card."
+    "disconnect": "Rozłączono z grą. Powód: \"{{reason}}\". Ponowne połączenia za {{delay}}s...",
+    "0": "Błąd: {{message}}",
+    "4001": "Wybrałeś talię, która nie istnieje.",
+    "4002": "Próbujesz wykonać akcję w grze, w której nie uczestniczysz.",
+    "4003": "Próbujesz wykonać akcję w grze, w której nie uczestniczysz.",
+    "4004": "Ta gra nie istnieje.",
+    "4005": "Wybrana karta nie jest dopuszczalna w bieżącej talii.",
+    "4006": "Jesteś obserwatorem, nie powinieneś mieć możliwości wyboru karty."
   },
   "reconnect": {
-    "attempt": "Lost connection. Attempting reconnection... ({{attempt}}/{{total}})",
-    "error": "Could not reconnect. Reason: \"{{error}}\".",
-    "failed": "Could not reconnect after {{attempts}} attempts.",
-    "success": "Successfully reconnected after {{attempts}} attempts."
+    "attempt": "Utracono połączenie. Próba ponownego połączenia... ({{attempt}}/{{total}})",
+    "error": "Nie można nawiązać ponownego połączenia. Powód: \"{{error}}\".",
+    "failed": "Nie można połączyć ponownie się po {{attempts}} próbach.",
+    "success": "Pomyślnie połączono ponownie po {{attempts}} próbach."
   }
 }

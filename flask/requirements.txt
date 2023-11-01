@@ -19,4 +19,4 @@ six==1.16.0
 Werkzeug==2.3.7
 wsproto==1.2.0
 zope.event==5.0
-zope.interface==6.0
+zope.interface==6.1

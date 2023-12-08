@@ -2,10 +2,12 @@
 @import "node_modules/bootstrap/scss/variables";
 @import "node_modules/bootstrap/scss/mixins";
 
+$color-mode-type: media-query;
+
 nav {
   border-bottom: 1px solid $gray-400;
   box-shadow: 0 0 10px 0 $gray-400;
-  @media (prefers-color-scheme: dark) {
+  @include color-mode(dark) {
     border-bottom-color: $green-800;
     box-shadow: 0 0 10px 0 $gray-800;
   }

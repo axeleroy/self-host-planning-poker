@@ -84,10 +84,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "self-host-planning-poker:build:production"
+              "buildTarget": "self-host-planning-poker:build:production"
             },
             "development": {
-              "browserTarget": "self-host-planning-poker:build:development"
+              "buildTarget": "self-host-planning-poker:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -95,7 +95,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "self-host-planning-poker:build"
+            "buildTarget": "self-host-planning-poker:build"
           }
         },
         "test": {

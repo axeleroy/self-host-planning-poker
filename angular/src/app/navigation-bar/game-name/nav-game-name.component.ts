@@ -5,8 +5,9 @@ import { Subscription } from 'rxjs';
 import { ToastService } from '../../shared/toast/toast.service';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { TranslocoDirective, TranslocoService } from '@ngneat/transloco';
-import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { NgIf } from '@angular/common';
+import { QrCodeModalContentComponent } from "./qr-code-modal-content/qr-code-modal-content.component";
 
 @Component({
     selector: 'shpp-game-name',
@@ -22,6 +23,7 @@ export class NavGameNameComponent implements OnDestroy {
   constructor(private currentGameService: CurrentGameService,
               private toastService:  ToastService,
               private clipboard: Clipboard,
+              private modalService: NgbModal,
               private transloco: TranslocoService) {
     this.gameInfoSubscription = this.currentGameService.gameInfo$
     .subscribe((gameInfo) => this.currentGameInfo = gameInfo);
@@ -32,10 +34,18 @@ export class NavGameNameComponent implements OnDestroy {
   }
 
   copyLink(): void {
-    this.clipboard.copy(window.location.toString());
+    this.clipboard.copy(this.getUrl());
     this.toastService.show(
       this.transloco.translate('navbar.gameName.copy-toast')
     )
   }
 
+  displayQrCode(): void {
+    const modalRef = this.modalService.open(QrCodeModalContentComponent);
+    modalRef.componentInstance.url = this.getUrl();
+  }
+
+  private getUrl(): string {
+    return window.location.toString();
+  }
 }

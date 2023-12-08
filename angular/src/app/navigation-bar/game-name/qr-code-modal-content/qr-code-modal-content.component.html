@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <h4 *transloco="let t; read 'navbar.qrCodeModal'"
+      class="modal-title">
+    {{ t('title') }}
+  </h4>
+  <button *transloco="let b; read 'buttons'"
+          type="button" class="btn-close"
+          [attr.aria-label]="b('close')"
+          (click)="activeModal.dismiss()"></button>
+</div>
+<div class="modal-body d-flex justify-content-center">
+  <canvas #qrCanvas></canvas>
+</div>

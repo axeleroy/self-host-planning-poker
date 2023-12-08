@@ -19,6 +19,9 @@
     },
     "gameName": {
       "copy-toast": "Game's link copied to clipboard"
+    },
+    "qrCodeModal": {
+      "title": "Scan to join"
     }
   },
   "gameForm": {
@@ -52,13 +55,15 @@
     "votes-label": "{{votes}} Votes"
   },
   "buttons": {
-    "edit": "Edit",
+    "edit": "Edit game info",
     "save": "Save",
     "cancel": "Cancel",
     "update": "Update",
+    "close": "Close",
     "reveal": "Reveal cards",
     "newTurn": "New turn",
-    "link": "Copy game link"
+    "link": "Copy link to join game",
+    "qrcode": "Display QR code to join game"
   },
   "playerState": {
     "spectator": "Spectator",

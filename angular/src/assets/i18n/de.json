@@ -19,6 +19,9 @@
     },
     "gameName": {
       "copy-toast": "Link zum Teilen des Spiels in die Zwischenablage kopiert"
+    },
+    "qrCodeModal": {
+      "title": "Scan to join"
     }
   },
   "gameForm": {
@@ -52,13 +55,15 @@
     "votes-label": "{{votes}} Stimmen"
   },
   "buttons": {
-    "edit": "Ändern",
+    "edit": "Edit game info",
     "save": "Speichern",
     "cancel": "Abbrechen",
     "update": "Aktualisieren",
+    "close": "Close",
     "reveal": "Karten aufdecken",
     "newTurn": "Neuer Zug",
-    "link": "Spiellink kopieren"
+    "link": "Copy link to join game",
+    "qrcode": "Display QR code to join game"
   },
   "playerState": {
     "spectator": "Zuschauer",

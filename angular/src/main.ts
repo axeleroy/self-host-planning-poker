@@ -8,6 +8,7 @@ import {usernameSetGuard} from "./app/shared/user-info/username-set.service";
 import {canActivateGame} from "./app/ongoing-game/current-game.service";
 import { HttpClient, provideHttpClient } from "@angular/common/http";
 import { provideTransloco, Translation, translocoConfig, TranslocoLoader } from '@ngneat/transloco';
+import { APP_BASE_HREF, PathLocationStrategy, PlatformLocation } from '@angular/common';
 
 const routes: Routes = [
   {
@@ -42,10 +43,11 @@ if (environment.production) {
 
 @Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+              private pls: PathLocationStrategy) {}
 
   getTranslation(lang: string) {
-    return this.http.get<Translation>(`/assets/i18n/${lang}.json`);
+    return this.http.get<Translation>(`${this.pls.getBaseHref()}assets/i18n/${lang}.json`);
   }
 }
 
@@ -70,7 +72,12 @@ bootstrapApplication(AppComponent, {
           }
         }),
         loader: TranslocoHttpLoader
-      })
+      }),
+      {
+        provide: APP_BASE_HREF,
+        useFactory: (pl: PlatformLocation) => pl.getBaseHrefFromDOM(),
+        deps: [PlatformLocation]
+      }
     ]
 })
   .catch(err => console.error(err));

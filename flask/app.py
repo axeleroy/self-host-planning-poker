@@ -1,6 +1,7 @@
+import os
 import uuid
 
-from flask import Flask, request, session
+from flask import Flask, request, session, render_template
 from flask_cors import CORS
 from flask_socketio import SocketIO, join_room, leave_room, emit
 from peewee import SqliteDatabase
@@ -29,6 +30,10 @@ StoredGame.create_table()
 
 gm = GameManager()
 
+app_root = os.getenv('APP_ROOT', '/')
+if not app_root.endswith('/'):
+    app_root += '/'
+
 
 @app.route('/create', methods=['POST'])
 def create():
@@ -41,7 +46,7 @@ def create():
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    return app.send_static_file('index.html')
+    return render_template('index.html', app_root=app_root)
 
 
 @app.route('/favicon.ico')

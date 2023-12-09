@@ -58,6 +58,13 @@ volumes:
   planning-poker-data: {}
 ```
 
+### Environment variables
+
+| Variable              | Meaning                                       | Example            |
+|-----------------------|-----------------------------------------------|--------------------|
+| `APP_ROOT` (optional) | Allows you to deploy to another path than `/` | `APP_ROOT=/poker/` |
+
+
 ## Getting involved
 
 ### I'm a developer and I want to help

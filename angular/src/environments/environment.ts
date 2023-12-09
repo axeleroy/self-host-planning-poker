@@ -6,5 +6,5 @@ import { EnvironmentConfig } from '../app/model/environment-config';
 
 export const environment: EnvironmentConfig = {
   production: false,
-  urlRoot: 'http://localhost:5000'
+  backendRootOverride: 'http://localhost:5000/'
 };

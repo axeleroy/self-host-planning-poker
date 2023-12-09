@@ -19,6 +19,7 @@ module.exports = {
           /end-/,
           /position-/,
           /p-/,
+          /d-/,
           /top-/,
           /bg-/,
           /text-/

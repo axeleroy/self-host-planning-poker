@@ -9,11 +9,14 @@ $color-mode-type: media-query;
 
 :root {
   --card-color: #{$green-500};
+  --primary-background-color: #{$green-400};
+  --primary-background-color-dark: #{$green-800};
+  --primary-text-color: white;
 }
 
 .bg-primary {
-  background-color: $green-400 !important;
-  color: white !important;
+  background-color: var(--primary-background-color) !important;
+  color: var(--primary-text-color) !important;
   .text-muted {
     color: $gray-400 !important;
   }

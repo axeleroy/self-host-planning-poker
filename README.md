@@ -65,6 +65,63 @@ volumes:
 | `APP_ROOT` (optional) | Allows you to deploy to another path than `/` | `APP_ROOT=/poker/` |
 
 
+### Customizing
+
+<details>
+<summary><b>Changing application colors</b></summary>
+
+1. Create a file (ie. `overrides.css`) with the following content
+   ```css
+   :root {
+        --bs-primary: #d53434;
+        --card-color: #d53434;
+        --primary-background-color: #d53434;
+        --primary-background-color-dark: #6b1919;
+        .btn-primary {
+            --bs-btn-bg: #d53434;
+            --bs-btn-border-color: #d53434;
+            --bs-btn-disabled-bg: #d26565;
+            --bs-btn-disabled-border-color: #d53434;
+            --bs-btn-hover-bg: #d26565;
+            --bs-btn-hover-border-color: #d53434;
+        }
+        .form-control:focus {
+            border-color: #d26565;
+            box-shadow: var(--bs-box-shadow-inset),0 0 0 .25rem rgba(208, 133, 133, 0.8)
+        }
+        --bs-btn-close-focus-shadow: rgba(208, 133, 133, 0.8);
+        --bs-link-color: #d53434;
+        --bs-link-hover-color: #6b1919;
+        --primary-text-color: white;
+    }
+    ```
+   Customize the content to match your desired colors.
+2. Make a bind-mount from this file to the container's `/app/static/overrides.css`
+   * **Plain Docker**
+     ```shell
+     docker run \
+     -v planning-poker-data:/data \
+     -v /path/to/overrides.css:/app/static/overrides.css \
+     -p 8000:8000 \
+     axeleroy/self-host-planning-poker:latest
+     ```
+   * **Docker Compose**
+      ```yml
+      version: "3"
+      services:
+        planning-poker:
+          image: axeleroy/self-host-planning-poker:latest
+          ports:
+          - 8000:8000
+          volumes:
+          - planning-poker-data:/data
+          - /path/to/overrides.css:/app/static/overrides.css
+    
+      volumes:
+        planning-poker-data: {}
+      ```
+</details>
+
 ## Getting involved
 
 ### I'm a developer and I want to help

@@ -2,24 +2,33 @@
  * This is an example of overridden CSS to change the application from green to red.
  */
 /*:root {
-    --bs-primary: #d53434;
-    --card-color: #d53434;
-    --primary-background-color: #d53434;
-    --primary-background-color-dark: #6b1919;
-    .btn-primary {
-        --bs-btn-bg: #d53434;
-        --bs-btn-border-color: #d53434;
-        --bs-btn-disabled-bg: #d26565;
-        --bs-btn-disabled-border-color: #d53434;
-        --bs-btn-hover-bg: #d26565;
-        --bs-btn-hover-border-color: #d53434;
-    }
-    .form-control:focus {
-        border-color: #d26565;
-        box-shadow: var(--bs-box-shadow-inset),0 0 0 .25rem rgba(208, 133, 133, 0.8)
-    }
-    --bs-btn-close-focus-shadow: rgba(208, 133, 133, 0.8);
-    --bs-link-color: #d53434;
-    --bs-link-hover-color: #6b1919;
-    --primary-text-color: white;
+  --bs-primary: #621818;
+  --card-color: #d53434;
+  --navbar-bg-color: #e74646;
+  --navbar-border-bottom-color: #812020;
+  --navbar-text-color: white;
+  --navbar-muted-color: #424242;
+
+  .btn-primary {
+    --bs-btn-bg: #d53434;
+    --bs-btn-border-color: #d53434;
+    --bs-btn-disabled-bg: #d26565;
+    --bs-btn-disabled-border-color: #d53434;
+    --bs-btn-hover-bg: #d26565;
+    --bs-btn-hover-border-color: #d53434;
+  }
+
+  .form-control:focus, .form-select:focus {
+    border-color: #d26565;
+    box-shadow: var(--bs-box-shadow-inset), 0 0 0 .25rem rgba(208, 133, 133, 0.3)
+  }
+
+  .form-check-input:checked {
+    background-color: #d53434;
+    border-color: #d53434;
+  }
+
+  --bs-btn-close-focus-shadow: rgba(208, 133, 133, 0.8);
+  --bs-link-color: #d53434;
+  --bs-link-hover-color: #6b1919;
 }*/

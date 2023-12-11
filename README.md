@@ -70,33 +70,9 @@ volumes:
 <details>
 <summary><b>Changing application colors</b></summary>
 
-1. Create a file (ie. `overrides.css`) with the following content
-   ```css
-   :root {
-        --bs-primary: #d53434;
-        --card-color: #d53434;
-        --primary-background-color: #d53434;
-        --primary-background-color-dark: #6b1919;
-        .btn-primary {
-            --bs-btn-bg: #d53434;
-            --bs-btn-border-color: #d53434;
-            --bs-btn-disabled-bg: #d26565;
-            --bs-btn-disabled-border-color: #d53434;
-            --bs-btn-hover-bg: #d26565;
-            --bs-btn-hover-border-color: #d53434;
-        }
-        .form-control:focus {
-            border-color: #d26565;
-            box-shadow: var(--bs-box-shadow-inset),0 0 0 .25rem rgba(208, 133, 133, 0.8)
-        }
-        --bs-btn-close-focus-shadow: rgba(208, 133, 133, 0.8);
-        --bs-link-color: #d53434;
-        --bs-link-hover-color: #6b1919;
-        --primary-text-color: white;
-    }
-    ```
-   Customize the content to match your desired colors.
-2. Make a bind-mount from this file to the container's `/app/static/overrides.css`
+1. Download a copy of [overrides.css](https://github.com/axeleroy/self-host-planning-poker/blob/main/angular/src/assets/overrides.css).
+2. Uncomment the CSS and customize it to match your desired colors.
+3. Make a bind-mount from this file to the container's `/app/static/overrides.css`:
    * **Plain Docker**
      ```shell
      docker run \

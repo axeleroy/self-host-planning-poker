@@ -9,16 +9,17 @@ $color-mode-type: media-query;
 
 :root {
   --card-color: #{$green-500};
-  --primary-background-color: #{$green-400};
-  --primary-background-color-dark: #{$green-800};
-  --primary-text-color: white;
+  --navbar-bg-color: #{$green-400};
+  --navbar-border-bottom-color: #{$green-800};
+  --navbar-text-color: white;
+  --navbar-muted-color: $gray-400;
 }
 
 .bg-primary {
-  background-color: var(--primary-background-color) !important;
-  color: var(--primary-text-color) !important;
+  background-color: var(--navbar-bg-color) !important;
+  color: var(--navbar-text-color) !important;
   .text-muted {
-    color: $gray-400 !important;
+    color: var(--navbar-muted-color) !important;
   }
 }
 

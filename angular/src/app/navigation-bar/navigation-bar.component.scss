@@ -8,7 +8,7 @@ nav {
   border-bottom: 1px solid $gray-400;
   box-shadow: 0 0 10px 0 $gray-400;
   @include color-mode(dark) {
-    border-bottom-color: var(--primary-background-color-dark);
+    border-bottom-color: var(--navbar-border-bottom-color);
     box-shadow: 0 0 10px 0 $gray-800;
   }
 }

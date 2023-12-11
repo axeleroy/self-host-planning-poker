@@ -66,8 +66,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "none",
-              "deployUrl": "/assets/"
+              "outputHashing": "none"
             },
             "development": {
               "buildOptimizer": false,

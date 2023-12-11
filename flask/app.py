@@ -43,6 +43,10 @@ def create():
     return gm.create(game_name, game_deck)
 
 
+@app.route('/<string:file>.<string:ext>')
+def serve_file(file, ext):
+    return app.send_static_file(f'{file}.{ext}')
+
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
@@ -53,11 +57,9 @@ def catch_all(path):
 def serve_icon():
     return app.send_static_file('favicon/favicon.ico')
 
-
 @app.route('/assets/<path:path>')
 def serve_assets(path):
-    return app.send_static_file(path)
-
+    return app.send_static_file(f'assets/{path}')
 
 @socketio.event
 def join(data):

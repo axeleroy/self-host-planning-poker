@@ -19,6 +19,9 @@
     },
     "gameName": {
       "copy-toast": "Link do gry skopiowany do schowka"
+    },
+    "qrCodeModal": {
+      "title": "Scan to join"
     }
   },
   "gameForm": {
@@ -52,13 +55,15 @@
     "votes-label": "{{votes}} głosów"
   },
   "buttons": {
-    "edit": "Edytuj",
+    "edit": "Edit game info",
     "save": "Zapisz",
     "cancel": "Anuluj",
     "update": "Aktualizuj",
+    "close": "Close",
     "reveal": "Pokaż karty",
     "newTurn": "Nowa tura",
-    "link": "Kopiuj link do gry"
+    "link": "Copy link to join game",
+    "qrcode": "Display QR code to join game"
   },
   "playerState": {
     "spectator": "Obserwator",

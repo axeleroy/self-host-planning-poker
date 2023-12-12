@@ -2,29 +2,24 @@
 
 $primary: #198754;
 $enable-shadows: true;
+$color-mode-type: media-query;
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
 
 :root {
   --card-color: #{$green-500};
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: $gray-800;
-    color: white;
-  }
-  .offcanvas {
-    background-color: $gray-900;
-  }
+  --navbar-bg-color: #{$green-400};
+  --navbar-border-bottom-color: #{$green-800};
+  --navbar-text-color: white;
+  --navbar-muted-color: $gray-400;
 }
 
 .bg-primary {
-  background-color: $green-400 !important;
-  color: white !important;
+  background-color: var(--navbar-bg-color) !important;
+  color: var(--navbar-text-color) !important;
   .text-muted {
-    color: $gray-400 !important;
+    color: var(--navbar-muted-color) !important;
   }
 }
 
@@ -54,7 +49,7 @@ $enable-shadows: true;
     box-shadow: 0 0 15px 0 $gray-400;
   }
 
-  @media (prefers-color-scheme: dark) {
+  @include color-mode(dark) {
     background-color: $gray-800;
     color: white;
     &:not(.card-disabled, .dashed) {
@@ -72,7 +67,7 @@ $enable-shadows: true;
   background: $gray-200;
   outline-color: $gray-600;
   color: $gray-700;
-  @media (prefers-color-scheme: dark) {
+  @include color-mode(dark) {
     background: $gray-800;
     color: $gray-600;
   }

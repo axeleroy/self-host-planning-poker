@@ -17,7 +17,11 @@
 <ng-template #gameEdit let-offcanvas>
   <div class="offcanvas-header" *transloco="let t; read 'navbar.gameInfo'">
     <h4 class="offcanvas-title" id="offcanvas-basic-title">{{ t('editTitle') }}</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('cancel')"></button>
+    <button
+      *transloco="let b; read 'buttons'"
+      type="button" class="btn-close"
+      [attr.aria-label]="b('close')"
+      (click)="offcanvas.dismiss('cancel')"></button>
   </div>
   <div class="offcanvas-body">
     <shpp-game-form

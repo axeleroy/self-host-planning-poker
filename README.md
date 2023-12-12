@@ -58,6 +58,49 @@ volumes:
   planning-poker-data: {}
 ```
 
+### Environment variables
+
+| Variable              | Meaning                                       | Example            |
+|-----------------------|-----------------------------------------------|--------------------|
+| `APP_ROOT` (optional) | Allows you to deploy to another path than `/` | `APP_ROOT=/poker/` |
+
+### Running behind a reverse-proxy
+
+Refer to [Socket.IO's documentation for setting up a reverse-proxy](https://socket.io/docs/v4/reverse-proxy/).
+
+### Customizing
+
+<details>
+<summary><b>Changing application colors</b></summary>
+
+1. Download a copy of [overrides.css](https://github.com/axeleroy/self-host-planning-poker/blob/main/angular/src/assets/overrides.css).
+2. Uncomment the CSS and customize it to match your desired colors.
+3. Make a bind-mount from this file to the container's `/app/static/overrides.css`:
+   * **Plain Docker**
+     ```shell
+     docker run \
+     -v planning-poker-data:/data \
+     -v /path/to/overrides.css:/app/static/overrides.css \
+     -p 8000:8000 \
+     axeleroy/self-host-planning-poker:latest
+     ```
+   * **Docker Compose**
+      ```yml
+      version: "3"
+      services:
+        planning-poker:
+          image: axeleroy/self-host-planning-poker:latest
+          ports:
+          - 8000:8000
+          volumes:
+          - planning-poker-data:/data
+          - /path/to/overrides.css:/app/static/overrides.css
+    
+      volumes:
+        planning-poker-data: {}
+      ```
+</details>
+
 ## Getting involved
 
 ### I'm a developer and I want to help

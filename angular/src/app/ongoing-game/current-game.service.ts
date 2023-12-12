@@ -8,6 +8,7 @@ import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot, Url
 import { HashMap, TranslocoService } from '@ngneat/transloco';
 import { UserInformationService } from '../shared/user-info/user-information.service';
 import { ToastService } from '../shared/toast/toast.service';
+import { PathLocationStrategy } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +29,10 @@ export class CurrentGameService {
   constructor(private router: Router,
               private userInformation: UserInformationService,
               private transloco: TranslocoService,
-              private toastService: ToastService) {
-    this.manager = new Manager(environment.urlRoot, {
+              private toastService: ToastService,
+              private pls: PathLocationStrategy) {
+    this.manager = new Manager('/', {
+      path: `${ environment.backendRootOverride ?? this.pls.getBaseHref() }socket.io/`,
       autoConnect: false,
       reconnection: true,
       reconnectionDelay: this.reconnectDelaySeconds * 1000,

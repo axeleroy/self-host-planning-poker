@@ -10,14 +10,16 @@ module.exports = {
           /offcanvas-/,
           /tooltip-/,
           /tooltip/,
-          /show/,
-          // Toast
+          /modal/,
+          /modal-/,
           /toast-/,
           /toast/,
+          /show/,
           /fade/,
           /end-/,
           /position-/,
           /p-/,
+          /d-/,
           /top-/,
           /bg-/,
           /text-/

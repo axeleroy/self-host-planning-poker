@@ -1,0 +1,29 @@
+<!doctype html>
+<html data-critters-container>
+<head>
+  <meta charset="utf-8">
+  <title>{{ app_title }}</title>
+  <base href="{{ app_root }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="{{ app_root }}assets/icon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ app_root }}assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ app_root }}assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ app_root }}assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="{{ app_root }}assets/favicon/site.webmanifest">
+  <link rel="mask-icon" href="{{ app_root }}assets/favicon/safari-pinned-tab.svg" color="#0d6efd">
+  <link rel="shortcut icon" href="{{ app_root }}assets/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#2d89ef">
+  <meta name="msapplication-config" content="{{ app_root }}assets/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="{{ app_root }}styles.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="{{ app_root }}overrides.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ app_root }}styles.css"></noscript>
+</head>
+<body>
+  <shpp-root>
+    <script src="{{ app_root }}runtime.js" type="module"></script>
+    <script src="{{ app_root }}polyfills.js" type="module"></script>
+    <script src="{{ app_root }}main.js" type="module"></script>
+  </shpp-root>
+</body>
+</html>

@@ -19,6 +19,9 @@
     },
     "gameName": {
       "copy-toast": "Link della partita copiato"
+    },
+    "qrCodeModal": {
+      "title": "Scan to join"
     }
   },
   "gameForm": {
@@ -52,13 +55,15 @@
     "votes-label": "{{votes}} Voti"
   },
   "buttons": {
-    "edit": "Modifica",
+    "edit": "Edit game info",
     "save": "Salva",
     "cancel": "Annulla",
     "update": "Aggiorna",
+    "close": "Close",
     "reveal": "Rivela carte",
     "newTurn": "Nuovo turno",
-    "link": "Copia link della partita"
+    "link": "Copy link to join game",
+    "qrcode": "Display QR code to join game"
   },
   "playerState": {
     "spectator": "Spettatore",

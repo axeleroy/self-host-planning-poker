@@ -64,6 +64,9 @@ volumes:
 |-----------------------|-----------------------------------------------|--------------------|
 | `APP_ROOT` (optional) | Allows you to deploy to another path than `/` | `APP_ROOT=/poker/` |
 
+### Running behind a reverse-proxy
+
+Refer to [Socket.IO's documentation for setting up a reverse-proxy](https://socket.io/docs/v4/reverse-proxy/).
 
 ### Customizing
 

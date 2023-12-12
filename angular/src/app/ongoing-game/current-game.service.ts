@@ -31,13 +31,14 @@ export class CurrentGameService {
               private transloco: TranslocoService,
               private toastService: ToastService,
               private pls: PathLocationStrategy) {
-    this.manager = new Manager('/', {
-      path: `${ environment.backendRootOverride ?? this.pls.getBaseHref() }socket.io/`,
-      autoConnect: false,
-      reconnection: true,
-      reconnectionDelay: this.reconnectDelaySeconds * 1000,
-      reconnectionAttempts: this.totalAttempts
-    });
+    this.manager = new Manager(environment.backendRootOverride ?? window.location.origin,
+      {
+        path: `${this.pls.getBaseHref()}socket.io/`,
+        autoConnect: false,
+        reconnection: true,
+        reconnectionDelay: this.reconnectDelaySeconds * 1000,
+        reconnectionAttempts: this.totalAttempts
+      });
     this.socket = this.manager.socket('/', {
       retries: this.retries,
       ackTimeout: this.ackTimeoutMs

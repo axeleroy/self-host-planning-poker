@@ -75,7 +75,7 @@ Refer to [Socket.IO's documentation for setting up a reverse-proxy](https://sock
 
 1. Download a copy of [overrides.css](https://github.com/axeleroy/self-host-planning-poker/blob/main/angular/src/assets/overrides.css).
 2. Uncomment the CSS and customize it to match your desired colors.
-3. Make a bind-mount from this file to the container's `/app/static/overrides.css`:
+3. Make a bind mount from this file to the container's `/app/static/overrides.css`:
    * **Plain Docker**
      ```shell
      docker run \
@@ -99,6 +99,38 @@ Refer to [Socket.IO's documentation for setting up a reverse-proxy](https://sock
       volumes:
         planning-poker-data: {}
       ```
+</details>
+
+<details>
+<summary><b>Changing application icon</b></summary>
+
+Make a bind mount from your desired icon to the container's `/app/static/assets/icon.svg`:
+* **Plain Docker**
+  ```shell
+  docker run \
+  -v planning-poker-data:/data \
+  -v /path/to/icon.svg:/app/static/assets/icon.svg \
+  -p 8000:8000 \
+  axeleroy/self-host-planning-poker:latest
+  ```
+* **Docker Compose**
+   ```yml
+   version: "3"
+   services:
+     planning-poker:
+       image: axeleroy/self-host-planning-poker:latest
+       ports:
+       - 8000:8000
+       volumes:
+       - planning-poker-data:/data
+       - /path/to/icon.svg:/app/static/assets/icon.svg
+ 
+   volumes:
+     planning-poker-data: {}
+   ```
+  
+To change the favicon, use [Favicon Generator](https://realfavicongenerator.net/) to generate a "Favicon package".
+Then unzip it and mount this folder to `/app/static/assets/favicon` using a bind mount.
 </details>
 
 ## Getting involved

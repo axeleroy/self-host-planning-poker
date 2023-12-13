@@ -23,7 +23,7 @@ It features:
   * Spectator mode
   * Responsive layout
   * Vote summary
-  * Translations _(English, French, German, Italian. [Contributions welcome!](#im-a-user-and-want-to-contribute-translations))_
+  * Translations _(English, French, German, Italian and Polish. [Contributions welcome!](#im-a-user-and-want-to-contribute-translations))_
  
 It does not have fancy features like issues management, Jira integration or timers.
 

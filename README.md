@@ -60,78 +60,17 @@ volumes:
 
 ### Environment variables
 
-| Variable              | Meaning                                       | Example            |
-|-----------------------|-----------------------------------------------|--------------------|
-| `APP_ROOT` (optional) | Allows you to deploy to another path than `/` | `APP_ROOT=/poker/` |
+| Variable              | Meaning                                                                                                                                                                                                                                          | Example            |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|
+| `APP_ROOT` (optional) | Allows you to deploy to another path than `/`.<br>See [Configuration examples for deploying on sub‐paths](https://github.com/axeleroy/self-host-planning-poker/wiki/Configuration-examples-for-deploying-on-sub%E2%80%90paths) for more details. | `APP_ROOT=/poker/` |
 
 ### Running behind a reverse-proxy
 
-Refer to [Socket.IO's documentation for setting up a reverse-proxy](https://socket.io/docs/v4/reverse-proxy/).
+Refer to [Socket.IO's documentation](https://socket.io/docs/v4/reverse-proxy/)  for setting up your reverse-proxy to work correctly with Socket.IO.
 
-### Customizing
+### Customization
 
-<details>
-<summary><b>Changing application colors</b></summary>
-
-1. Download a copy of [overrides.css](https://github.com/axeleroy/self-host-planning-poker/blob/main/angular/src/assets/overrides.css).
-2. Uncomment the CSS and customize it to match your desired colors.
-3. Make a bind mount from this file to the container's `/app/static/overrides.css`:
-   * **Plain Docker**
-     ```shell
-     docker run \
-     -v planning-poker-data:/data \
-     -v /path/to/overrides.css:/app/static/overrides.css \
-     -p 8000:8000 \
-     axeleroy/self-host-planning-poker:latest
-     ```
-   * **Docker Compose**
-      ```yml
-      version: "3"
-      services:
-        planning-poker:
-          image: axeleroy/self-host-planning-poker:latest
-          ports:
-          - 8000:8000
-          volumes:
-          - planning-poker-data:/data
-          - /path/to/overrides.css:/app/static/overrides.css
-    
-      volumes:
-        planning-poker-data: {}
-      ```
-</details>
-
-<details>
-<summary><b>Changing application icon</b></summary>
-
-Make a bind mount from your desired icon to the container's `/app/static/assets/icon.svg`:
-* **Plain Docker**
-  ```shell
-  docker run \
-  -v planning-poker-data:/data \
-  -v /path/to/icon.svg:/app/static/assets/icon.svg \
-  -p 8000:8000 \
-  axeleroy/self-host-planning-poker:latest
-  ```
-* **Docker Compose**
-   ```yml
-   version: "3"
-   services:
-     planning-poker:
-       image: axeleroy/self-host-planning-poker:latest
-       ports:
-       - 8000:8000
-       volumes:
-       - planning-poker-data:/data
-       - /path/to/icon.svg:/app/static/assets/icon.svg
- 
-   volumes:
-     planning-poker-data: {}
-   ```
-  
-To change the favicon, use [Favicon Generator](https://realfavicongenerator.net/) to generate a "Favicon package".
-Then unzip it and mount this folder to `/app/static/assets/favicon` using a bind mount.
-</details>
+See [Customizing the application's style and icon](https://github.com/axeleroy/self-host-planning-poker/wiki/Customizing-the-application's-style-and-icon).
 
 ## Getting involved
 

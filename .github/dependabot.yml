@@ -30,6 +30,7 @@ updates:
     labels:
       - "dependencies"
       - "python"
+    open-pull-requests-limit: 5
   - package-ecosystem: "npm"
     directory: "/angular"
     schedule:
@@ -40,6 +41,7 @@ updates:
     labels:
       - "dependencies"
       - "angular"
+    open-pull-requests-limit: 5
     ignore:
       - dependency-name: "@angular*"
         update-types:  ["version-update:semver-major"]

@@ -51,7 +51,8 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v5
         with:
-          push: ${{ (github.ref_name == 'main' && github.event.workflow_run.conclusion == 'success' && toJson(github.workflow_run.pull_requests) == 'null') || startsWith(github.ref, 'refs/tags/v') }}
+          # FIXME: pushes on PRs
+          push: ${{ (false && github.ref_name == 'main' && github.event.workflow_run.conclusion == 'success' && toJson(github.workflow_run.pull_requests) == 'null') || startsWith(github.ref, 'refs/tags/v') }}
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

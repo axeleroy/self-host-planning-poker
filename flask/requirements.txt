@@ -6,7 +6,7 @@ eventlet==0.33.3
 Flask==2.3.3
 Flask-Cors==4.0.0
 Flask-SocketIO==5.3.6
-greenlet==2.0.2
+greenlet==3.0.1
 gunicorn==21.2.0
 h11==0.14.0
 itsdangerous==2.1.2
@@ -16,7 +16,7 @@ peewee==3.16.3
 python-engineio==4.8.0
 python-socketio==5.9.0
 six==1.16.0
-Werkzeug==2.3.8
+Werkzeug==3.0.1
 wsproto==1.2.0
 zope.event==5.0
 zope.interface==6.1

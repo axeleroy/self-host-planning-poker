@@ -24,14 +24,8 @@ if app.config['DEBUG']:
     ])
     CORS(app)
 else:
-    try:
-        real_db = SqliteDatabase('/data/database.db')
-    except OperationalError as e:
-        print("ERROR: User does not have write permissions on /data/database.db.\n" +
-              "\tUpdate permissions so that it is owned and writable by 1001:0.\n" +
-              "\tIf you migrated from an earlier version, run `chown 1001:0 <path_to_data_volume>/database.db` (Docker) " +
-              "or `podman unshare chown 1001:0 <path_to_data_volume>/database.db` (Podman)")
-        sys.exit(errno.EINTR)
+    check_db_file_permissions()
+    real_db = SqliteDatabase('/data/database.db')
     socketio = SocketIO(app)
 database_proxy.initialize(real_db)
 if database_proxy.is_closed():

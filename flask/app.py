@@ -6,6 +6,7 @@ from flask_cors import CORS
 from flask_socketio import SocketIO, join_room, leave_room, emit
 from peewee import SqliteDatabase
 
+from permission_check import check_db_file_permissions
 from gamestate.exceptions import PlanningPokerException
 from gamestate.game_manager import GameManager
 from gamestate.models import database_proxy, StoredGame
@@ -21,6 +22,7 @@ if app.config['DEBUG']:
     ])
     CORS(app)
 else:
+    check_db_file_permissions()
     real_db = SqliteDatabase('/data/database.db')
     socketio = SocketIO(app)
 database_proxy.initialize(real_db)

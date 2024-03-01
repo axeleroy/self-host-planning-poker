@@ -1,10 +1,12 @@
+import errno
 import os
+import sys
 import uuid
 
 from flask import Flask, request, session, render_template
 from flask_cors import CORS
 from flask_socketio import SocketIO, join_room, leave_room, emit
-from peewee import SqliteDatabase
+from peewee import SqliteDatabase, OperationalError
 
 from permission_check import check_db_file_permissions
 from gamestate.exceptions import PlanningPokerException
@@ -22,8 +24,14 @@ if app.config['DEBUG']:
     ])
     CORS(app)
 else:
-    check_db_file_permissions()
-    real_db = SqliteDatabase('/data/database.db')
+    try:
+        real_db = SqliteDatabase('/data/database.db')
+    except OperationalError as e:
+        print("ERROR: User does not have write permissions on /data/database.db.\n" +
+              "\tUpdate permissions so that it is owned and writable by 1001:0.\n" +
+              "\tIf you migrated from an earlier version, run `chown 1001:0 <path_to_data_volume>/database.db` (Docker) " +
+              "or `podman unshare chown 1001:0 <path_to_data_volume>/database.db` (Podman)")
+        sys.exit(errno.EINTR)
     socketio = SocketIO(app)
 database_proxy.initialize(real_db)
 if database_proxy.is_closed():

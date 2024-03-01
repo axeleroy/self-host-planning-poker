@@ -1,18 +1,21 @@
 import errno
+import os
 import sys
 
 
 def check_db_file_permissions():
+    folder = '/data'
     path = '/data/database.db'
 
     try:
+        os.scandir(folder)
         with open(path, 'a') as file:
             s = file.read()
     except PermissionError:
         print(f"ERROR: User does not have write permissions on {path}.\n" +
               "\tUpdate permissions so that it is owned and writable by 1001:0.\n" +
-              "\tIf you migrated from an earlier version, run `chown 1001:0 <path_to_data_volume>/database.db` (Docker) " +
-              "or `podman unshare chown 1001:0 <path_to_data_volume>/database.db` (Podman)")
+              "\tIf you migrated from an earlier version, run `chown 1001:0 -R <path_to_data_volume>` (Docker) " +
+              "or `podman unshare chown 1001:0 -R <path_to_data_volume>` (Podman)")
         sys.exit(errno.EINTR)
     except IOError as e:
         if e.errno == errno.ENOENT:

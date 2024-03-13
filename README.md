@@ -1,6 +1,6 @@
 # Self-host Planning Poker
 
-A hassle-free Planning Poker application to deploy on your NAS.
+A hassle-free Planning Poker application
 
 [![Docker Hub](https://img.shields.io/docker/v/axeleroy/self-host-planning-poker?sort=semver&logo=docker)](https://hub.docker.com/r/axeleroy/self-host-planning-poker/tags)
 [![Docker Hub](https://img.shields.io/docker/pulls/axeleroy/self-host-planning-poker?logo=docker)](https://hub.docker.com/r/axeleroy/self-host-planning-poker/tags)
@@ -28,40 +28,86 @@ It features:
 It does not have fancy features like issues management, Jira integration or timers.
 
 ## Screenshots
+
 <a href="https://github.com/axeleroy/self-host-planning-poker/blob/main/assets/screenshot.png"><img alt="Application screenshot with cards face down" src="https://github.com/axeleroy/self-host-planning-poker/blob/main/assets/screenshot.png" width="412px"></a>
 <a href="https://github.com/axeleroy/self-host-planning-poker/blob/main/assets/screenshot.png"><img alt="Application screenshot with cards revealed" src="https://github.com/axeleroy/self-host-planning-poker/blob/main/assets/screenshot-revealed.png" width="412px"></a>
 
 ## Deployment
 
 Deploying the application is easy as it's self-contained in a single container.
-All you need is to create a volume to persist the games settings (ID, name and deck).
+All you need is to create a directory on the host system and mount it as volume to persist the games settings (ID, name and deck).
+It is also possible to run it without persistent data but you loose the game settings.
 
 ### Docker
+
+Since the container runs with UID `1001` and GID `0` we must set the correct permissions before starting.
+
 ```bash
+# prepare data dir
+sudo mkdir -p /opt/planning-poker-data
+chown -R 1001:0 /opt/planning-poker-data
+# run it
 docker run \
-  -v planning-poker-data:/data \
-  -p 8000:8000 \
-  axeleroy/self-host-planning-poker:latest
+    -d \
+    --name planning=poker \
+    -v /opt/planning-poker-data:/data \
+    -p 8000:8000 \
+    docker.io/axeleroy/self-host-planning-poker:latest
 ```
 
-### docker-compose
-```yml
+#### docker-compose
+
+See [the Wiki](https://github.com/axeleroy/self-host-planning-poker/wiki/Configuration-examples-for-deploying-on-sub%E2%80%90paths) for more examples.
+
+```yaml
 version: "3"
 services:
   planning-poker:
-    image: axeleroy/self-host-planning-poker:latest
+    image: docker.io/axeleroy/self-host-planning-poker:latest
     ports:
       - 8000:8000
     volumes:
-      - planning-poker-data:/data
-volumes:
-  planning-poker-data: {}
+      - /opt/planning-poker-data:/data
+```
+
+### Podman (Linux)
+
+The `:U` suffix at the `-v` option tells Podman to use the correct host UID and GID based on the UID and GID within the container, to change recursively the owner and group of the source volume.
+See `man podman-run` for more info.
+
+```bash
+# prepare data dir
+mkdir -p ${HOME}/planning-poker-data
+# run it
+podman run \
+    -d \
+    --name planning-poker \
+    -v "${HOME}/planning-poker-data:/data \
+    -p 8000:8000 \
+    docker.io/axeleroy/self-host-planning-poker:latest
+```
+
+### macOS (Podman machine)
+
+See `man podman-run` for more info about the `--userns=keep-id:uid=1001` option.
+
+```bash
+# prepare data dir
+mkdir -p <Your Podman data dir>/planning-poker-data
+# run it
+podman run \
+    -d \
+    --name planning-poker \
+    -v <Your Podman data dir>/planning-poker-data:/data \
+    --userns=keep-id:uid=1001 \
+    -p 8000:8000 \
+    docker.io/axeleroy/self-host-planning-poker:latest
 ```
 
 ### Environment variables
 
-| Variable              | Meaning                                                                                                                                                                                                                                          | Example            |
-|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|
+| Variable              | Meaning | Example |
+|-----------------------| ------- | ------- |
 | `APP_ROOT` (optional) | Allows you to deploy to another path than `/`.<br>See [Configuration examples for deploying on sub‐paths](https://github.com/axeleroy/self-host-planning-poker/wiki/Configuration-examples-for-deploying-on-sub%E2%80%90paths) for more details. | `APP_ROOT=/poker/` |
 
 ### Running behind a reverse-proxy
@@ -98,9 +144,9 @@ The app consists of two parts:
 
 ### Back-end development
 
-You must first initialise a virtual environment and install the dependencies
+You must first initialise a virtual environment and install the dependencies.
 
-```sh
+```bash
 # Run the following commands in the flask/ folder
 python3 -m venv env
 source env/bin/activate
@@ -124,31 +170,41 @@ python -m unittest
 > <details>
 > <summary>
 > <b>Note:</b> You might want to test the front-end against a back-end. You can either follow the instructions in the
-> previous section to install and run it locally or use the following command to run it in a Docker container:
+> previous section to install and run it locally or use the following command to run it in a container:
 > </summary>
 >
 > ```bash
+> # Docker
 > docker run --rm -it \
 >   -v $(pwd)/flask:/app \
 >   -p 5000:5000 \
->   python:3.11-slim \
+>   docker.io/library/python:3.11-slim \
+>   bash -c "cd /app; pip install -r requirements.txt; FLASK_DEBUG=1 gunicorn --worker-class eventlet -w 1 app:app --bind 0.0.0.0:5000"
+> # Podman
+> podman run --rm -it \
+>   -v $(pwd)/flask:/app \
+>   -p 5000:5000 \
+>   docker.io/library/python:3.11-slim \
 >   bash -c "cd /app; pip install -r requirements.txt; FLASK_DEBUG=1 gunicorn --worker-class eventlet -w 1 app:app --bind 0.0.0.0:5000"
 > ```
 > </details>
 
 First make sure that [Node.js](https://nodejs.org/en/) (preferably LTS) is installed.
-Then, install dependencies and launch the development server
+Then, install dependencies and launch the development server.
 
-```sh
+```bash
 # Run the following commands in the angular/ folder
 npm install
 npm start
 ```
 
-### Building Docker image
+### Building container image
 
-```sh
+```bash
 # After checking out the project
+# Podman
+podman build . -t localhost/self-host-planning-poker:custom
+# Docker
 docker build . -t axeleroy/self-host-planning-poker:custom
 # Alternatively, if you don't want to checkout the project
 docker build https://github.com/axeleroy/self-host-planning-poker -t axeleroy/self-host-planning-poker:custom

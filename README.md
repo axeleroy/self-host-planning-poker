@@ -114,7 +114,7 @@ FLASK_DEBUG=1 python app.py
 
 #### Run unit tests
 
-After initalizing the virtual environment, run this command in the `flask/` directory:
+After initializing the virtual environment, run this command in the `flask/` directory:
 ```sh
 python -m unittest
 ```

@@ -2,7 +2,7 @@ bidict==0.22.1
 click==8.1.6
 coverage==7.3.2
 dnspython==2.4.2
-eventlet==0.33.3
+eventlet==0.36.1
 Flask==2.3.3
 Flask-Cors==4.0.0
 Flask-SocketIO==5.3.6

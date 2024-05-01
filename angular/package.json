@@ -27,7 +27,7 @@
     "@ngneat/transloco-locale": "^5.1.1",
     "@popperjs/core": "^2.11.8",
     "@types/canvas-confetti": "^1.6.0",
-    "@types/node": "^20.10.4",
+    "@types/node": "^20.12.8",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.2",
     "canvas-confetti": "^1.6.0",

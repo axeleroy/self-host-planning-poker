@@ -1,4 +1,5 @@
 FROM --platform=$BUILDPLATFORM docker.io/library/node:lts-slim AS node_builder
+
 WORKDIR /angular
 COPY angular/ /angular
 RUN npm config set update-notifier false && \
@@ -8,6 +9,8 @@ RUN npm config set update-notifier false && \
 RUN npm run build self-host-planning-poker
 
 FROM docker.io/library/python:3.11.7-alpine3.18
+LABEL org.opencontainers.image.title = "self-host-planning-poker"
+LABEL org.opencontainers.image.url = "https://github.com/the-technat/self-host-planning-poker"
 RUN adduser -H -D -u 1001 -G root default
 WORKDIR /app
 COPY --chown=1001:0 flask/ ./

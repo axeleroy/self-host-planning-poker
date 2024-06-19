@@ -7,7 +7,7 @@ from gamestate.player import Player
 
 class Game:
     """Class representing the state of a game of Planning Poker"""
-    def __init__(self, name: str, deck: Deck = Deck.FIBONACCI):
+    def __init__(self, name: str, deck: Deck = Deck.DEFAULT):
         self.name = name
         self.__state = {}
         self.__deck = deck

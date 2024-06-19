@@ -1,5 +1,5 @@
 export interface CardValue {
-  value: number;
+  value: number | string ;
   display: number | string;
 }
 
@@ -10,6 +10,19 @@ export interface Deck {
 }
 
 export const decks: Deck[] = [
+  {
+    name: 'DEFAULT',
+    textValues: false,
+    values: [
+      { value: 1, display: 1 },
+      { value: 2, display: 2 },
+      { value: 3, display: 3 },
+      { value: 5, display: 5 },
+      { value: 8, display: 8 },
+      { value: 13, display: 13 },
+      { value: "☕", display: "☕" },
+    ]
+  },
   {
     name: 'FIBONACCI',
     textValues: false,

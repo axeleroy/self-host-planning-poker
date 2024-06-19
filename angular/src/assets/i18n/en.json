@@ -32,6 +32,7 @@
     "updateButton-label": "{{buttons.update}}"
   },
   "deckNames": {
+    "DEFAULT": "Default",
     "FIBONACCI": "Fibonacci",
     "MODIFIED_FIBONACCI": "Modified Fibonacci",
     "POWERS": "Powers of 2",

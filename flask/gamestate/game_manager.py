@@ -15,7 +15,7 @@ class GameManager:
     def __init__(self):
         self.games = {}
 
-    def create(self, name: str, deck_name='FIBONACCI') -> str:
+    def create(self, name: str, deck_name='DEFAULT') -> str:
         game_uuid = str(uuid.uuid4())
         deck = self.__get_deck(deck_name)
         StoredGame.create(uuid=game_uuid, name=name, deck=deck_name)

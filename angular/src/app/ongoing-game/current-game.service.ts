@@ -144,7 +144,7 @@ export class CurrentGameService {
     this.socket.emit('set_deck', { deck: deck.name }, (response?: ErrorMessage) => this.handleError(response));
   }
 
-  public pickCard(cardValue: number | null): void {
+  public pickCard(cardValue: number | string | null): void {
     this.socket.emit('pick_card', { card: cardValue }, (response?: ErrorMessage) => this.handleError(response));
   }
 

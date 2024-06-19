@@ -1,0 +1,17 @@
+{{- if .Values.persistence.enabled -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "scrum-poker.fullname" . }}
+  labels:
+    {{- include "scrum-poker.labels" . | nindent 4 }}
+spec:
+  storageClassName: {{ .Values.persistence.storageClassName }}
+  {{- with .Values.persistence.accessModes }}
+  accessModes:
+     {{- toYaml . | nindent 6 }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.storage }}
+{{- end }}

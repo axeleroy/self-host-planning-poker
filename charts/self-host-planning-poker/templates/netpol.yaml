@@ -1,0 +1,19 @@
+{{- if .Values.networkPolicy.enabled }}
+kind: NetworkPolicy
+metadata:
+  name: {{ include "scrum-poker.fullname" . }} 
+  labels:
+    {{- include "scrum-poker.labels" . | nindent 4 }}
+spec:
+  podSelector: 
+    matchLabels:
+      {{- include "scrum-poker.selectorLabels" . | nindent 6 }}
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+      ports:
+        - port: 8000
+{{- end }}

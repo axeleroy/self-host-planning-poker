@@ -2,34 +2,54 @@ import errno
 import os
 import sys
 import uuid
+import logging
 
 from flask import Flask, request, session, render_template
-from flask_cors import CORS
-from flask_socketio import SocketIO, join_room, leave_room, emit
-from peewee import SqliteDatabase, OperationalError
+try:
+    from flask_cors import CORS
+except ImportError:
+    CORS = None
+    logging.warning("flask-cors not available, CORS will be disabled")
 
-from permission_check import check_db_file_permissions
+from flask_socketio import SocketIO, join_room, leave_room, emit
+from peewee import OperationalError
+
+from database_config import get_database, validate_database_connection, get_database_info
 from gamestate.exceptions import PlanningPokerException
 from gamestate.game_manager import GameManager
 from gamestate.models import database_proxy, StoredGame
 
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 
-if app.config['DEBUG']:
-    real_db = SqliteDatabase('database.db')
+# Initialize database
+real_db = get_database()
+database_proxy.initialize(real_db)
+
+# Validate database connection
+if not validate_database_connection(real_db):
+    logger.error("Failed to connect to database. Exiting.")
+    sys.exit(1)
+
+logger.info(f"Database configured: {get_database_info()}")
+
+# Configure SocketIO based on environment
+debug_mode = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
+if debug_mode:
     socketio = SocketIO(app, cors_allowed_origins=[
         'http://localhost:4200', 'http://localhost:5000',
         'http://127.0.0.1:4200', 'http://127.0.0.1:5000'
     ])
-    CORS(app)
+    if CORS:
+        CORS(app)
+    logger.info("Running in debug mode with CORS enabled")
 else:
-    check_db_file_permissions()
-    real_db = SqliteDatabase('/data/database.db')
     socketio = SocketIO(app)
-database_proxy.initialize(real_db)
-if database_proxy.is_closed():
-    database_proxy.connect()
+    logger.info("Running in production mode")
 StoredGame.create_table()
 
 gm = GameManager()

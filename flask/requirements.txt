@@ -20,3 +20,8 @@ Werkzeug==2.3.8
 wsproto==1.2.0
 zope.event==5.0
 zope.interface==6.1
+# Database drivers for external databases
+psycopg2-binary==2.9.7
+PyMySQL==1.1.0
+# Environment variables support
+python-dotenv==1.0.0

@@ -9,6 +9,9 @@ export interface Deck {
   values: CardValue[];
 }
 
+// Predefined decks
+// Cards can have negative values, to define special cards like "?" or "coffee".
+// Cards with negative values are ignored when calculating averages and agreement.
 export const decks: Deck[] = [
   {
     name: 'FIBONACCI',
@@ -25,6 +28,8 @@ export const decks: Deck[] = [
       { value: 34, display: 34 },
       { value: 55, display: 55 },
       { value: 89, display: 89 },
+      { value: -1, display: "?" },
+      { value: -2, display: "☕" },
     ]
   },
   {
@@ -42,6 +47,8 @@ export const decks: Deck[] = [
       { value: 20, display: 20 },
       { value: 40, display: 40 },
       { value: 100, display: 100 },
+      { value: -1, display: "?" },
+      { value: -2, display: "☕" },
     ]
   },
   {
@@ -56,6 +63,8 @@ export const decks: Deck[] = [
       { value: 16, display: 16 },
       { value: 32, display: 32 },
       { value: 64, display: 64 },
+      { value: -1, display: "?" },
+      { value: -2, display: "☕" },
     ]
   },
   {
@@ -68,6 +77,8 @@ export const decks: Deck[] = [
       { value: 3, display: 3 },
       { value: 4, display: 4 },
       { value: 5, display: 5 },
+      { value: -1, display: "?" },
+      { value: -2, display: "☕" },
     ]
   },
   {
@@ -81,6 +92,8 @@ export const decks: Deck[] = [
       { value: 5, display: 'L' },
       { value: 6, display: 'XL' },
       { value: 7, display: 'XXL' },
+      { value: -1, display: "?" },
+      { value: -2, display: "☕" },
     ]
   }
 ]

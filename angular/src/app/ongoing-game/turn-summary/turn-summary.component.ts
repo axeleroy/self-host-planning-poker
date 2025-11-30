@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
-import { PlayerState } from '../../model/events';
+import { PlayerState, GameInfo, GameState } from '../../model/events';
 import { filter, map, Observable, Subscription, tap, withLatestFrom } from 'rxjs';
 import { Deck, decksDict, displayCardValue } from '../../model/deck';
 import { AsyncPipe, KeyValue, KeyValuePipe, NgClass, NgFor } from '@angular/common';
@@ -45,7 +45,7 @@ export class TurnSummaryComponent implements AfterViewInit, OnDestroy {
         }
       }),
       map(([gameState]) => Object.values(gameState)),
-      map((playerStates: PlayerState[]) => playerStates.filter((state) => state.hand !== undefined && state.hand !== null))
+      map((playerStates: PlayerState[]) => playerStates.filter((state) => state.hand !== undefined && state.hand !== null && state.hand >= 0))
     );
 
     this.$counts = this.$playerStates
@@ -66,8 +66,10 @@ export class TurnSummaryComponent implements AfterViewInit, OnDestroy {
 
     this.subscriptions.concat(
       this.$playerStates.pipe(
-        map((players: PlayerState[]) =>
-          players.reduce((prev, current) => prev + (current.hand || 0), 0) / players.length || 0))
+        map((players: PlayerState[]) => 
+          players.length > 0 
+            ? players.reduce((prev, current) => prev + (current.hand || 0), 0) / players.length 
+            : 0))
       .subscribe((value) => this.average = value));
 
     this.subscriptions.concat(

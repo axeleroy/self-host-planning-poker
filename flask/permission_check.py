@@ -3,9 +3,11 @@ import os
 import sys
 
 
-def check_db_file_permissions():
-    folder = '/data'
-    path = '/data/database.db'
+def check_db_file_permissions(path='/data/database.db'):
+    if path == ':memory:':
+        return
+
+    folder = os.path.dirname(path) or '.'
 
     try:
         os.scandir(folder)

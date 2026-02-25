@@ -17,16 +17,18 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 
 if app.config['DEBUG']:
-    real_db = SqliteDatabase('database.db')
+    db_path = os.getenv('DATABASE_URL', 'database.db')
     socketio = SocketIO(app, cors_allowed_origins=[
         'http://localhost:4200', 'http://localhost:5000',
         'http://127.0.0.1:4200', 'http://127.0.0.1:5000'
     ])
     CORS(app)
 else:
-    check_db_file_permissions()
-    real_db = SqliteDatabase('/data/database.db')
+    db_path = os.getenv('DATABASE_URL', '/data/database.db')
+    check_db_file_permissions(db_path)
     socketio = SocketIO(app)
+real_db = SqliteDatabase(db_path)
+
 database_proxy.initialize(real_db)
 if database_proxy.is_closed():
     database_proxy.connect()

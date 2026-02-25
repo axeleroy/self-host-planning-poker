@@ -36,7 +36,8 @@
     "MODIFIED_FIBONACCI": "Fibonacci modifié",
     "POWERS": "Puissances de 2",
     "TRUST_VOTE": "Vote de confiance",
-    "T_SHIRTS": "Tailles de t-shirt"
+    "T_SHIRTS": "Tailles de t-shirt",
+    "WORK_DAYS": "Jours de travail"
   },
   "ongoingGame": {
     "page-title": "Planning Poker {{gameName}}"
